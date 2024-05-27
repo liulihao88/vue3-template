@@ -2,8 +2,9 @@
 
 /** @type {import("prettier").Config} */
 export default {
-  bracketSpacing: true,
-  singleQuote: false,
-  arrowParens: "avoid",
-  trailingComma: "none"
-};
+  singleQuote: true,
+  semi: false,
+  htmlWhitespaceSensitivity: 'ignore',
+  trailingComma: 'all',
+  printWidth: 120,
+}
