@@ -4,7 +4,6 @@ const Layout = () => import('@/layout/index.vue')
 export default [
   {
     path: '/test',
-    name: 'Home',
     component: Layout,
     redirect: '/test/t1',
     meta: {
@@ -26,7 +25,6 @@ export default [
   },
   {
     path: '/t2',
-    name: 'Home',
     component: Layout,
     redirect: '/test/t2',
     meta: {
@@ -47,30 +45,7 @@ export default [
     ],
   },
   {
-    path: '/t5',
-    name: 'Home',
-    component: Layout,
-    redirect: '/test/t5',
-    meta: {
-      icon: 'ep:home-filled',
-      title: '测试页',
-      rank: 0,
-    },
-    children: [
-      {
-        path: '/test/t5',
-        name: 'T5',
-        component: () => import('@/views/test/t5.vue'),
-        meta: {
-          title: '测试页5',
-          showLink: VITE_HIDE_HOME === 'true' ? false : true,
-        },
-      },
-    ],
-  },
-  {
     path: '/t3',
-    name: 'Home',
     component: Layout,
     redirect: '/test/t3',
     meta: {
@@ -92,7 +67,6 @@ export default [
   },
   {
     path: '/t4',
-    name: 'Home',
     component: Layout,
     redirect: '/test/t4',
     meta: {
@@ -114,7 +88,6 @@ export default [
   },
   {
     path: '/t5',
-    name: 'Home',
     component: Layout,
     redirect: '/test/t5',
     meta: {

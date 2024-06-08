@@ -42,7 +42,8 @@ const localRoutes = import.meta.glob(['./localRoutes/**/*.js'], {
 console.log(`02 localRoutes`, localRoutes)
 Object.keys(localRoutes).forEach((key) => {
   console.log(`94 localRoutes[key]`, localRoutes[key])
-  routes.push(localRoutes[key].default)
+  console.log(`99 localRoutes[key].default`, localRoutes[key].default)
+  routes.push(...localRoutes[key].default)
   console.log(`95 routes`, routes)
 })
 
