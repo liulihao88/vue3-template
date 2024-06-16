@@ -1,113 +1,55 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 const { proxy } = getCurrentInstance()
-const header = [
-  {
-    label: '名字',
-    title: 'name',
-  },
-  {
-    label: '年龄',
-    title: '18',
-  },
-]
-const edit = (row, scope) => {
-  form.value.data[scope.$index].isEdit = !form.value.data[scope.$index].isEdit
-}
-const columns = [
-  {
-    label: '名字',
-    prop: 'name',
-    useSlot: true,
-  },
-  {
-    label: '年龄',
-    prop: 'age',
-    useSlot: true,
-  },
-  {
-    label: '操作',
-    prop: 'operation',
-    btns: [
-      {
-        content: '编辑',
-        type: 'primary',
-        handler: edit,
-      },
-    ],
-  },
-]
+function test() {
+  // 假设 'faviconURL' 是你找到的Favicon的URL
+  var faviconURL = 'https://www.minio.org.cn/'
 
-const formRules = ref({
-  name: [proxy.validate()],
-  age: [{ required: true, message: '请输入年龄', trigger: ['change', 'blur'] }],
-})
+  // 创建一个新的Image对象
+  var img = new Image()
 
-const form = ref({
-  data: [
-    {
-      name: '',
-      age: '12',
-      id: 1,
-    },
-    {
-      name: '名字2',
-      age: '',
-      id: 2,
-    },
-  ],
-})
-const formRef = ref(null)
-const submitForm = async () => {
-  if (!formRef.value) return
-  return await formRef.value?.validate((valid: any) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
-  })
+  // 设置Image对象的src属性为Favicon的URL
+  img.src = faviconURL
+
+  // 添加load事件监听器，当图片加载完成后执行
+  img.onload = function () {
+    // 创建一个画布（Canvas）元素
+    var canvas = document.createElement('canvas')
+    var ctx = canvas.getContext('2d')
+
+    // 设置画布大小与图片大小一致
+    canvas.width = this.width
+    canvas.height = this.height
+
+    // 将图片绘制到画布上
+    ctx.drawImage(this, 0, 0)
+
+    // 等待画布绘制完成
+    canvas.toBlob(function (blob) {
+      // 创建一个指向blob的URL
+      var blobURL = URL.createObjectURL(blob)
+
+      // 创建一个<a>标签，用于下载
+      var a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = blobURL
+      a.download = 'favicon.ico' // 可以自定义下载的文件名
+
+      // 将<a>标签添加到文档中并触发点击事件
+      document.body.appendChild(a)
+      a.click()
+
+      // 清理，移除<a>标签
+      window.URL.revokeObjectURL(blobURL)
+      document.body.removeChild(a)
+    }, 'image/x-icon')
+  }
 }
+test()
 </script>
 
 <template>
-  <div class="table-box">
-    <el-form ref="formRef" :model="form" size="small">
-      <o-table :columns="columns" :data="form.data">
-        <template #name="{ scope, row }">
-          <template v-if="row.isEdit">
-            <el-form-item :prop="'data.' + scope.$index + '.name'" :rules="formRules.name" class="">
-              <o-input v-model="form.data[scope.$index].name" size="small" />
-            </el-form-item>
-          </template>
-          <template v-else>
-            {{ row.name }}
-          </template>
-        </template>
-
-        <template #age="{ scope, row }">
-          <template v-if="row.isEdit">
-            <el-form-item :prop="'data.' + scope.$index + '.age'" :rules="formRules.age" class="">
-              <o-input v-model="form.data[scope.$index].age" size="small" />
-            </el-form-item>
-          </template>
-          <template v-else>
-            {{ row.age }}
-          </template>
-        </template>
-      </o-table>
-    </el-form>
-
-    <el-button type="primary" @click="submitForm()">Submit</el-button>
+  <div>
+    <div>test/t1.vue</div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.table-box {
-  :deep(.el-table__body .el-table__cell) {
-    height: 54px;
-    line-height: 54px;
-  }
-}
-</style>

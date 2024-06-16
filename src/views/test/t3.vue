@@ -1,58 +1,29 @@
-<template>
-  <div>
-    <el-form ref="forms" :model="info">
-      <el-table ref="tableRef" :data="info.data" border>
-        <el-table-column align="center" property="name" label="*姓名">
-          <template #default="row">
-            <el-form-item :prop="'data.' + row.$index + '.name'" :rules="formRules.name">
-              <el-input v-model="info.data[row.$index].name" placeholder="请输入姓名" />
-            </el-form-item>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" property="role" label="角色">
-          <template #default="row">
-            <el-form-item :prop="'data.' + row.$index + '.role'" :rules="formRules.role">
-              <el-input v-model="info.data[row.$index].role" placeholder="请输入角色" />
-            </el-form-item>
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-form>
-    <el-button type="primary" @click="submitForm()">Submit</el-button>
-  </div>
-</template>
-
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import type { FormInstance } from 'element-plus'
-let info: any = reactive({
-  data: [
-    {
-      id: 0,
-      name: '',
-      role: '',
-    },
-    {
-      id: 1,
-      name: '',
-      role: '',
-    },
-  ],
-})
-const formRules = reactive({
-  name: [{ required: true, message: '请输入姓名', trigger: 'change' }],
-  role: [{ required: true, message: '请输入角色', trigger: 'change' }],
-})
-const forms = ref<FormInstance>()
-const submitForm = async () => {
-  if (!forms.value) return
-  return await forms.value?.validate((valid: any) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-      return false
-    }
-  })
+import { ref, getCurrentInstance } from 'vue'
+import { validForm, validate } from 'oeos-components'
+const { proxy } = getCurrentInstance()
+const form = ref({})
+const formRef = ref(null)
+const rules = {
+  name: [validate()],
+  age: [validate()],
+}
+const submit = async () => {
+  await validForm(formRef)
+  console.log(`***** 56*  13行 test/t3.vue  18:11:40`)
 }
 </script>
+
+<template>
+  <div>
+    <el-form ref="formRef" :model="form" :rules="rules">
+      <el-form-item label="名称" prop="name">
+        <o-input v-model="form.name" />
+      </el-form-item>
+      <el-form-item label="名称" prop="age">
+        <o-input v-model="form.age" />
+      </el-form-item>
+    </el-form>
+    <el-button type="primary" @click="submit">提交</el-button>
+  </div>
+</template>

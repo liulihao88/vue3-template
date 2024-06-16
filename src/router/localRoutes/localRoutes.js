@@ -3,6 +3,25 @@ const Layout = () => import('@/layout/index.vue')
 
 export default [
   {
+    path: '/vueJsonPretty',
+    component: Layout,
+    redirect: '/vueJsonPretty/home',
+    meta: {
+      icon: 'ep:home-filled',
+    },
+    children: [
+      {
+        path: '/vueJsonPretty/home',
+        name: 'vueJsonPretty',
+        component: () => import('@/views/vueJsonPretty/index.vue'),
+        meta: {
+          title: 'vue-json-pretty',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+    ],
+  },
+  {
     path: '/test',
     component: Layout,
     redirect: '/test/t1',

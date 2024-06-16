@@ -5,19 +5,19 @@ export default {
   path: '/',
   name: 'Home',
   component: Layout,
-  redirect: '/welcome',
+  redirect: '/compsCollection',
   meta: {
     icon: 'ep:home-filled',
-    title: '首页',
+    title: '组件集合',
     rank: 0,
   },
   children: [
     {
-      path: '/welcome',
-      name: 'Welcome',
-      component: () => import('@/views/welcome/index.vue'),
+      path: '/compsCollection',
+      name: 'CompsCollection',
+      component: () => import('@/views/compsCollection/index.vue'),
       meta: {
-        title: '首页',
+        title: '组件集合',
         showLink: VITE_HIDE_HOME === 'true' ? false : true,
       },
     },

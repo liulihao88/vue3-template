@@ -22,13 +22,6 @@ setDefaultProps({
     >
       test/t2.vue
     </span>
-
-    <!-- <o-tooltip content="清空缓存并返回登录页">清空缓存并返回登录页</o-tooltip> -->
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br />
     <span
       v-tippy="{
@@ -39,10 +32,6 @@ setDefaultProps({
       你好啊
     </span>
     <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <span
       v-tippy="{
         content: aa,
@@ -50,16 +39,5 @@ setDefaultProps({
     >
       我并不会111
     </span>
-
-    <!-- <el-button
-      type="primary"
-      @click="isTest27"
-      v-tippy="{
-        hideOnClick: 'toggle',
-        content: '清空缓存并返回登录页',
-      }"
-    >
-      测试47
-    </el-button> -->
   </div>
 </template>

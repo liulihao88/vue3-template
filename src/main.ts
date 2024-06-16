@@ -39,12 +39,26 @@ app.component('FontIcon', FontIcon)
 // 全局注册按钮级别权限组件
 import { Auth } from '@/components/ReAuth'
 app.component('Auth', Auth)
+import AutoImportComps from '@/utils/autoImportComps.js'
+app.use(AutoImportComps)
 
 // 全局注册vue-tippy
 import 'tippy.js/dist/tippy.css'
 import 'tippy.js/themes/light.css'
 import VueTippy from 'vue-tippy'
-app.use(VueTippy)
+app.use(
+  VueTippy,
+  // optional
+  {
+    directive: 'tippy', // => v-tippy
+    component: 'tippy', // => <tippy/>
+    componentSingleton: 'tippy-singleton', // => <tippy-singleton/>,
+    defaultProps: {
+      placement: 'auto-end',
+      allowHTML: true,
+    }, // => Global default options * see all props
+  },
+)
 
 import OeosComponents from 'oeos-components'
 import 'oeos-components/dist/style.css'
