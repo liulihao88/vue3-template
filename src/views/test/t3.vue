@@ -8,6 +8,7 @@ const rules = {
   name: [validate()],
   age: [validate()],
 }
+proxy.log(`rules`, rules, '/only-test/vue3-template/src/views/test/t3.vue')
 const submit = async () => {
   await validForm(formRef)
   console.log(`***** 56*  13行 test/t3.vue  18:11:40`)

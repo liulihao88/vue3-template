@@ -60,9 +60,8 @@ app.use(
   },
 )
 
-import OeosComponents from 'oeos-components'
+import OeosComponents, { utils } from 'oeos-components'
 import 'oeos-components/dist/style.css'
-import { utils } from 'oeos-components'
 Object.keys(utils).forEach((v) => {
   app.config.globalProperties[v] = utils[v]
 })
