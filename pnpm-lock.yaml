@@ -23,6 +23,9 @@ importers:
       '@vueuse/motion':
         specifier: ^2.1.0
         version: 2.1.0(rollup@4.17.2)(vue@3.4.27(typescript@5.4.5))
+      '@wocwin/t-ui-plus':
+        specifier: ^1.4.6
+        version: 1.4.6
       animate.css:
         specifier: ^4.1.1
         version: 4.1.1
@@ -1597,6 +1600,9 @@ packages:
 
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
+
+  '@wocwin/t-ui-plus@1.4.6':
+    resolution: {integrity: sha512-al29tWaHiSBFFXKQPuj/PbieJbNngEb81X8IDvpVJCPDtszAk+/DSuBGCTq1hAqFTYQvWjbNmdgID2kpnwtI+Q==}
 
   '@zougt/some-loader-utils@1.4.3':
     resolution: {integrity: sha512-0FsoqSTQ+qOyp6x5Q6LZQ7xVwquEgLYiIStG3L8p0Q2GsGGYKDkOZ0mIpMt67aNdr8XLsbxXjzTl/iHtTz5zcA==}
@@ -5656,6 +5662,8 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@wocwin/t-ui-plus@1.4.6': {}
 
   '@zougt/some-loader-utils@1.4.3':
     dependencies:

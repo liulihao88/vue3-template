@@ -68,6 +68,11 @@ Object.keys(utils).forEach((v) => {
 })
 app.use(OeosComponents)
 
+// 在main.js中按下引入
+import TuiPlus from '@wocwin/t-ui-plus'
+import '@wocwin/t-ui-plus/lib/style.css'
+app.use(TuiPlus)
+
 getPlatformConfig(app).then(async (config) => {
   setupStore(app)
   app.use(router)

@@ -54,6 +54,7 @@
     "@pureadmin/utils": "^2.4.7",
     "@vueuse/core": "^10.9.0",
     "@vueuse/motion": "^2.1.0",
+    "@wocwin/t-ui-plus": "^1.4.6",
     "animate.css": "^4.1.1",
     "axios": "^1.6.8",
     "code-inspector-plugin": "^0.14.2",
