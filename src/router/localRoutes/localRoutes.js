@@ -22,6 +22,25 @@ export default [
     ],
   },
   {
+    path: '/vueuse',
+    component: Layout,
+    redirect: '/vueuse/home',
+    meta: {
+      icon: 'ep:home-filled',
+    },
+    children: [
+      {
+        path: '/vueuse/home',
+        name: 'vueuse',
+        component: () => import('@/views/vueuse/index.vue'),
+        meta: {
+          title: 'vueuse',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+    ],
+  },
+  {
     path: '/test',
     component: Layout,
     redirect: '/test/t1',
