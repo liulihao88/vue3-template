@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup>
 import { OnClickOutside } from '@vueuse/components'
 
 function close() {
-  console.log(12)
+  /* ... */
 }
 </script>
 

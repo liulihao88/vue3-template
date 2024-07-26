@@ -6,6 +6,7 @@ import UseVModels from '@/views/vueuse/useVModels.vue'
 import OnClickoutside from '@/views/vueuse/onClickoutside.vue'
 import UseTitle from '@/views/vueuse/useTitle.vue'
 import UseMagicKeys from '@/views/vueuse/useMagicKeys.vue'
+import UseMouseThrottle from '@/views/vueuse/useMouseThrottle.vue'
 
 const cc = ref()
 
@@ -23,6 +24,7 @@ watch(
 <template>
   <div>
     <useMouse />
+    <UseMouseThrottle />
     <UseVModels v-model="cc" v-number placeholder="只允许输入数字" />
     <OnClickoutside />
     <UseTitle />
