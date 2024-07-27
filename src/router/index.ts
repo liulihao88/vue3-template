@@ -33,18 +33,13 @@ const modules: Record<string, any> = import.meta.glob(['./modules/**/*.ts', '!./
 const routes = []
 
 Object.keys(modules).forEach((key) => {
-  console.log(`33 modules[key]`, modules[key])
   routes.push(modules[key].default)
 })
 const localRoutes = import.meta.glob(['./localRoutes/**/*.js'], {
   eager: true,
 })
-console.log(`02 localRoutes`, localRoutes)
 Object.keys(localRoutes).forEach((key) => {
-  console.log(`94 localRoutes[key]`, localRoutes[key])
-  console.log(`99 localRoutes[key].default`, localRoutes[key].default)
   routes.push(...localRoutes[key].default)
-  console.log(`95 routes`, routes)
 })
 
 /** 导出处理后的静态路由（三级及以上的路由全部拍成二级） */

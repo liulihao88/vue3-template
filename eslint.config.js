@@ -167,6 +167,7 @@ export default defineFlatConfig([
           math: 'always',
         },
       ],
+      'vue/no-mutating-props': 0,
     },
   },
 ])

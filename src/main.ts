@@ -66,6 +66,10 @@ Object.keys(utils).forEach((v) => {
   app.config.globalProperties[v] = utils[v]
 })
 app.use(OeosComponents)
+import * as gFunc from '@/utils/gFunc.js'
+Object.keys(gFunc).forEach((v) => {
+  app.config.globalProperties[v] = gFunc[v]
+})
 
 // 在main.js中按下引入
 import TuiPlus from '@wocwin/t-ui-plus'
