@@ -10,6 +10,8 @@ import { injectResponsiveStorage } from '@/utils/responsive'
 
 import '@/assets/style/index.scss'
 
+import 'virtual:svg-icons-register'
+
 import Table from '@pureadmin/table'
 // import PureDescriptions from "@pureadmin/descriptions";
 

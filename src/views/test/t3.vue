@@ -6,5 +6,7 @@ const { proxy } = getCurrentInstance()
 <template>
   <div>
     <div>test/t3.vue</div>
+    <g-svg-icon name="day" color="red" />
+    <g-svg-icon name="full_screen" color="blue" />
   </div>
 </template>

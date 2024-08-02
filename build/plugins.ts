@@ -13,6 +13,9 @@ import { genScssMultipleScopeVars } from '../src/layout/theme'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import path from 'path'
+
 export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompression): PluginOption[] {
   const lifecycle = process.env.npm_lifecycle_event
   return [
@@ -50,6 +53,23 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
     lifecycle === 'report' ? visualizer({ open: true, brotliSize: true, filename: 'report.html' }) : (null as any),
     codeInspectorPlugin({
       bundler: 'vite',
+    }),
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+      // Specify symbolId format
+      symbolId: 'icon-[dir]-[name]',
+
+      /**
+       * custom insert position
+       * @default: body-last
+       */
+      inject: 'body-last',
+      /**
+       * custom dom id
+       * @default: __svg__icons__dom__
+       */
+      customDomId: '__svg__icons__dom__',
     }),
   ]
 }
