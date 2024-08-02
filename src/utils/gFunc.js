@@ -8,6 +8,7 @@ export function formatImg(photoName, addPath = '', { basePath = '../assets/image
   const addLastSlash = addPath.endsWith('/') || !addPath ? addPath : `${addPath}/`
   const addLastBasePathSlash = basePath.endsWith('/') || !basePath ? basePath : `${basePath}/`
   let mergeSrc = `${addLastSlash}${photoName}`
+  // '../assets/images/1.png'
   let res = new URL(`${addLastBasePathSlash}${mergeSrc}`, import.meta.url).href
   return res
 }

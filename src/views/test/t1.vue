@@ -26,9 +26,7 @@ const fieldList = computed(() => {
       icon: 'delete',
       comp: 'el-input',
       attrs: {
-        disabled: () => {
-          return !isShow.value
-        },
+        disabled: !isShow.value,
       },
     },
     {
@@ -42,7 +40,7 @@ const fieldList = computed(() => {
       },
       attrs: {
         width: 500,
-        disabled: !isShow.value,
+        disabled: isShow.value,
       },
     },
   ]
@@ -58,12 +56,10 @@ const isTest24 = () => {
 
 <template>
   <div>
-    <g-form ref="gFormRef" :model="model" :fieldList="fieldList" :rules="rules" />
-    ??{{ isShow }}==
+    <o-form ref="gFormRef" :model="model" :fieldList="fieldList" :rules="rules" />
     <el-button type="primary" @click="isTest24">测试52</el-button>
 
-    11111111
-    <img :src="proxy.formatImg('logo')" alt="" />
+    <!-- <img :src="proxy.formatImg('logo')" alt="" /> -->
     <el-button type="primary" @click="testSubmit">测试提交</el-button>
   </div>
 </template>

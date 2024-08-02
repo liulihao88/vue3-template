@@ -41,6 +41,42 @@ export default [
     ],
   },
   {
+    path: '/form',
+    component: Layout,
+    redirect: '/form/oForm',
+    meta: {
+      icon: 'ep:home-filled',
+      title: 'form表单',
+    },
+    children: [
+      {
+        path: '/form/oForm',
+        name: 'form',
+        component: () => import('@/views/form/oForm.vue'),
+        meta: {
+          title: 'oForm表单',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+      {
+        path: '/form/loopForm',
+        name: 'loopForm',
+        component: () => import('@/views/form/loopForm.vue'),
+        meta: {
+          title: '循环表单',
+        },
+      },
+      {
+        path: '/form/remoteForm',
+        name: 'remoteForm',
+        component: () => import('@/views/form/remoteForm.vue'),
+        meta: {
+          title: '接口请求表单',
+        },
+      },
+    ],
+  },
+  {
     path: '/test',
     component: Layout,
     redirect: '/test/t1',

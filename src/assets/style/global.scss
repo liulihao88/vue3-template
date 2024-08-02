@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 1200px;
+  overflow-x: auto;
+  scrollbar-color: rgb(0 0 0 / 20%) rgb(0 0 0 / 10%);
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+  background: #f5f5f5;
+
+  // 滚动条的轨道
+  &::-webkit-scrollbar-track {
+    background: rgb(204 204 204 / 30%);
+    border-radius: 0;
+  }
+
+  // 滚动条里面的小方块
+  &::-webkit-scrollbar-thumb {
+    background: rgb(204 204 204);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #3366e8;
+  }
+}
+
+.c-container {
+  width: 100%;
+  padding: 24px 30px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px 0 #0000001a;
+}
+
+.c-box {
+  padding: 24px;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 3%);
+}
+
+.c-takecare {
+  padding: 8px;
+  background: rgb(0 133 242 / 10%);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: 6px;
+}
+
+.c-list-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.c-list-item {
+  width: 24%;
+  margin-top: 16px;
+}
+
+.c-list-item:not(:nth-child(4n)) {
+  margin-right: calc(4% / 3);
+}
+
+.c-icon-box {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
