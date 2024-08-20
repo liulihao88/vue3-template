@@ -3,19 +3,29 @@ const Layout = () => import('@/layout/index.vue')
 
 export default [
   {
-    path: '/vueJsonPretty',
+    path: '/handleJson',
     component: Layout,
-    redirect: '/vueJsonPretty/home',
+    redirect: '/handleJson/vueJsonPretty',
     meta: {
       icon: 'ep:home-filled',
+      title: '处理json',
     },
     children: [
       {
-        path: '/vueJsonPretty/home',
+        path: '/handleJson/vueJsonPretty',
         name: 'vueJsonPretty',
-        component: () => import('@/views/vueJsonPretty/index.vue'),
+        component: () => import('@/views/handleJson/vueJsonPretty.vue'),
         meta: {
           title: 'vue-json-pretty',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+      {
+        path: '/handleJson/vue3AceEditor',
+        name: 'vue3AceEditor',
+        component: () => import('@/views/handleJson/vue3AceEditor.vue'),
+        meta: {
+          title: 'vue3AceEditor',
           showLink: VITE_HIDE_HOME === 'true' ? false : true,
         },
       },

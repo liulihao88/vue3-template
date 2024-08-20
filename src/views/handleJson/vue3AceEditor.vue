@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <o-title title="安装: pnpm install vue3-ace-editor" />
     <el-select v-model="aceConfig.theme" class="m-2" placeholder="Select" size="large">
       <el-option v-for="item in aceConfig.arr" :key="item" :label="item" :value="item" />
     </el-select>
@@ -17,12 +18,15 @@
     />
 
     <el-button type="primary" @click="isTest79">测试98</el-button>
+
+    <Vue3AceEditorSimple />
   </div>
 </template>
 
 <script setup>
 import { reactive } from 'vue'
 import { VAceEditor } from 'vue3-ace-editor'
+import Vue3AceEditorSimple from '@/views/handleJson/vue3AceEditorSimple.vue'
 
 //import "ace-builds/webpack-resolver";
 // 加了这个【import "ace-builds/webpack-resolver";】可能会报错
