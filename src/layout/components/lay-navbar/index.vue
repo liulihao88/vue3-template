@@ -34,7 +34,10 @@ const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsS
       <!-- 消息通知 -->
       <LayNotice id="header-notice" />
       <!-- 退出登录 -->
-      <el-dropdown trigger="click">
+      <div @click="logout">
+        <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
+      </div>
+      <!-- <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
           <img :src="userAvatar" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
@@ -47,7 +50,7 @@ const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsS
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
+      </el-dropdown> -->
       <span class="set-icon navbar-bg-hover" title="打开系统配置" @click="onPanel">
         <IconifyIconOffline :icon="Setting" />
       </span>

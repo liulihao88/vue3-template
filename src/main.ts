@@ -46,6 +46,9 @@ app.component('Auth', Auth)
 import AutoImportComps from '@/utils/autoImportComps.js'
 app.use(AutoImportComps)
 
+import VChart from 'vue-echarts'
+app.component('v-chart', VChart)
+
 // 全局注册vue-tippy
 import 'tippy.js/dist/tippy.css'
 import 'tippy.js/themes/light.css'

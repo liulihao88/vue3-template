@@ -12,3 +12,22 @@ export function formatImg(photoName, addPath = '', { basePath = '../assets/image
   let res = new URL(`${addLastBasePathSlash}${mergeSrc}`, import.meta.url).href
   return res
 }
+
+export function confirm(message, options) {
+  const baseOptions = {
+    title: '提示',
+    draggable: true,
+    showCancelButton: false,
+    confirmButtonText: '确定',
+  }
+  let mergeOptions = Object.assign({}, baseOptions, options)
+  return new Promise((r, j) => {
+    const instance = ElMessageBox.confirm(message, mergeOptions)
+      .then(() => {
+        r(instance)
+      })
+      .catch(() => {
+        j(instance)
+      })
+  })
+}

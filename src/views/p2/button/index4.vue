@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 const { proxy } = getCurrentInstance()
-import Pie from '@/views/charts/pie.vue'
+defineOptions({
+  name: 'Page2',
+})
 </script>
 
 <template>
   <div>
-    <div>test/t1.vue</div>
-    <Pie />
+    <div>permission2/button/ind444444444444444ex4.vue</div>
   </div>
 </template>
