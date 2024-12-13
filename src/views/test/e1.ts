@@ -1,7 +1,7 @@
 console.log(`2208 1行 test/e1.ts 222 `, 222)
 
-function isValid(s) {
-  const stack = []
+function isValid(s: string): boolean {
+  const stack: string[] = []
   const n = s.length
   for (let i = 0; i < n; i++) {
     const chat = s.charAt(i)
