@@ -1,21 +1,13 @@
-console.log('2208 1\u884C test/e1.ts 222 ', 222)
-function isValid(s) {
-  var stack = []
-  var n = s.length
-  for (var i = 0; i < n; i++) {
-    var chat = s.charAt(i)
-    if (chat == '(') {
-      stack.push(')')
-    } else if (chat == '[') {
-      stack.push(']')
-    } else if (chat == '{') {
-      stack.push('}')
-    } else {
-      var str = stack.pop()
-      if (str != chat) return false
-    }
-  }
-  return stack.length == 0
+async function async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
 }
-var res = isValid('{}[]')
-console.log('01 res', res)
+async function async2() {
+  console.log('async2')
+}
+console.log('script start')
+async1()
+console.log('script end')
+
+// script start async1 start async2 script end async1 end

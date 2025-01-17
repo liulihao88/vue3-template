@@ -147,6 +147,14 @@ export default [
           showLink: VITE_HIDE_HOME === 'true' ? false : true,
         },
       },
+      {
+        path: '/baidu',
+        name: 'http://www.baidu.com',
+        meta: {
+          title: '百度',
+          roles: ['admin', 'common'],
+        },
+      },
     ],
   },
   {

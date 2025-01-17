@@ -31,3 +31,24 @@ export function confirm(message, options) {
       })
   })
 }
+
+/**
+ * 判断对象里所有属性全部为空
+ * let obj = {
+  name: [],
+  age: null,
+  obj2: {},
+  sex: undefined,
+  str: '',
+}
+ *  */
+export function isAllPropertiesEmpty(obj) {
+  return Object.values(obj).every(
+    (value) =>
+      value === null ||
+      typeof value === 'undefined' ||
+      (typeof value === 'string' && !value) ||
+      (Array.isArray(value) && !value.length) ||
+      (typeof value === 'object' && !Object.keys(value).length),
+  )
+}
