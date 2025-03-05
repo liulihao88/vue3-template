@@ -52,3 +52,14 @@ export function isAllPropertiesEmpty(obj) {
       (typeof value === 'object' && !Object.keys(value).length),
   )
 }
+
+// 下载
+export function downloadByURL(url, name) {
+  const a = document.createElement('a')
+  a.setAttribute('href', url)
+  a.setAttribute('target', '_blank')
+  a.setAttribute('download', name)
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
