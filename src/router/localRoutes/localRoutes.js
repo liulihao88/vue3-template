@@ -32,6 +32,35 @@ export default [
     ],
   },
   {
+    path: '/charts',
+    component: Layout,
+    redirect: '/charts/vueJsonPretty',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '图表相关',
+    },
+    children: [
+      {
+        path: '/charts/pie',
+        name: 'pie',
+        component: () => import('@/views/charts/pie.vue'),
+        meta: {
+          title: 'echarts-饼图',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+      {
+        path: '/charts/antvG2',
+        name: 'antvG2',
+        component: () => import('@/views/charts/antvG2.vue'),
+        meta: {
+          title: 'antvG2-马赛克图',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+    ],
+  },
+  {
     path: '/vueuse',
     component: Layout,
     redirect: '/vueuse/home',

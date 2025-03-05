@@ -1,135 +1,110 @@
-<template>
-  <div class="content">
-    <el-select v-model="aceConfig.theme" class="m-2" placeholder="Select" size="large">
-      <el-option v-for="item in aceConfig.arr" :key="item" :label="item" :value="item" />
-    </el-select>
-    <el-button @click="jsonFormat">格式化</el-button>
-    <el-button @click="jsonNoFormat">压缩</el-button>
-    <v-ace-editor
-      v-model:value="dataForm.textareashow"
-      lang="json"
-      :theme="aceConfig.theme"
-      :options="aceConfig.options"
-      :readonly="aceConfig.readOnly"
-      style="height: 300px; margin-top: 20px"
-      class="ace-editor"
-      @init="jsonFormat"
-    />
+<script setup lang="ts">
+import { ref, getCurrentInstance, onMounted } from 'vue'
+const { proxy } = getCurrentInstance()
+import { Chart } from '@antv/g2'
 
-    <el-button type="primary" @click="isTest79">测试98</el-button>
-  </div>
-</template>
+const age_groups = ['0-18岁', '19-30岁', '31-45岁', '46-60岁', '60+岁']
+const education_levels = ['小学及以下', '初中', '高中', '大专', '本科', '硕士及以上']
 
-<script setup>
-import { reactive } from 'vue'
-import { VAceEditor } from 'vue3-ace-editor'
+const timer = ref(null)
 
-//import "ace-builds/webpack-resolver";
-// 加了这个【import "ace-builds/webpack-resolver";】可能会报错
-//（若报错 则需要安装node.js的一个包 就是主题）
-// 命令：npm install --save-dev file-loader
-
-import 'ace-builds/src-noconflict/mode-json'
-import 'ace-builds/src-noconflict/theme-chrome'
-import 'ace-builds/src-noconflict/ext-language_tools'
-
-//ace编辑器配置
-const aceConfig = reactive({
-  lang: 'json', //解析json
-  theme: 'chrome', //主题
-  arr: [
-    /*所有主题*/
-    'ambiance',
-    'chaos',
-    'chrome',
-    'clouds',
-    'clouds_midnight',
-    'cobalt',
-    'crimson_editor',
-    'dawn',
-    'dracula',
-    'dreamweaver',
-    'eclipse',
-    'github',
-    'gob',
-    'gruvbox',
-    'idle_fingers',
-    'iplastic',
-    'katzenmilch',
-    'kr_theme',
-    'kuroir',
-    'merbivore',
-    'merbivore_soft',
-    'monokai',
-    'mono_industrial',
-    'pastel_on_dark',
-    'solarized_dark',
-    'solarized_light',
-    'sqlserver',
-    'terminal',
-    'textmate',
-    'tomorrow',
-    'tomorrow_night',
-    'tomorrow_night_blue',
-    'tomorrow_night_bright',
-    'tomorrow_night_eighties',
-    'twilight',
-    'vibrant_ink',
-    'xcode',
-  ],
-  readOnly: false, //是否只读
-  options: {
-    enableBasicAutocompletion: true,
-    enableSnippets: true,
-    enableLiveAutocompletion: true,
-    tabSize: 2,
-    showPrintMargin: false,
-    fontSize: 13,
-  },
-})
-
-//form
-const dataForm = reactive({
-  textareashow: '',
-})
-
-dataForm.textareashow = JSON.stringify({
-  name: 'andy',
-})
-
-const jsonError = (e) => {
-  console.log(`JSON字符串错误：${e.message}`)
+// # 各年龄段人口基数（单位：百万）
+const age_population = {
+  '0-18岁': 280,
+  '19-30岁': 200,
+  '31-45岁': 320,
+  '46-60岁': 260,
+  '60+岁': 190,
 }
 
-// JSON格式化
-const jsonFormat = () => {
-  try {
-    dataForm.textareashow = JSON.stringify(JSON.parse(dataForm.textareashow), null, 2)
-  } catch (e) {
-    jsonError(e)
+// # 学历分布比例（优化后）
+const education_distribution = {
+  '0-18岁': [0.68, 0.28, 0.04, 0.0, 0.0, 0.0],
+  '19-30岁': [0.03, 0.12, 0.15, 0.25, 0.4, 0.05],
+  '31-45岁': [0.08, 0.18, 0.22, 0.18, 0.3, 0.04],
+  '46-60岁': [0.25, 0.35, 0.25, 0.1, 0.05, 0.0],
+  '60+岁': [0.55, 0.3, 0.12, 0.02, 0.01, 0.0],
+}
+
+function init() {
+  const chart = new Chart({
+    container: 'container',
+    width: 900,
+    height: 800,
+    paddingLeft: 0,
+    paddingRight: 0,
+  })
+
+  const originData = [
+    {
+      label: '<18',
+      no: 1,
+      small: 2,
+      middle: 3,
+      high: 4,
+    },
+    {
+      label: '18-24',
+      no: 11,
+      small: 22,
+      middle: 33,
+      high: 44,
+      yan: 55,
+    },
+  ]
+
+  /*   let data = [
+    {
+      label: '<18',
+      text: '未上过学',
+      value: 3840,
+    },
+  ] */
+  // 计算总人口
+  const totalPopulation = Object.values(age_population).reduce((sum, population) => sum + population, 0)
+  let data = age_groups.flatMap((ageGroup) => {
+    const population = age_population[ageGroup]
+    const distribution = education_distribution[ageGroup]
+    return education_levels
+      .map((educationLevel, index) => ({
+        label: ageGroup + '\n' + '(' + toPercentage(population, totalPopulation) + ')',
+        text: educationLevel,
+        value: parseInt(population * distribution[index]),
+      }))
+      .filter((v) => v.value !== 0)
+  })
+
+  chart
+    .interval()
+    .position('x*y')
+    .label('x', {
+      htmlTemplate: (text, item, index) => {
+        const value = item.point.value // 假设 value 是需要显示的值
+        return `<span>${text}</span><span style="margin-left: 10px;">${value}</span>`
+      },
+    })
+  chart.render()
+}
+
+onMounted(() => {
+  init()
+  clearInterval(timer.value)
+  timer.value = setInterval(() => {
+    init()
+  }, 2000)
+})
+
+function toPercentage(value, total) {
+  if (total === 0) {
+    return '0%' // 防止除以零的错误
   }
-}
-
-// JSON压缩
-const jsonNoFormat = () => {
-  try {
-    dataForm.textareashow = JSON.stringify(JSON.parse(dataForm.textareashow))
-  } catch (e) {
-    jsonError(e)
-  }
-}
-
-const isTest79 = () => {
-  console.log(dataForm.textareashow)
+  const percentage = (value / total) * 100 // 计算百分比
+  return `${(Math.round(percentage * 100) / 100).toFixed(2)}%` // 保留两位小数并格式化为字符串
 }
 </script>
 
-<style scoped>
-.content {
-  padding-top: 20px;
-}
-
-.el-button {
-  margin-left: 20px;
-}
-</style>
+<template>
+  <div>
+    <div id="container" class="container h-500 w-500" />
+  </div>
+</template>

@@ -100,6 +100,7 @@ export default defineFlatConfig([
           varsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-unused-vars': 0,
     },
   },
   {
