@@ -2,20 +2,20 @@
 import { ref, getCurrentInstance, onMounted, withDefaults, watch } from 'vue'
 const { proxy } = getCurrentInstance()
 import * as echarts from 'echarts'
+import { EChartsOption } from 'echarts'
 import { processWidth } from 'oeos-components'
-import { useEcharts } from '@/hooks/useEcharts.ts'
-const echartDivRef = ref()
+import { useEcharts } from '@/hooks/useEcharts'
+const echartDivRef = ref<HTMLElement>(null)
 
 const props = withDefaults(
   defineProps<{
     width?: string
     height?: string
-    options?: any
+    options: EChartsOption
   }>(),
   {
     height: '400px',
     width: '100%',
-    options: () => ({}),
   },
 )
 
