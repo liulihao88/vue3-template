@@ -41,6 +41,15 @@ export default [
     },
     children: [
       {
+        path: '/charts/base',
+        name: 'base',
+        component: () => import('@/views/charts/base.vue'),
+        meta: {
+          title: 'echarts-基础图',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+      {
         path: '/charts/pie',
         name: 'pie',
         component: () => import('@/views/charts/pie.vue'),

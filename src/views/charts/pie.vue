@@ -90,8 +90,6 @@ const initOptions = {
 watch(
   () => [props.used, props.total],
   ([usedNew, totalNew]) => {
-    console.log(`16 totalNew`, totalNew)
-    console.log(`54 usedNew`, usedNew)
     if (usedNew && totalNew) {
       usedNum.value = proxy.formatBytesConvert(usedNew)
       totalNum.value = proxy.formatBytesConvert(totalNew)
@@ -119,6 +117,6 @@ function formatter(params) {
 
 <style lang="scss" scoped>
 .calc-height {
-  height: calc(100% - 30px);
+  height: calc(100% - 100px);
 }
 </style>
