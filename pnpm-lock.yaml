@@ -69,8 +69,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       oeos-components:
-        specifier: ^0.1.32
-        version: 0.1.32(@algolia/client-search@4.23.3)(@types/node@20.12.11)(async-validator@4.2.5)(axios@1.6.8)(eslint@9.2.0)(nprogress@0.2.0)(postcss@8.4.38)(search-insights@2.14.0)(sortablejs@1.15.2)(terser@5.31.1)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1))
+        specifier: ^0.2.73
+        version: 0.2.73(@algolia/client-search@4.23.3)(@types/node@20.12.11)(@vue/runtime-core@3.4.27)(async-validator@4.2.5)(axios@1.6.8)(eslint@9.2.0)(nprogress@0.2.0)(postcss@8.4.38)(search-insights@2.14.0)(sortablejs@1.15.2)(terser@5.31.1)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1))
       path:
         specifier: ^0.12.7
         version: 0.12.7
@@ -2491,6 +2491,9 @@ packages:
   dayjs@1.11.11:
     resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
 
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
 
@@ -2643,6 +2646,11 @@ packages:
 
   electron-to-chromium@1.4.766:
     resolution: {integrity: sha512-QkqagkSWWIngOO+f/DkMtTfzX/hpESMljeYzwZvOzmk2G6oEiG1JxE2hVXY6/XoVXMkILaJ6ASUnrMPiEA7x9A==}
+
+  element-plus@2.10.2:
+    resolution: {integrity: sha512-p2KiAa0jEGXrzdlTAfpiS7HQFAhla4gvx6H7RuDf+OO0uC3DGpolxvdHjFR8gt7+vaWyxQNcHa1sAdBkmjqlgA==}
+    peerDependencies:
+      vue: ^3.2.0
 
   element-plus@2.7.3:
     resolution: {integrity: sha512-OaqY1kQ2xzNyRFyge3fzM7jqMwux+464RBEqd+ybRV9xPiGxtgnj/sVK4iEbnKnzQIa9XK03DOIFzoToUhu1DA==}
@@ -3921,8 +3929,8 @@ packages:
     resolution: {integrity: sha512-tqa/UMy/CCoYmj+H5qc07qvSL9dqcs/WZENZ1JbtWBlATP+iVOe778gE6MSijnyCnORzDuX6hU+LA4SZ09YjFQ==}
     engines: {node: '>=0.10.0'}
 
-  oeos-components@0.1.32:
-    resolution: {integrity: sha512-9SFBYIgHA9+r4XB01BjDpjAslC8lcwH7+u+6UDL0d18W19AcV8jGXAG04exHDio8vx3qYMgTZffnNCk2LOYP+w==}
+  oeos-components@0.2.73:
+    resolution: {integrity: sha512-mhslC1kyxGyXFshdnPJemY2ktN88jwDeK8YXq1j+UG0JOZGHHCNBHtyjUe8CxnClUcqcdBgpmhjDpeZuXtFNbA==}
 
   ohash@1.1.3:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
@@ -5317,6 +5325,11 @@ packages:
 
   vite-plugin-svg-icons@2.0.1:
     resolution: {integrity: sha512-6ktD+DhV6Rz3VtedYvBKKVA2eXF+sAQVaKkKLDSqGUfnhqXl3bj5PPkVTl3VexfTuZy66PmINi8Q6eFnVfRUmA==}
+    peerDependencies:
+      vite: '>=2.0.0'
+
+  vite-plugin-vue-setup-extend@0.4.0:
+    resolution: {integrity: sha512-WMbjPCui75fboFoUTHhdbXzu4Y/bJMv5N9QT9a7do3wNMNHHqrk+Tn2jrSJU0LS5fGl/EG+FEDBYVUeWIkDqXQ==}
     peerDependencies:
       vite: '>=2.0.0'
 
@@ -8177,6 +8190,8 @@ snapshots:
 
   dayjs@1.11.11: {}
 
+  dayjs@1.11.13: {}
+
   de-indent@1.0.2: {}
 
   debug@2.6.9:
@@ -8328,6 +8343,27 @@ snapshots:
       zrender: 5.5.0
 
   electron-to-chromium@1.4.766: {}
+
+  element-plus@2.10.2(vue@3.4.27(typescript@5.4.5)):
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+      '@element-plus/icons-vue': 2.3.1(vue@3.4.27(typescript@5.4.5))
+      '@floating-ui/dom': 1.6.5
+      '@popperjs/core': '@sxzz/popperjs-es@2.11.7'
+      '@types/lodash': 4.17.1
+      '@types/lodash-es': 4.17.12
+      '@vueuse/core': 9.13.0(vue@3.4.27(typescript@5.4.5))
+      async-validator: 4.2.5
+      dayjs: 1.11.13
+      escape-html: 1.0.3
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      lodash-unified: 1.0.3(@types/lodash-es@4.17.12)(lodash-es@4.17.21)(lodash@4.17.21)
+      memoize-one: 6.0.0
+      normalize-wheel-es: 1.2.0
+      vue: 3.4.27(typescript@5.4.5)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
 
   element-plus@2.7.3(vue@3.4.27(typescript@5.4.5)):
     dependencies:
@@ -9730,7 +9766,7 @@ snapshots:
     dependencies:
       isobject: 3.0.1
 
-  oeos-components@0.1.32(@algolia/client-search@4.23.3)(@types/node@20.12.11)(async-validator@4.2.5)(axios@1.6.8)(eslint@9.2.0)(nprogress@0.2.0)(postcss@8.4.38)(search-insights@2.14.0)(sortablejs@1.15.2)(terser@5.31.1)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1)):
+  oeos-components@0.2.73(@algolia/client-search@4.23.3)(@types/node@20.12.11)(@vue/runtime-core@3.4.27)(async-validator@4.2.5)(axios@1.6.8)(eslint@9.2.0)(nprogress@0.2.0)(postcss@8.4.38)(search-insights@2.14.0)(sortablejs@1.15.2)(terser@5.31.1)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1)):
     dependencies:
       '@element-plus/icons-vue': 2.3.1(vue@3.4.27(typescript@5.4.5))
       '@fortawesome/fontawesome-svg-core': 6.5.2
@@ -9746,7 +9782,7 @@ snapshots:
       chalk: 5.3.0
       consola: 3.2.3
       echarts: 5.5.0
-      element-plus: 2.7.3(vue@3.4.27(typescript@5.4.5))
+      element-plus: 2.10.2(vue@3.4.27(typescript@5.4.5))
       escape-html: 1.0.3
       lodash-es: 4.17.21
       markdown-it: 13.0.2
@@ -9759,8 +9795,10 @@ snapshots:
       tippy.js: 6.3.7
       typescript: 5.4.5
       vite-plugin-svg-icons: 2.0.1(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1))
+      vite-plugin-vue-setup-extend: 0.4.0(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1))
       vitepress: 1.0.0-rc.1(@algolia/client-search@4.23.3)(@types/node@20.12.11)(async-validator@4.2.5)(axios@1.6.8)(nprogress@0.2.0)(sass@1.77.1)(search-insights@2.14.0)(sortablejs@1.15.2)(terser@5.31.1)(typescript@5.4.5)
       vue: 3.4.27(typescript@5.4.5)
+      vue-echarts: 7.0.3(@vue/runtime-core@3.4.27)(echarts@5.5.0)(vue@3.4.27(typescript@5.4.5))
       vue-router: 4.3.2(vue@3.4.27(typescript@5.4.5))
       vue-tippy: 6.4.1(vue@3.4.27(typescript@5.4.5))
     transitivePeerDependencies:
@@ -9768,6 +9806,7 @@ snapshots:
       - '@types/node'
       - '@types/react'
       - '@vue/composition-api'
+      - '@vue/runtime-core'
       - async-validator
       - axios
       - change-case
@@ -11340,6 +11379,12 @@ snapshots:
       vite: 5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
+
+  vite-plugin-vue-setup-extend@0.4.0(vite@5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1)):
+    dependencies:
+      '@vue/compiler-sfc': 3.4.27
+      magic-string: 0.25.9
+      vite: 5.2.11(@types/node@20.12.11)(sass@1.77.1)(terser@5.31.1)
 
   vite-svg-loader@5.1.0(vue@3.4.27(typescript@5.4.5)):
     dependencies:

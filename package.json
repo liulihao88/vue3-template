@@ -69,7 +69,7 @@
     "localforage": "^1.10.0",
     "mitt": "^3.0.1",
     "nprogress": "^0.2.0",
-    "oeos-components": "^0.1.32",
+    "oeos-components": "^0.2.73",
     "path": "^0.12.7",
     "pinia": "^2.1.7",
     "pinyin-pro": "^3.20.4",

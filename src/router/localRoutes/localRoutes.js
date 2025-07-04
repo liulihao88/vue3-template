@@ -67,6 +67,15 @@ export default [
           showLink: VITE_HIDE_HOME === 'true' ? false : true,
         },
       },
+      {
+        path: '/charts/objectLine',
+        name: 'objectLine',
+        component: () => import('@/views/charts/objectLine.vue'),
+        meta: {
+          title: 'objectLine',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
     ],
   },
   {

@@ -11,7 +11,7 @@ const props = withDefaults(
   defineProps<{
     width?: string
     height?: string
-    options: EChartsOption
+    option: EChartsOption
   }>(),
   {
     height: '400px',
@@ -23,7 +23,7 @@ const init = () => {
   if (echartDivRef.value) {
     let myChart = echarts.init(echartDivRef.value)
     if (myChart) {
-      useEcharts(myChart, props.options)
+      useEcharts(myChart, props.option)
     }
   }
 }
@@ -40,8 +40,19 @@ const resizeChart = () => {
 }
 
 watch(
-  [() => props.width, () => props.height, () => props.options],
+  [() => props.width, () => props.height, () => props.option],
   (val) => {
+    resizeChart()
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+)
+watch(
+  [() => props.option],
+  (val) => {
+    init()
     resizeChart()
   },
   {
@@ -54,21 +65,25 @@ onMounted(() => {
   init()
 })
 
+defineExpose({
+  init,
+})
+
 /**
 * @使用方法
   <div class="f">
     <div class="f-1">
-      <g-echart
-        :options="options"
+      <g-chart
+        :option="option"
         sId="r1"
         style="height: 700px"
-      ></g-echart>
+      ></g-chart>
     </div>
     <div class="f-1">
-      <g-echart :options="options2" sId="r2" class="g-100"></g-echart>
+      <g-chart :option="options2" sId="r2" class="g-100"></g-chart>
     </div>
     <div class="f-1">
-      <g-echart :options="options3" sId="r3" h="100px"></g-echart>
+      <g-chart :option="options3" sId="r3" h="100px"></g-chart>
     </div>
   </div>
 */

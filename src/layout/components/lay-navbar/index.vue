@@ -3,6 +3,8 @@ import { useNav } from '@/layout/hooks/useNav'
 import LaySearch from '../lay-search/index.vue'
 import LayNotice from '../lay-notice/index.vue'
 import LayNavMix from '../lay-sidebar/NavMix.vue'
+import useNativeRefresh from '@/store/nativeRefresh'
+const useRefresh = useNativeRefresh()
 import LaySidebarFullScreen from '../lay-sidebar/components/SidebarFullScreen.vue'
 import LaySidebarBreadCrumb from '../lay-sidebar/components/SidebarBreadCrumb.vue'
 import LaySidebarTopCollapse from '../lay-sidebar/components/SidebarTopCollapse.vue'
@@ -11,6 +13,11 @@ import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
 
 const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
+
+const refreshPage = () => {
+  // console.clear()
+  useRefresh.refreshHandler()
+}
 </script>
 
 <template>
@@ -28,6 +35,9 @@ const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsS
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
+      <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover" @click="refreshPage">
+        <o-icon name="refresh" content="刷新" />
+      </div>
       <LaySearch id="header-search" />
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
