@@ -79,13 +79,13 @@ let options3 = {
   <div>
     <div class="f">
       <div class="f-1">
-        <g-chart :options="options" />
+        <g-chart :option="options" />
       </div>
       <div class="f-1">
-        <g-chart :options="options2" width="500" />
+        <g-chart :option="options2" width="500" />
       </div>
       <div class="f-1">
-        <g-chart :options="options3" height="500" />
+        <g-chart :option="options3" height="500" />
       </div>
     </div>
   </div>

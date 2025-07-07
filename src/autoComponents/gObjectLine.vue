@@ -142,7 +142,6 @@ const option = computed(() => {
           if (repeatTime) {
             return ''
           }
-          console.log(`09 timeStr`, timeStr)
           return timeStr
         },
       },
