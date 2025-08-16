@@ -79,6 +79,26 @@ export default [
     ],
   },
   {
+    path: '/usually',
+    component: Layout,
+    redirect: '/usually/base',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '常用插件或方法',
+    },
+    children: [
+      {
+        path: '/usually/base',
+        name: 'base',
+        component: () => import('@/views/usually/base.vue'),
+        meta: {
+          title: '常用插件或方法',
+          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+    ],
+  },
+  {
     path: '/vueuse',
     component: Layout,
     redirect: '/vueuse/home',
