@@ -93,7 +93,14 @@ export default [
         component: () => import('@/views/usually/base.vue'),
         meta: {
           title: '常用插件或方法',
-          showLink: VITE_HIDE_HOME === 'true' ? false : true,
+        },
+      },
+      {
+        path: '/usually/algorithm',
+        name: 'algorithm',
+        component: () => import('@/views/usually/algorithm/index.vue'),
+        meta: {
+          title: '算法',
         },
       },
     ],
