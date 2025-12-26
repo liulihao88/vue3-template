@@ -42,7 +42,7 @@ export default [
     children: [
       {
         path: '/charts/base',
-        name: 'base',
+        name: 'chartsBase',
         component: () => import('@/views/charts/base.vue'),
         meta: {
           title: 'echarts-基础图',
@@ -51,7 +51,7 @@ export default [
       },
       {
         path: '/charts/pie',
-        name: 'pie',
+        name: 'chatrsPie',
         component: () => import('@/views/charts/pie.vue'),
         meta: {
           title: 'echarts-饼图',
@@ -69,7 +69,7 @@ export default [
       },
       {
         path: '/charts/objectLine',
-        name: 'objectLine',
+        name: 'chatrsObjectLine',
         component: () => import('@/views/charts/objectLine.vue'),
         meta: {
           title: 'objectLine',
