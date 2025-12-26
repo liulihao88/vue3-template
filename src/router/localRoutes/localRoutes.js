@@ -103,6 +103,31 @@ export default [
           title: '算法',
         },
       },
+      {
+        path: '/usually/vue-office',
+        name: 'vueOffice',
+        meta: {
+          title: '@vue-office插件',
+        },
+        children: [
+          {
+            path: '/usually/vue-office/pdf',
+            name: 'vueOfficePdf',
+            component: () => import('@/views/usually/vue-office/vue-office-pdf/index.vue'),
+            meta: {
+              title: 'pdf组件',
+            },
+          },
+          {
+            path: '/usually/vue-office/excel',
+            name: 'vueOfficeExcel',
+            component: () => import('@/views/usually/vue-office/vue-office-excel/index.vue'),
+            meta: {
+              title: 'excel组件',
+            },
+          },
+        ],
+      },
     ],
   },
   {
