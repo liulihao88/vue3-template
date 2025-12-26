@@ -4,7 +4,7 @@
 
 <script>
 //引入VueOfficePdf组件
-import VueOfficePdf from '@vue-office/pdf/lib/v3/vue-office-pdf.mjs'
+import VueOfficePdf from '@vue-office/pdf'
 
 export default {
   components: {

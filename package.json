@@ -165,6 +165,17 @@
       "allowedVersions": {
         "eslint": "9"
       }
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "@fortawesome/fontawesome-common-types",
+      "@fortawesome/fontawesome-svg-core",
+      "@fortawesome/free-solid-svg-icons",
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "@vue-office/excel",
+      "@vue-office/pdf",
+      "vue-demi"
+    ]
   }
 }

@@ -12,4 +12,5 @@
 > ## 解决方式
 >
 > 1. 使用pnpm v9安装。
-> 2. pnpm v10中，执行pnpm approve-builds命令（指定哪些包允许执行postinstall命令），选择vue-office相关的包（可能docx、excel需要分开选择），然后enter确认。执行后就可以正常导入了。
+> 2. pnpm v10中，执行pnpm approve-builds命令（指定哪些包允许执行postinstall命令），选择vue-office相关的包（可能docx、excel需要分开选择），然后enter确认。执行后就可以正常导入了。 `推荐`
+> 3. import VueOfficeExcel from '@vue-office/excel/lib/v3/vue-office-excel.mjs'

@@ -4,7 +4,7 @@
 
 <script>
 //引入VueOfficeExcel组件
-import VueOfficeExcel from '@vue-office/excel/lib/v3/vue-office-excel.mjs'
+import VueOfficeExcel from '@vue-office/excel'
 // import VueOfficeExcel from '@vue-office/excel'
 //引入相关样式
 
