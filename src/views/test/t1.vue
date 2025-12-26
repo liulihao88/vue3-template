@@ -1,18 +1,27 @@
-<script setup lang="ts">
-import { ref, getCurrentInstance } from 'vue'
-import { sleep } from '@oeos-components/utils'
-const { proxy } = getCurrentInstance()
+<template>
+  <vue-office-pdf :src="pdf" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
+</template>
 
-const sleep = () => {
-  proxy.sleep()
+<script>
+//引入VueOfficePdf组件
+import VueOfficePdf from '@vue-office/pdf/lib/v3/vue-office-pdf.mjs'
+
+export default {
+  components: {
+    VueOfficePdf,
+  },
+  data() {
+    return {
+      pdf: 'https://501351981.github.io/vue-office/examples/dist/static/test-files/test.pdf', //设置文档地址
+    }
+  },
+  methods: {
+    renderedHandler() {
+      console.log('渲染完成')
+    },
+    errorHandler() {
+      console.log('渲染失败')
+    },
+  },
 }
 </script>
-
-<template>
-  <div>
-    <div>test/t1.vue</div>
-    <o-descriptions :options="options" :column="3" />
-    <o-descriptions :options="options" :column="3" />
-    <o-empty description="暂无数据" width="48" height="48" />
-  </div>
-</template>
