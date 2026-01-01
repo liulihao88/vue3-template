@@ -116,6 +116,7 @@ export default defineFlatConfig([
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/no-var-requires': 'off',
+      'no-unused-vars': 'off',
     },
   },
   {

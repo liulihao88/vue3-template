@@ -136,6 +136,14 @@ export default [
           title: 'vee-validate插件',
         },
       },
+      {
+        path: '/usually/pdfjs',
+        name: 'Pdfjs',
+        component: () => import('@/views/usually/pdf-js/index.vue'),
+        meta: {
+          title: 'pdf-js插件',
+        },
+      },
     ],
   },
   {
