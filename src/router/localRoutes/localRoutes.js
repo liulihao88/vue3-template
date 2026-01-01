@@ -128,6 +128,14 @@ export default [
           },
         ],
       },
+      {
+        path: '/usually/vee-validate',
+        name: 'VeeValidate',
+        component: () => import('@/views/usually/vee-validate/index.vue'),
+        meta: {
+          title: 'vee-validate插件',
+        },
+      },
     ],
   },
   {
