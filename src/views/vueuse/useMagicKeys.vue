@@ -3,13 +3,18 @@ import { ref, getCurrentInstance, watch } from 'vue'
 const { proxy } = getCurrentInstance()
 import { useMagicKeys } from '@vueuse/core'
 const keys = useMagicKeys()
-const shiftCtrlA = keys['Shift+ctrl+A']
-const shiftCmdA = keys['Shift+cmd+A']
+const shiftCtrlA = keys['Shift+ctrl+a']
+const shiftCmdL = keys['Shift+command+l']
+const TEXT = '我奶常山罩子熊 + shift+ctrl+a'
+const TEXT2 = 'shift+command+l'
 
 watch(
   shiftCtrlA,
   (val) => {
-    console.log(`09 8行 vueuse/useMagicKeys.vue val`, val)
+    if (val) {
+      console.log(TEXT)
+      proxy.$toast(TEXT)
+    }
   },
   {
     deep: true,
@@ -17,9 +22,12 @@ watch(
   },
 )
 watch(
-  shiftCmdA,
+  shiftCmdL,
   (val) => {
-    console.log('我奶常山罩子熊')
+    if (val) {
+      console.log(TEXT2)
+      proxy.$toast(TEXT2)
+    }
   },
   {
     deep: true,
@@ -30,6 +38,6 @@ watch(
 
 <template>
   <div>
-    <o-title title="useMagicKeys" sub-title="用来控制快捷键" />
+    <o-title title="useMagicKeys" :sub-title="`用来控制快捷键(按shift+ctrl+a: 弹出${TEXT})`" />
   </div>
 </template>

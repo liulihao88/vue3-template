@@ -9,6 +9,7 @@ const isClickout = ref(false)
  */
 onClickOutside(containerRef, () => {
   isClickout.value = true
+  proxy.$toast('我在区域外点击')
 })
 </script>
 

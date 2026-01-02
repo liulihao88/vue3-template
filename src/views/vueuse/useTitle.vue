@@ -9,6 +9,6 @@ title.value = 'hello'
 
 <template>
   <div>
-    <o-title title="useTitle" />
+    <o-title title="useTitle: 显示或更改顶部的菜单栏title" />
   </div>
 </template>
