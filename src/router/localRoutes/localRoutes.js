@@ -90,7 +90,7 @@ export default [
       {
         path: '/usually/base',
         name: 'base',
-        component: () => import('@/views/usually/base.vue'),
+        component: () => import('@/views/usually/base/index.vue'),
         meta: {
           title: '常用插件或方法',
         },

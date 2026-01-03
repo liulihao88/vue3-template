@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
-const { proxy } = getCurrentInstance()
 import '@/plugins/pluginsStudy/calculatorCustom'
 import '@/plugins/pluginsStudy/calculator'
+const { proxy } = getCurrentInstance()
 </script>
 
 <template>
-  <div>
-    <div>test/t1.vue</div>
-  </div>
+  <div />
 </template>
