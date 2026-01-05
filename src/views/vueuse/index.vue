@@ -7,6 +7,7 @@ import OnClickoutside from '@/views/vueuse/onClickoutside.vue'
 import UseTitle from '@/views/vueuse/useTitle.vue'
 import UseMagicKeys from '@/views/vueuse/useMagicKeys.vue'
 import UseMouseThrottle from '@/views/vueuse/useMouseThrottle.vue'
+import UseFullScreen from '@/views/vueuse/useFullScreen.vue'
 
 const cc = ref()
 
@@ -25,9 +26,11 @@ watch(
   <div>
     <useMouse />
     <UseMouseThrottle />
-    <UseVModels v-model="cc" v-number placeholder="只允许输入数字" />
+    <UseVModels v-model="cc" placeholder="双向数据绑定" />
+    {{ cc }}
     <OnClickoutside />
     <UseTitle />
     <UseMagicKeys />
+    <UseFullScreen />
   </div>
 </template>

@@ -15,6 +15,6 @@ console.log(data.value) // props.data
 
 <template>
   <o-title title="useVModel" />
-  <el-input v-model="data" v-bind="$attrs" class="w-200" />
+  <o-input v-model="data" v-bind="$attrs" width="200" />
   {{ data }}
 </template>

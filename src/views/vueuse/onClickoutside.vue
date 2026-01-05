@@ -15,8 +15,8 @@ onClickOutside(containerRef, () => {
 
 <template>
   <o-title title="onClickOutside" />
-  <div class="w-600 h-400 f-ct-ct">
-    <div ref="containerRef" class="w-200 h-200 bg-blue" :class="isClickout && 'cl-red'" @click="isClickout = false">
+  <div class="w-300 h-300 f-ct-ct">
+    <div ref="containerRef" class="w-100 h-100 bg-blue" :class="isClickout && 'cl-red'" @click="isClickout = false">
       我是区域内
     </div>
   </div>
