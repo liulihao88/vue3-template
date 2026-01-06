@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useDraggable } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
-console.log(`27 useTemplateRef`, useTemplateRef)
 
 const el = useTemplateRef('el')
 
