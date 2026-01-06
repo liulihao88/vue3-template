@@ -8,6 +8,7 @@ import UseTitle from '@/views/vueuse/useTitle.vue'
 import UseMagicKeys from '@/views/vueuse/useMagicKeys.vue'
 import UseMouseThrottle from '@/views/vueuse/useMouseThrottle.vue'
 import UseFullScreen from '@/views/vueuse/useFullScreen.vue'
+import UseClipboard from '@/views/vueuse/useClipboard.vue'
 
 const cc = ref()
 
@@ -32,5 +33,6 @@ watch(
     <UseTitle />
     <UseMagicKeys />
     <UseFullScreen />
+    <UseClipboard />
   </div>
 </template>
