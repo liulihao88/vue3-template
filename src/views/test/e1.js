@@ -1,5 +1,5 @@
 let a = {
-  "compilerOptions": {
+  compilerOptions: {
     allowImportingTsExtensions: true,
     "noEmit": true,
     "target": "ESNext",
