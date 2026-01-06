@@ -9,11 +9,11 @@ const { text, copy, copied, isSupported } = useClipboard({ source })
 <template>
   <o-title title="useClipboard" />
   <div v-if="isSupported">
-    <button @click="copy(source)">
+    <el-button type="primary" size="small" @click="copy(source)">
       <!-- by default, `copied` will be reset in 1.5s -->
       <span v-if="!copied">Copy</span>
       <span v-else>Copied!</span>
-    </button>
+    </el-button>
     <p>
       Current copied:
       <code>{{ text || 'none' }}</code>
