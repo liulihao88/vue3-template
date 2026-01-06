@@ -1,29 +1,42 @@
-<template>
-  <vue-office-excel :src="excel" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
-</template>
+<script setup lang="ts">
+import { ref, getCurrentInstance } from 'vue'
+const { proxy } = getCurrentInstance()
 
-<script>
-//引入VueOfficeExcel组件
-import VueOfficeExcel from '@vue-office/excel/lib/v3/vue-office-excel.mjs'
-// import VueOfficeExcel from '@vue-office/excel'
-//引入相关样式
-
-export default {
-  components: {
-    VueOfficeExcel,
-  },
-  data() {
-    return {
-      excel: 'https://501351981.github.io/vue-office/examples/dist/static/test-files/test.xlsx', //设置文档地址
-    }
-  },
-  methods: {
-    renderedHandler() {
-      console.log('渲染完成')
+let a = {
+  compilerOptions: {
+    allowImportingTsExtensions: true,
+    noEmit: true,
+    target: 'ESNext',
+    module: 'ESNext',
+    moduleResolution: 'bundler',
+    strict: false,
+    jsx: 'preserve',
+    importHelpers: true,
+    experimentalDecorators: true,
+    strictFunctionTypes: false,
+    skipLibCheck: true,
+    esModuleInterop: true,
+    isolatedModules: true,
+    allowSyntheticDefaultImports: true,
+    forceConsistentCasingInFileNames: true,
+    sourceMap: true,
+    baseUrl: '.',
+    allowJs: false,
+    resolveJsonModule: true,
+    lib: ['ESNext', 'DOM'],
+    paths: {
+      '@/*': ['src/*'],
+      '@build/*': ['build/*'],
     },
-    errorHandler() {
-      console.log('渲染失败')
-    },
+    types: ['node', 'vite/client', 'element-plus/global', '@pureadmin/table/volar', '@pureadmin/descriptions/volar'],
   },
+  include: ['mock/*.ts', 'src/**/*.ts', 'src/**/*.tsx', 'src/**/*.vue', 'types/*.d.ts', 'vite.config.ts'],
+  exclude: ['dist', '**/*.js', 'node_modules'],
 }
 </script>
+
+<template>
+  <div>
+    <div>test/t2.vue</div>
+  </div>
+</template>
