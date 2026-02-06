@@ -79,6 +79,25 @@ export default [
     ],
   },
   {
+    path: '/components',
+    component: Layout,
+    redirect: '/components/base',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '常用组件',
+    },
+    children: [
+      {
+        path: '/components/base',
+        name: 'components',
+        component: () => import('@/views/components/base/index.vue'),
+        meta: {
+          title: '常用组件',
+        },
+      },
+    ],
+  },
+  {
     path: '/usually',
     component: Layout,
     redirect: '/usually/base',
