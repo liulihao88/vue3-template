@@ -95,6 +95,14 @@ export default [
           title: '常用组件',
         },
       },
+      {
+        path: '/components/cropping',
+        name: 'cropping',
+        component: () => import('@/views/components/cropping/index.vue'),
+        meta: {
+          title: '图片裁剪',
+        },
+      },
     ],
   },
   {
