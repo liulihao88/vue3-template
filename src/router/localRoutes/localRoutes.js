@@ -103,6 +103,14 @@ export default [
           title: '图片裁剪',
         },
       },
+      {
+        path: '/components/dynamic-button',
+        name: 'dynamicButton',
+        component: () => import('@/views/components/dynamic-button/index.vue'),
+        meta: {
+          title: '动态按钮',
+        },
+      },
     ],
   },
   {
