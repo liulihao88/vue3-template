@@ -51,6 +51,7 @@
   "dependencies": {
     "@antv/g2": "^5.2.11",
     "@antv/g2plot": "^2.4.32",
+    "@iconify/json": "^2.2.437",
     "@infectoone/vue-ganttastic": "^2.3.2",
     "@oeos-components/utils": "^0.0.16",
     "@pureadmin/descriptions": "^1.2.1",
@@ -84,6 +85,7 @@
     "responsive-storage": "^2.2.0",
     "sass-math": "^1.0.0",
     "sortablejs": "^1.15.2",
+    "unplugin-icons": "^22.3.0",
     "vee-validate": "^4.15.1",
     "vue": "^3.5.26",
     "vue-demi": "0.14.6",

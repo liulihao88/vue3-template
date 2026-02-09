@@ -4,6 +4,7 @@ import { viteBuildInfo } from './info'
 import svgLoader from 'vite-svg-loader'
 import type { PluginOption } from 'vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import Icons from 'unplugin-icons/vite'
 import { configCompressPlugin } from './compress'
 import removeNoMatch from 'vite-plugin-router-warn'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -45,6 +46,10 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
     }),
     // svg组件化支持
     svgLoader(),
+    Icons({
+      compiler: 'vue3',
+      scale: 1,
+    }),
     VITE_CDN ? cdn : null,
     configCompressPlugin(VITE_COMPRESSION),
     // 线上环境删除console

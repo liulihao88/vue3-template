@@ -119,6 +119,14 @@ export default [
           title: '切割面板',
         },
       },
+      {
+        path: '/components/timeline',
+        name: 'Timeline',
+        component: () => import('@/views/components/timeline.vue'),
+        meta: {
+          title: '时间轴',
+        },
+      },
     ],
   },
   {
