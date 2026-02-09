@@ -111,6 +111,14 @@ export default [
           title: '动态按钮',
         },
       },
+      {
+        path: '/components/split-pane',
+        name: 'SplitPane',
+        component: () => import('@/views/components/split-pane.vue'),
+        meta: {
+          title: '切割面板',
+        },
+      },
     ],
   },
   {
