@@ -154,6 +154,14 @@ export default [
           title: '导出Excel',
         },
       },
+      {
+        path: '/able/ripple',
+        name: 'Ripple',
+        component: () => import('@/views/able/ripple.vue'),
+        meta: {
+          title: '水波纹(Ripple)',
+        },
+      },
     ],
   },
   {
