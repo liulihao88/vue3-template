@@ -146,6 +146,14 @@ export default [
           title: '打印',
         },
       },
+      {
+        path: '/able/excel',
+        name: 'Excel',
+        component: () => import('@/views/able/excel.vue'),
+        meta: {
+          title: '导出Excel',
+        },
+      },
     ],
   },
   {
