@@ -130,6 +130,25 @@ export default [
     ],
   },
   {
+    path: '/able',
+    component: Layout,
+    redirect: '/able/print',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '常用功能',
+    },
+    children: [
+      {
+        path: '/able/print',
+        name: 'Print',
+        component: () => import('@/views/able/print/index.vue'),
+        meta: {
+          title: '打印',
+        },
+      },
+    ],
+  },
+  {
     path: '/usually',
     component: Layout,
     redirect: '/usually/base',
