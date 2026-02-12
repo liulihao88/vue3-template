@@ -162,6 +162,22 @@ export default [
           title: '水波纹(Ripple)',
         },
       },
+      {
+        path: '/able/wavesurfer',
+        name: 'Wavesurfer',
+        component: () => import('@/views/able/wavesurfer/index.vue'),
+        meta: {
+          title: '音频可视化(Wavesurfer)',
+        },
+      },
+      {
+        path: '/able/video',
+        name: 'video',
+        component: () => import('@/views/able/video/index.vue'),
+        meta: {
+          title: '西瓜视频(video)',
+        },
+      },
     ],
   },
   {

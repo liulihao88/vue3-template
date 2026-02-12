@@ -95,6 +95,8 @@
     "vue-tippy": "^6.4.1",
     "vue-types": "^5.1.2",
     "vue3-ace-editor": "^2.2.4",
+    "wavesurfer.js": "^7.12.1",
+    "xgplayer": "^3.0.23",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
