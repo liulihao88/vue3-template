@@ -17,6 +17,8 @@ import DayIcon from '@/assets/svg/day.svg?component'
 import DarkIcon from '@/assets/svg/dark.svg?component'
 import SystemIcon from '@/assets/svg/system.svg?component'
 
+import ChangeLangage from '@/layout/components/lay-setting/changeLangage.vue'
+
 const { device } = useNav()
 const { isDark } = useDark()
 const { $storage } = useGlobal<GlobalPropertiesApi>()
@@ -469,6 +471,7 @@ onUnmounted(() => removeMatchMedia)
           />
         </li>
       </ul>
+      <ChangeLangage />
     </div>
   </LayPanel>
 </template>
