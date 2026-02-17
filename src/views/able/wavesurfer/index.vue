@@ -21,7 +21,7 @@ const curTime = ref()
 const isPlay = ref(false)
 
 const { VITE_PUBLIC_PATH } = import.meta.env
-const url = `${VITE_PUBLIC_PATH}audio/海阔天空.mp3`
+const url = `${VITE_PUBLIC_PATH}audio/孤城 - 洛先生.mp3`
 
 function init() {
   wavesurfer.value = WaveSurfer.create({
