@@ -246,6 +246,14 @@ export default [
           title: 'pdf-js插件',
         },
       },
+      {
+        path: '/usually/dayjs',
+        name: 'Dayjs',
+        component: () => import('@/views/usually/dayjs/index.vue'),
+        meta: {
+          title: 'dayjs插件',
+        },
+      },
     ],
   },
   {
