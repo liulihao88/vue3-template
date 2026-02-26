@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, getCurrentInstance, onMounted, withDefaults, watch } from 'vue'
+import { ref, getCurrentInstance, onMounted, watch } from 'vue'
 const { proxy } = getCurrentInstance()
 import * as echarts from 'echarts'
 import { EChartsOption } from 'echarts'
