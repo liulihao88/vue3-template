@@ -47,6 +47,7 @@ onMounted(() => {
       <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover" @click="refreshPage">
         <o-icon name="refresh" content="刷新" />
       </div>
+
       <LaySearch id="header-search" />
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
