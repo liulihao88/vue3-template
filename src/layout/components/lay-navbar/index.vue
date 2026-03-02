@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { useNav } from '@/layout/hooks/useNav'
 import LaySearch from '../lay-search/index.vue'
 import LayNotice from '../lay-notice/index.vue'
@@ -8,6 +9,7 @@ const useRefresh = useNativeRefresh()
 import LaySidebarFullScreen from '../lay-sidebar/components/SidebarFullScreen.vue'
 import LaySidebarBreadCrumb from '../lay-sidebar/components/SidebarBreadCrumb.vue'
 import LaySidebarTopCollapse from '../lay-sidebar/components/SidebarTopCollapse.vue'
+import Mousetrap from 'mousetrap'
 
 import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
@@ -18,6 +20,13 @@ const refreshPage = () => {
   // console.clear()
   useRefresh.refreshHandler()
 }
+
+onMounted(() => {
+  Mousetrap.bind('command+enter', function () {
+    // 执行你想要的操作
+    refreshPage()
+  })
+})
 </script>
 
 <template>

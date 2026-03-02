@@ -75,6 +75,7 @@
     "jwt-decode": "^4.0.0",
     "localforage": "^1.10.0",
     "mitt": "^3.0.1",
+    "mousetrap": "^1.6.5",
     "nprogress": "^0.2.0",
     "oeos-components": "^0.3.70",
     "path": "^0.12.7",

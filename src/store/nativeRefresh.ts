@@ -10,10 +10,7 @@ const useNativeRefresh = defineStore('nativeRefresh', {
     refreshHandler() {
       this.refresh = false
       nextTick(() => {
-        console.clear()
         this.refresh = true
-        console.log(`223 this.refresh`, this.refresh)
-        console.log(`1151 12行 src/store/nativeRefresh.ts console `, console)
       })
     },
   },
