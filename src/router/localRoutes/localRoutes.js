@@ -127,6 +127,14 @@ export default [
           title: '时间轴',
         },
       },
+      {
+        path: '/components/canvasTable',
+        name: 'CanvasTable',
+        component: () => import('@/views/components/canvasTable/index.vue'),
+        meta: {
+          title: 'canvasTable',
+        },
+      },
     ],
   },
   {
