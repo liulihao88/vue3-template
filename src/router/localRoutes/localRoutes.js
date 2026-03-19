@@ -3,6 +3,55 @@ const Layout = () => import('@/layout/index.vue')
 
 export default [
   {
+    path: '/nested',
+    redirect: '/nested/menu1',
+    meta: {
+      title: '多级菜单',
+      icon: 'ep/histogram',
+      rank: 1,
+    },
+    children: [
+      {
+        path: '/nested/menu1',
+        component: () => import('@/views/nested/menu1/index.vue'),
+        name: 'Menu1',
+        meta: {
+          title: '菜单1',
+          showLink: false,
+          activePath: '/nested',
+          keepAlive: true,
+        },
+        // redirect: "/nested/menu1/menu1-1",
+        children: [
+          {
+            path: '/nested/menu11',
+            component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
+            name: 'Menu1-1',
+            meta: {
+              title: '1-1',
+              keepAlive: true,
+              showLink: false,
+              activePath: '/nested',
+            },
+            children: [
+              {
+                path: '/nested/menu111',
+                component: () => import('@/views/nested/menu1/menu1-1/menu1-1-1/index.vue'),
+                name: 'Menu1-1-1',
+                meta: {
+                  title: '1-1-1',
+                  keepAlive: false,
+                  showLink: false,
+                  activePath: '/nested',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     path: '/handleJson',
     component: Layout,
     redirect: '/handleJson/vueJsonPretty',
