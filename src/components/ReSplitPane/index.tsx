@@ -1,6 +1,6 @@
 import './index.css'
 import resizer from './resizer'
-import { type PropType, defineComponent, ref, unref, computed } from 'vue'
+import { type PropType, defineComponent, ref, unref, computed, watch } from 'vue'
 
 export interface ContextProps {
   minPercent: number
@@ -37,6 +37,18 @@ export default defineComponent({
           : { cursor: 'row-resize' }
         : { cursor: 'default' }
     })
+
+    watch(
+      () => props.splitSet?.defaultPercent,
+      (val) => {
+        if (typeof val === 'number') {
+          percent.value = val
+        }
+      },
+      {
+        immediate: true,
+      },
+    )
 
     const onClick = (): void => {
       if (!hasMoved.value) {

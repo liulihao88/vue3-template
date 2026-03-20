@@ -1,23 +1,62 @@
 <script setup lang="ts">
-import splitpane, { ContextProps } from '@/components/ReSplitPane'
-import { reactive } from 'vue'
+import { ref, watch } from 'vue'
+import splitpane from '@/components/ReSplitPane'
 
 defineOptions({
   name: 'SplitPane',
 })
 
-const settingLR: ContextProps = reactive({
-  minPercent: 10,
+const showWhich = ref([1, 2])
+
+const settingLR = ref({
+  minPercent: 1,
   defaultPercent: 50,
   split: 'vertical',
 })
+
+watch(
+  showWhich,
+  (val) => {
+    if (val.length === 2) {
+      settingLR.value.defaultPercent = 50
+    } else if (val.length === 1) {
+      val[0] === 1
+        ? (settingLR.value.defaultPercent = settingLR.value.minPercent)
+        : (settingLR.value.defaultPercent = 100 - settingLR.value.minPercent)
+    } else {
+      settingLR.value.defaultPercent = 50
+    }
+  },
+  {
+    deep: true,
+    immediate: true,
+  },
+)
+
+const handleResize = (percent: number) => {
+  settingLR.value.defaultPercent = percent
+}
 </script>
 
 <template>
   <div class="h-100%">
-    <o-basic-layout title="切割面板" class="h-95%">
+    <o-basic-layout class="h-100%">
+      <template #header>
+        <o-title title="文件转换相亲">
+          <o-checkbox
+            v-model="showWhich"
+            :showAll="false"
+            :options="[
+              { label: '显示源文件试图', value: 1 },
+              { label: '显示转换结果', value: 2 },
+            ]"
+          />
+
+          <template #right />
+        </o-title>
+      </template>
       <div class="split-pane h-100%">
-        <splitpane :splitSet="settingLR">
+        <splitpane :splitSet="settingLR" @resize="handleResize">
           <!-- #paneL 表示指定该组件为左侧面板 -->
           <template #paneL>
             <!-- 自定义左侧面板的内容 -->
@@ -47,6 +86,10 @@ const settingLR: ContextProps = reactive({
   // text-align: center;
   // border: 1px solid #e5e6eb;
   border: 1px solid var(--line);
+}
+
+.width-input {
+  margin-left: 12px;
 }
 
 .pane-scrollbar {
