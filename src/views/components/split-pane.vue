@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import splitpane, { ContextProps } from '@/components/ReSplitPane'
-import { reactive } from 'vue'
+import SplitPaneLeftRight from '@/views/components/split-pane-left-right.vue'
+import { reactive, ref } from 'vue'
 
 defineOptions({
   name: 'SplitPane',
 })
 
 const settingLR: ContextProps = reactive({
-  minPercent: 20,
+  minPercent: 0,
   defaultPercent: 40,
   split: 'vertical',
 })
@@ -17,10 +18,17 @@ const settingTB: ContextProps = reactive({
   defaultPercent: 40,
   split: 'horizontal',
 })
+
+const isTwo = ref(true)
+function toggle() {
+  isTwo.value = !isTwo.value
+}
 </script>
 
 <template>
-  <el-card shadow="never">
+  <el-button type="primary" @click="toggle">{{ isTwo ? '左右' : '左右下' }}</el-button>
+  <SplitPaneLeftRight v-if="isTwo" />
+  <el-card v-else shadow="never">
     <template #header>
       <div class="card-header">
         <p class="font-medium">切割面板</p>
