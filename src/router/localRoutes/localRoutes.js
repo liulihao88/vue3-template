@@ -4,6 +4,7 @@ const Layout = () => import('@/layout/index.vue')
 export default [
   {
     path: '/nested',
+    component: Layout,
     redirect: '/nested/menu1',
     meta: {
       title: '多级菜单',

@@ -3,7 +3,7 @@
   "Title": "刘力豪Vue3后台管理框架",
   "FixedHeader": true,
   "HiddenSideBar": false,
-  "MultiTagsCache": false,
+  "MultiTagsCache": true,
   "KeepAlive": true,
   "Layout": "vertical",
   "Theme": "light",
