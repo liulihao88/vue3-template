@@ -40,10 +40,10 @@ const handleResize = (percent: number) => {
 
 <template>
   <div class="h-100%">
-    <o-basic-layout class="h-100%">
+    <s-basic-layout class="h-100%">
       <template #header>
-        <o-title title="文件转换相亲">
-          <o-checkbox
+        <s-title title="文件转换相亲">
+          <s-checkbox
             v-model="showWhich"
             :showAll="false"
             :options="[
@@ -53,7 +53,7 @@ const handleResize = (percent: number) => {
           />
 
           <template #right />
-        </o-title>
+        </s-title>
       </template>
       <div class="split-pane h-100%">
         <splitpane :splitSet="settingLR" @resize="handleResize">
@@ -73,7 +73,7 @@ const handleResize = (percent: number) => {
           </template>
         </splitpane>
       </div>
-    </o-basic-layout>
+    </s-basic-layout>
   </div>
 </template>
 

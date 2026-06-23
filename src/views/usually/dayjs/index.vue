@@ -6,7 +6,7 @@ let now = dayjs(null)
 </script>
 
 <template>
-  <o-flex direction="column">
+  <s-flex direction="column">
     <div>
       {{ dayjs('2018-04-04T16:00:00.000Z').format() }}
     </div>
@@ -21,5 +21,5 @@ let now = dayjs(null)
     <div>
       {{ dayjs('2019-01-25').add(1, 'day').subtract(1, 'year').format() }}
     </div>
-  </o-flex>
+  </s-flex>
 </template>

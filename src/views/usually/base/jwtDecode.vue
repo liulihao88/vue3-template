@@ -16,5 +16,5 @@ const options = ref([
 </script>
 
 <template>
-  <o-descriptions :options="options" :showAll="false" :label-width="300" />
+  <s-descriptions :options="options" :showAll="false" :label-width="300" />
 </template>

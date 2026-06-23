@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <o-title title="安装: pnpm install vue3-ace-editor" />
+    <s-title title="安装: pnpm install vue3-ace-editor" />
     <el-select v-model="aceConfig.theme" class="m-2" placeholder="Select" size="large">
       <el-option v-for="item in aceConfig.arr" :key="item" :label="item" :value="item" />
     </el-select>

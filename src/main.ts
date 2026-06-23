@@ -67,12 +67,14 @@ app.use(
   },
 )
 
-import OeosComponents, { utils } from 'oeos-components'
-import 'oeos-components/dist/style.css'
+import SybzComponents from 'sybz-components'
+import 'sybz-components/style.css'
+import 'sybz-components/utilities.css'
+import * as utils from '@sybz-components/utils'
 Object.keys(utils).forEach((v) => {
   app.config.globalProperties[v] = utils[v]
 })
-app.use(OeosComponents)
+app.use(SybzComponents)
 import * as gFunc from '@/utils/gFunc.js'
 Object.keys(gFunc).forEach((v) => {
   app.config.globalProperties[v] = gFunc[v]

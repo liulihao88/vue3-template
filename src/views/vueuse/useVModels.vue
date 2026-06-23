@@ -14,7 +14,7 @@ console.log(data.value) // props.data
 </script>
 
 <template>
-  <o-title title="useVModel" />
-  <o-input v-model="data" v-bind="$attrs" width="200" />
+  <s-title title="useVModel" />
+  <s-input v-model="data" v-bind="$attrs" width="200" />
   {{ data }}
 </template>

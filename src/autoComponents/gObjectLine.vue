@@ -3,7 +3,7 @@
   时间最小区间是30分钟, 最大区间是2周
 */
 import { ref, getCurrentInstance, computed, watch, nextTick } from 'vue'
-import { formatThousands, notEmpty, formatTime, formatBytes } from 'oeos-components'
+import { formatThousands, isEmpty, formatTime, formatBytes } from '@sybz-components/utils'
 import * as echarts from 'echarts'
 
 defineOptions({
@@ -248,13 +248,13 @@ defineExpose({
 <template>
   <oBasicLayout class="h-100%">
     <template #header>
-      <o-title title="对象数量/大小历史">
+      <s-title title="对象数量/大小历史">
         <!-- <template #right>
           <DisabledCountDate v-model="dateRange" style="height: 24px" />
         </template> -->
-      </o-title>
+      </s-title>
     </template>
-    <g-chart v-if="notEmpty(data)" ref="chartRef" :option="option" height="100%" />
-    <o-empty v-else class="h-100%" />
+    <g-chart v-if="isEmpty(data)" ref="chartRef" :option="option" height="100%" />
+    <s-empty v-else class="h-100%" />
   </oBasicLayout>
 </template>

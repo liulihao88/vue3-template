@@ -12,7 +12,7 @@ const lists = [
 <template>
   <div>
     <div v-for="(v, i) in lists" :key="i">
-      <o-title :title="v.title" />
+      <s-title :title="v.title" />
       <component :is="v.comp" />
     </div>
   </div>

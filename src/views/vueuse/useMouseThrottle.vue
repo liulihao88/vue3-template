@@ -13,16 +13,16 @@ const { x: dx, y: dy } = useMouse({ eventFilter: debounceFilter(100) })
 </script>
 
 <template>
-  <o-flex gap="100">
+  <s-flex gap="100">
     <div>
-      <o-title title="throttleFilter" />
+      <s-title title="throttleFilter" />
       <div>这是throttleFilter后的x{{ x }}</div>
       <div>这是throttleFilter后的y{{ y }}</div>
     </div>
     <div>
-      <o-title title="debounceFilter" />
+      <s-title title="debounceFilter" />
       <div>这是debounceFilter后的dx{{ dx }}</div>
       <div>这是debounceFilter后的dy{{ dy }}</div>
     </div>
-  </o-flex>
+  </s-flex>
 </template>

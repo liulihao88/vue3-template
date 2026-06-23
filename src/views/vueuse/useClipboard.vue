@@ -7,7 +7,7 @@ const { text, copy, copied, isSupported } = useClipboard({ source })
 </script>
 
 <template>
-  <o-title title="useClipboard" />
+  <s-title title="useClipboard" />
   <div v-if="isSupported">
     <el-button type="primary" size="small" @click="copy(source)">
       <!-- by default, `copied` will be reset in 1.5s -->

@@ -45,7 +45,7 @@ onMounted(() => {
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
       <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover" @click="refreshPage">
-        <o-icon name="refresh" content="刷新" />
+        <s-icon name="refresh" content="刷新" />
       </div>
 
       <LaySearch id="header-search" />

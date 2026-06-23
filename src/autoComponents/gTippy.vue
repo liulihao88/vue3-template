@@ -40,7 +40,7 @@ setDefaultProps({
       我并不会111
     </span>
 
-    <o-button
+    <s-button
       v-tippy="{
         content:
           '清空缓存并返回登录页2024-06-08 22:07:38I want to set some random text, if you like it , please tell me. good wish for you! thank you so much. have a nice day!2024-06-08 22:07:39I want to set some random text, if you like it , please tell me. good wish for you! thank you so much. have a nice day!',
@@ -50,6 +50,6 @@ setDefaultProps({
       }"
     >
       我是按钮
-    </o-button>
+    </s-button>
   </div>
 </template>

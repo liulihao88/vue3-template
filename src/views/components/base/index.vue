@@ -30,11 +30,11 @@ const rules = {
   <div>
     <el-form ref="formRef" :model="form" :rules="rules">
       <el-form-item label="验证码" prop="verifyCode">
-        <o-input v-model="form.verifyCode" width="400">
+        <s-input v-model="form.verifyCode" width="400">
           <template #append>
             <ReImageVerify v-model:code="imgCode" />
           </template>
-        </o-input>
+        </s-input>
       </el-form-item>
     </el-form>
     {{ imgCode }}
@@ -42,7 +42,7 @@ const rules = {
 </template>
 
 <style lang="scss" scoped>
-:deep(.o-input .el-input-group__append) {
+:deep(.s-input .el-input-group__append) {
   padding: 0;
 }
 </style>

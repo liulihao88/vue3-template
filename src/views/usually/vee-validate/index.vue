@@ -9,13 +9,13 @@ const { proxy } = getCurrentInstance()
 
 <template>
   <div>
-    <o-title title="基础用法" />
+    <s-title title="基础用法" />
     <Base />
-    <o-title title="验证email和name" />
+    <s-title title="验证email和name" />
     <ValidEmail />
-    <o-title title="异步用法" />
+    <s-title title="异步用法" />
     <Async />
-    <o-title title="测试" />
+    <s-title title="测试" />
     <Test />
   </div>
 </template>

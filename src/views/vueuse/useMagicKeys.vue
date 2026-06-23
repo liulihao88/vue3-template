@@ -38,6 +38,6 @@ watch(
 
 <template>
   <div>
-    <o-title title="useMagicKeys" :sub-title="`用来控制快捷键(按shift+ctrl+a: 弹出${TEXT})`" />
+    <s-title title="useMagicKeys" :sub-title="`用来控制快捷键(按shift+ctrl+a: 弹出${TEXT})`" />
   </div>
 </template>

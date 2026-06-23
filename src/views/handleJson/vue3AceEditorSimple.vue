@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <o-title title="vue3-ace-editor简单功能" />
+    <s-title title="vue3-ace-editor简单功能" />
     <el-button @click="jsonFormat">格式化</el-button>
     <el-button @click="jsonNoFormat">压缩</el-button>
     <v-ace-editor

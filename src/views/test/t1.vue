@@ -1,67 +1,24 @@
 <script setup lang="ts">
-import splitpane, { ContextProps } from '@/components/ReSplitPane'
-import { reactive } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
+import T2 from './t2.vue'
+import T3 from './t3.vue'
+const { proxy } = getCurrentInstance()
+const open = ref(false)
 
-defineOptions({
-  name: 'SplitPane',
-})
-
-const settingLR: ContextProps = reactive({
-  minPercent: 10,
-  defaultPercent: 50,
-  split: 'vertical',
-})
+const openDialog = () => {
+  open.value = true
+}
 </script>
 
 <template>
-  <div class="h-100%">
-    <o-basic-layout title="切割面板" class="h-95%">
-      <div class="split-pane h-100%">
-        <splitpane :splitSet="settingLR">
-          <!-- #paneL 表示指定该组件为左侧面板 -->
-          <template #paneL>
-            <!-- 自定义左侧面板的内容 -->
-            <el-scrollbar class="pane-scrollbar">
-              <div class="pane-content f-ct-ct">A</div>
-            </el-scrollbar>
-          </template>
-          <!-- #paneR 表示指定该组件为右侧面板 -->
-          <template #paneR>
-            <!-- 再次将右侧面板进行拆分 -->
-            <el-scrollbar class="pane-scrollbar">
-              <div class="pane-content f-ct-ct">B</div>
-            </el-scrollbar>
-          </template>
-        </splitpane>
-      </div>
-    </o-basic-layout>
+  <div>
+    <T2 />
+
+    <T3 />
+    <div>test/t1.vue</div>
+    <el-button @click="openDialog">打开</el-button>
+    <el-dialog v-model="open" title="提示" width="30%" destroy-on-close center>
+      <div>test/t1.vue</div>
+    </el-dialog>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.split-pane {
-  height: 100%;
-  // width: 100%;
-  // height: calc(100vh - 300px);
-  // font-size: 50px;
-  // text-align: center;
-  // border: 1px solid #e5e6eb;
-  border: 1px solid var(--line);
-}
-
-.pane-scrollbar {
-  height: 100%;
-
-  :deep(.el-scrollbar__wrap) {
-    height: 100%;
-  }
-
-  :deep(.el-scrollbar__view) {
-    height: 100%;
-  }
-}
-
-.pane-content {
-  height: 100%;
-}
-</style>

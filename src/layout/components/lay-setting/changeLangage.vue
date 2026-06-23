@@ -15,7 +15,7 @@ defineExpose({
 </script>
 
 <template>
-  <o-flex justify="space-between" align="center" class="w-100%">
+  <s-flex justify="space-between" align="center" class="w-100%">
     <span class="dark:text-white">切换语言</span>
     <el-switch
       v-model="baseText"
@@ -28,5 +28,5 @@ defineExpose({
       @change="cc()"
     />
     <el-button type="primary" @click="cc()">{{ text }}</el-button>
-  </o-flex>
+  </s-flex>
 </template>

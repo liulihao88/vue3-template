@@ -26,8 +26,8 @@ const compValue = computed(() => {
 
 <template>
   <div>
-    <o-title title="本地pdf" />
-    <o-tabs v-model="navValue" :options="options" />
+    <s-title title="本地pdf" />
+    <s-tabs v-model="navValue" :options="options" />
     <component :is="compValue" :url="url" />
   </div>
 </template>

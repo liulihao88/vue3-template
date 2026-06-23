@@ -9,7 +9,7 @@ const { x, y } = useMouse()
 
 <template>
   <div>
-    <o-title title="useMouse" />
+    <s-title title="useMouse" />
     <div>这是x: {{ x }}</div>
     <div>这是y: {{ y }}</div>
   </div>

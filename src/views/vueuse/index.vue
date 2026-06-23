@@ -39,7 +39,7 @@ watch(
 
 <template>
   <div>
-    <o-tabs v-model="navValue" :options="options">
+    <s-tabs v-model="navValue" :options="options">
       <template #base>
         <useMouse />
         <UseMouseThrottle />
@@ -56,6 +56,6 @@ watch(
         <Base />
         <Advanced />
       </template>
-    </o-tabs>
+    </s-tabs>
   </div>
 </template>

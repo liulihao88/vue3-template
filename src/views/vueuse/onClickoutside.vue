@@ -18,7 +18,7 @@ const clickInner = () => {
 </script>
 
 <template>
-  <o-title title="onClickOutside" />
+  <s-title title="onClickOutside" />
   <div class="w-300 h-300 f-ct-ct">
     <div ref="containerRef" class="w-100 h-100 bg-blue" :class="isClickout && 'cl-red'" @click="clickInner">
       我是区域内

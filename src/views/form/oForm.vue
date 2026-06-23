@@ -28,7 +28,7 @@ const formTest = async () => {
 
 <template>
   <div>
-    <o-form ref="formRef" :fieldList="fieldList" :model="form" :rules="rules" />
+    <s-form ref="formRef" :fieldList="fieldList" :model="form" :rules="rules" />
     <el-button type="primary" @click="formTest">表单校验</el-button>
   </div>
 </template>

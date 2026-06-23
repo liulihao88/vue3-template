@@ -18,7 +18,7 @@ declare module 'vue' {
     clearStorage: any
     validForm: any
     isEmpty: any
-    notEmpty: any
+    isEmpty: any
     merge: any
     clone: any
     formatTime: any

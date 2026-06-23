@@ -49,10 +49,10 @@ const itemPropRules = (i, name) => {
     <el-form ref="formRef" :model="form" :rules="rules" class="c-list-box">
       <div v-for="(v, i) in form.data" :key="i" class="c-box c-list-item">
         <el-form-item label="名称" v-bind="itemPropRules(i, 'name')">
-          <o-input v-model="v.name" />
+          <s-input v-model="v.name" />
         </el-form-item>
         <el-form-item label="年龄" :prop="`data.${i}.age`" :rules="rules.age">
-          <o-select v-model="v.age" :options="options" />
+          <s-select v-model="v.age" :options="options" />
         </el-form-item>
       </div>
     </el-form>
