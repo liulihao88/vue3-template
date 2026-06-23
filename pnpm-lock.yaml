@@ -71,6 +71,9 @@ importers:
       echarts:
         specifier: ^5.5.0
         version: 5.5.0
+      ejs:
+        specifier: ^6.0.1
+        version: 6.0.1
       element-plus:
         specifier: ^2.11.2
         version: 2.13.0(vue@3.5.26(typescript@5.4.5))
@@ -2811,6 +2814,11 @@ packages:
 
   echarts@5.5.0:
     resolution: {integrity: sha512-rNYnNCzqDAPCr4m/fqyUFv7fD9qIsd50S6GDFgO1DxZhncCsNsG7IfUlAlvZe5oSEQxtsjnHiUuppzccry93Xw==}
+
+  ejs@6.0.1:
+    resolution: {integrity: sha512-UaaM14yby8U3k02ihS1Bmj5Kz2d7CCQM1scxpgs4Mhkq8F1wR2gl3+Ts4h5Ne4Mnt7M9m4Dw7jsuMr3+xO4vZA==}
+    engines: {node: '>=0.12.18'}
+    hasBin: true
 
   electron-to-chromium@1.4.766:
     resolution: {integrity: sha512-QkqagkSWWIngOO+f/DkMtTfzX/hpESMljeYzwZvOzmk2G6oEiG1JxE2hVXY6/XoVXMkILaJ6ASUnrMPiEA7x9A==}
@@ -8703,6 +8711,8 @@ snapshots:
     dependencies:
       tslib: 2.3.0
       zrender: 5.5.0
+
+  ejs@6.0.1: {}
 
   electron-to-chromium@1.4.766: {}
 
