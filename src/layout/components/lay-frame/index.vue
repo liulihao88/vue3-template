@@ -4,13 +4,15 @@ import { useMultiFrame } from '@/layout/hooks/useMultiFrame'
 import { useMultiTagsStoreHook } from '@/store/modules/multiTags'
 import { type Component, shallowRef, watch, computed } from 'vue'
 import { type RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router'
+import type { multiType } from '@/store/utils'
 
 const props = defineProps<{
   currRoute: RouteLocationNormalizedLoaded
   currComp: Component
 }>()
 
-const compList = shallowRef([])
+const multiTagsStore = useMultiTagsStoreHook()
+const compList = shallowRef<Array<[string, Component]>>([])
 const { setMap, getMap, MAP, delMap } = useMultiFrame()
 
 const keep = computed(() => {
@@ -19,7 +21,7 @@ const keep = computed(() => {
 // 避免重新渲染 LayFrame
 const normalComp = computed(() => !keep.value && props.currComp)
 
-watch(useMultiTagsStoreHook().multiTags, (tags: any) => {
+watch(multiTagsStore.multiTags, (tags: multiType[]) => {
   if (!Array.isArray(tags) || !keep.value) {
     return
   }
@@ -38,7 +40,7 @@ watch(useMultiTagsStoreHook().multiTags, (tags: any) => {
 watch(
   () => props.currRoute.fullPath,
   (path) => {
-    const multiTags = useMultiTagsStoreHook().multiTags as RouteRecordRaw[]
+    const multiTags = multiTagsStore.multiTags as RouteRecordRaw[]
     const iframeTags = multiTags.filter((i) => i.meta?.frameSrc)
     if (keep.value) {
       if (iframeTags.length !== MAP.size) {

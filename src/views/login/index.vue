@@ -10,7 +10,7 @@ import { useUserStoreHook } from '@/store/modules/user'
 import { initRouter, getTopMenu } from '@/router/utils'
 import { bg, avatar, illustration } from './utils/static'
 import { useRenderIcon } from '@/components/ReIcon/src/hooks'
-import { ref, reactive, toRaw, onMounted, onBeforeUnmount } from 'vue'
+import { ref, reactive, toRaw } from 'vue'
 import { useDataThemeChange } from '@/layout/hooks/useDataThemeChange'
 
 import dayIcon from '@/assets/svg/day.svg?component'
@@ -39,7 +39,7 @@ const ruleForm = reactive({
 
 const onLogin = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate((valid) => {
     if (valid) {
       loading.value = true
       useUserStoreHook()
@@ -61,20 +61,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
   })
 }
 
-/** 使用公共函数，避免`removeEventListener`失效 */
-function onkeypress({ code }: KeyboardEvent) {
-  if (code === 'Enter') {
-    onLogin(ruleFormRef.value)
-  }
-}
-
-onMounted(() => {
-  window.document.addEventListener('keypress', onkeypress)
-})
-
-onBeforeUnmount(() => {
-  window.document.removeEventListener('keypress', onkeypress)
-})
+const onSubmit = () => onLogin(ruleFormRef.value)
 </script>
 
 <template>
@@ -101,7 +88,7 @@ onBeforeUnmount(() => {
             <h2 class="outline-none">{{ title }}</h2>
           </Motion>
 
-          <el-form ref="ruleFormRef" :model="ruleForm" :rules="loginRules" size="large">
+          <el-form ref="ruleFormRef" :model="ruleForm" :rules="loginRules" size="large" @submit.prevent="onSubmit">
             <Motion :delay="100">
               <el-form-item
                 :rules="[
@@ -125,18 +112,13 @@ onBeforeUnmount(() => {
                   show-password
                   placeholder="密码"
                   :prefix-icon="useRenderIcon(Lock)"
+                  @keyup.enter="onSubmit"
                 />
               </el-form-item>
             </Motion>
 
             <Motion :delay="250">
-              <el-button
-                class="w-full mt-4"
-                size="default"
-                type="primary"
-                :loading="loading"
-                @click="onLogin(ruleFormRef)"
-              >
+              <el-button class="w-full mt-4" size="default" type="primary" :loading="loading" @click="onSubmit">
                 登录
               </el-button>
             </Motion>

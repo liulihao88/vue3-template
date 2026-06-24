@@ -1,18 +1,23 @@
-const MAP = new Map()
+import type { Component } from 'vue'
+
+const MAP = new Map<string, Component>()
+type FrameEntry = [string, Component]
 
 export const useMultiFrame = () => {
-  function setMap(path, Comp) {
-    MAP.set(path, Comp)
+  function setMap(path: string, comp: Component) {
+    MAP.set(path, comp)
   }
 
-  function getMap(path?) {
+  function getMap(path: string): Component | undefined
+  function getMap(): FrameEntry[]
+  function getMap(path?: string) {
     if (path) {
       return MAP.get(path)
     }
-    return [...MAP.entries()]
+    return [...MAP.entries()] as FrameEntry[]
   }
 
-  function delMap(path) {
+  function delMap(path: string) {
     MAP.delete(path)
   }
 

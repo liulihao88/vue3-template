@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { ref, getCurrentInstance, onUnmounted, onBeforeUnmount } from 'vue'
-
-const { proxy } = getCurrentInstance()
-
-const isShow = ref(true)
-
 /**
  * const r1 =  customAdd[1][2][3] + 4 // 期望结果10
  * const r2 =  customAdd[10][20] + 30 // 期望结果60
@@ -38,7 +32,7 @@ type AddProxy = number & {
 function createAdd(): AddProxy {
   let sum = 0
   const handler: ProxyHandler<object> = {
-    get(target: object, prop: string | symbol, receiver: any) {
+    get(_target: object, prop: string | symbol) {
       if (prop === Symbol.toPrimitive) {
         return () => sum // `+` 运算触发这个
       } else if (prop === 'valueOf') {
@@ -61,23 +55,14 @@ function createAdd(): AddProxy {
 const customAddInstance = createCustomAdd()
 const add2Instance = createAdd()
 
-// 每次组件创建时生成新的实例
-let customAdd = (x: number) => {
+const customAdd = (x: number) => {
   return customAddInstance(x)
 }
-let add2 = add2Instance
-
-// 组件卸载时清理状态
-onBeforeUnmount(() => {
-  // 重置实例状态，确保下次进入组件时是干净的状态
-  isShow.value = false
-  // 创建新的实例来重置状态
-  // 这样可以避免组件之间共享状态的问题
-})
+const add2 = add2Instance
 </script>
 
 <template>
-  <div v-if="isShow">
+  <div>
     <oBasicLayout title="科里化使用">
       {{ customAdd(1)(2)(3) + 4 }}
       <el-divider border-style="dashed" />
