@@ -230,32 +230,33 @@ function formatTwoStageRoutes(routesList: RouteRecordRaw[]) {
 
 /** 处理缓存路由（添加、删除、刷新） */
 function handleAliveRoute({ name }: ToRouteType, mode?: string) {
+  const permissionStore = usePermissionStoreHook()
   switch (mode) {
     case 'add':
-      usePermissionStoreHook().cacheOperate({
+      permissionStore.cacheOperate({
         mode: 'add',
         name,
       })
       break
     case 'delete':
-      usePermissionStoreHook().cacheOperate({
+      permissionStore.cacheOperate({
         mode: 'delete',
         name,
       })
       break
     case 'refresh':
-      usePermissionStoreHook().cacheOperate({
+      permissionStore.cacheOperate({
         mode: 'refresh',
         name,
       })
       break
     default:
-      usePermissionStoreHook().cacheOperate({
+      permissionStore.cacheOperate({
         mode: 'delete',
         name,
       })
       useTimeoutFn(() => {
-        usePermissionStoreHook().cacheOperate({
+        permissionStore.cacheOperate({
           mode: 'add',
           name,
         })
@@ -342,8 +343,11 @@ function handleTopMenu(route) {
 
 /** 获取所有菜单中的第一个菜单（顶级菜单）*/
 function getTopMenu(tag = false): menuType {
-  const topMenu = handleTopMenu(usePermissionStoreHook().wholeMenus[0]?.children[0])
-  tag && useMultiTagsStoreHook().handleTags('push', topMenu)
+  const permissionStore = usePermissionStoreHook()
+  const topMenu = handleTopMenu(permissionStore.wholeMenus[0]?.children[0])
+  if (tag) {
+    useMultiTagsStoreHook().addTag(topMenu)
+  }
   return topMenu
 }
 
