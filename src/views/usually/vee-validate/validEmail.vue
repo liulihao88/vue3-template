@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Field, Form } from 'vee-validate'
 const emial = 'example@example.com'
 

@@ -2,7 +2,7 @@
   <vue-office-pdf :src="pdf" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
 </template>
 
-<script>
+<script lang="ts">
 //引入VueOfficePdf组件
 import VueOfficePdf from '@vue-office/pdf'
 

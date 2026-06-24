@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted, nextTick, computed, toRaw } from 'vue'
 import * as pdfjsLib from 'pdfjs-dist'
 
@@ -327,8 +327,6 @@ const renderPage = async (pageNum, offsetTop, abortSignal) => {
           textContentSource: textContent,
           container: textLayerDiv,
           viewport: viewport,
-          textDivs: [],
-          hideTextLayer: false,
         })
 
         await textLayer.render()

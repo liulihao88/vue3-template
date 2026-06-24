@@ -37,7 +37,7 @@
       "element-plus/global",
       "@pureadmin/table/volar",
       "@pureadmin/descriptions/volar",
-      "@wocwin/t-ui-plus/components.d.ts",
+      "@wocwin/t-ui-plus/lib/components.d.ts",
     ]
   },
   "include": [

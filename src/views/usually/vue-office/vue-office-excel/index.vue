@@ -2,7 +2,7 @@
   <vue-office-excel :src="excel" style="height: 100vh" @rendered="renderedHandler" @error="errorHandler" />
 </template>
 
-<script>
+<script lang="ts">
 //引入VueOfficeExcel组件
 import VueOfficeExcel from '@vue-office/excel'
 // import VueOfficeExcel from '@vue-office/excel'

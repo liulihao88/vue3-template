@@ -2,7 +2,7 @@
 import { useDraggable } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef('el')
+const el = useTemplateRef<HTMLElement>('el')
 
 // `style` will be a helper computed for `left: ?px; top: ?px;`
 const { x, y, style } = useDraggable(el, {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useFullscreen, onMounted } from '@vueuse/core'
+import { useFullscreen } from '@vueuse/core'
 import { ref } from 'vue'
-const el = ref(null)
-const { toggle, isFullscreen } = useFullscreen(el.value)
+const el = ref<HTMLVideoElement | null>(null)
+const { toggle, isFullscreen } = useFullscreen(el)
 </script>
 
 <template>

@@ -65,8 +65,8 @@ const state = reactive({
   showLength: true,
   editable: true,
   showIcon: true,
-  selectableType: 'multiple',
-  editableTrigger: 'click',
+  selectableType: 'multiple' as const,
+  editableTrigger: 'click' as const,
   deep: 4,
 })
 

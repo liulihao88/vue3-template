@@ -13,7 +13,7 @@
     />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { reactive } from 'vue'
 import { VAceEditor } from 'vue3-ace-editor'
 

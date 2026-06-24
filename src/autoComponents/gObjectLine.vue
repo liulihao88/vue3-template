@@ -77,7 +77,7 @@ const interval = ref(0)
 
 const calcMax = (value) => {
   // value.max 是自动计算出的最大值
-  let res = formatBytes(value.max)
+  let res = String(formatBytes(value.max))
   let [num, unit] = res.split(' ')
   let ceilToNearestNum = ceilToNearest(num)
   let maxValue = ceilToNearestNum + ' ' + unit

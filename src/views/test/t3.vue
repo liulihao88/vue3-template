@@ -5,6 +5,10 @@ const mode = ref('hierarchy') // 可以是 boolean | string | number
 const modeChange = (newVal: string) => {
   console.log('切换模式:', newVal)
 }
+
+const isTest03 = () => {
+  console.log('isTest03')
+}
 </script>
 
 <template>

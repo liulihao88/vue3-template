@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter, ref } from 'vue-router'
+import { useRouter } from 'vue-router'
 import noExist from '@/assets/status/404.svg?component'
 
 defineOptions({

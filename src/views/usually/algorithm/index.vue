@@ -29,13 +29,13 @@ function createCustomAdd(start = 0): ChainableAdd {
   return chainable as ChainableAdd
 }
 
-interface AddProxy {
+type AddProxy = number & {
   [key: number]: AddProxy
   valueOf(): number
   [Symbol.toPrimitive](hint: string): number
 }
 
-function createAdd() {
+function createAdd(): AddProxy {
   let sum = 0
   const handler: ProxyHandler<object> = {
     get(target: object, prop: string | symbol, receiver: any) {
@@ -54,7 +54,7 @@ function createAdd() {
       return sum
     },
   }
-  return new Proxy({}, handler) as AddProxy & number
+  return new Proxy({}, handler) as AddProxy
 }
 
 // 为每个组件实例创建独立的实例，避免状态污染

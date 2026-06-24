@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Field, Form, defineRule } from 'vee-validate'
 
 // 定义异步校验规则
@@ -9,7 +9,7 @@ defineRule('nameRule', async (value) => {
   }
 
   // 模拟异步校验（如检查用户名是否已存在）
-  return new Promise((resolve) => {
+  return new Promise<string | boolean>((resolve) => {
     setTimeout(() => {
       if (value === 'admin') {
         resolve('Username already exists')
@@ -21,17 +21,17 @@ defineRule('nameRule', async (value) => {
 })
 
 // Submit handler
-function onSubmit(values) {
+function onSubmit(values: Record<string, unknown>) {
   console.log(values)
 }
 </script>
 
 <template>
   <Form v-slot="{ errors }" @submit="onSubmit">
-    <Field v-slot="{ field, meta }" name="name" rules="nameRule">
+    <Field v-slot="{ field, errors }" name="name" rules="nameRule">
       {{ field }}
-      <input v-bind="field" :class="{ error: meta.error }" placeholder="Enter name" width="100" />
-      <span v-if="meta.error" class="error-message">{{ meta.errors[0] }}</span>
+      <input v-bind="field" :class="{ error: errors.length > 0 }" placeholder="Enter name" width="100" />
+      <span v-if="errors.length > 0" class="error-message">{{ errors[0] }}</span>
     </Field>
 
     <span>{{ errors.name }}</span>
