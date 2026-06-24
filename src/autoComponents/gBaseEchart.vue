@@ -33,5 +33,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="echartRef" style=" width: 400px;height: 400px" />
+  <div ref="echartRef" style="width: 400px; height: 400px" />
 </template>
