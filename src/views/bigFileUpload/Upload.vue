@@ -20,8 +20,15 @@ const props = withDefaults(defineProps<UploadProps>(), {
   chunkSize: 5, // 分片大小默认值为 5 MB
 })
 
+interface UploadFileItem {
+  url: string
+  raw: File
+  progress: number
+  chunkProgress: number[]
+}
+
 // 响应式状态，用于存储上传的文件列表
-const uploadFiles = ref<any[]>([])
+const uploadFiles = ref<UploadFileItem[]>([])
 
 // 处理文件输入改变事件
 const handleChange = async (e: Event) => {
@@ -52,7 +59,7 @@ const loadClick = async () => {
     //   useWebWorker: true
     // });
 
-    let uploadPromises = [] // 存储每个分片上传的Promise
+    const uploadPromises = [] // 存储每个分片上传的Promise
     const raw = file.raw // 获取文件的原始文件对象
     const size = raw.size // 获取文件大小
     const chunkSize = props.fragment ? props.chunkSize * 1024 * 1024 : size // 根据是否需要分片，计算分片大小

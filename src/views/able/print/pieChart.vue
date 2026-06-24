@@ -17,8 +17,7 @@ setOptions({
   },
   legend: {
     icon: 'circle',
-    //@ts-expect-error
-    right: true,
+    right: 0,
   },
   series: [
     {

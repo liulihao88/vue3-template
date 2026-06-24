@@ -18,7 +18,9 @@ interface Columns {
   [propName: string]: string | number
 }
 
-const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
+type ColumnOverrides = Partial<Columns>
+
+const generateColumns = (length = 10, prefix = 'column-', props: ColumnOverrides = {}) =>
   Array.from({ length }).map((_, columnIndex) => ({
     ...props,
     key: `${prefix}${columnIndex}`,
