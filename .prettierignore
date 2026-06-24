@@ -3,5 +3,8 @@ node_modules
 public
 dist
 test-results
+pnpm-lock.yaml
+frontend-skills-collection
+.vscode
 
 
