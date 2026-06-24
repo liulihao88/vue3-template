@@ -63,6 +63,8 @@ declare global {
     VITE_CDN: boolean
     VITE_HIDE_HOME: string
     VITE_COMPRESSION: ViteCompression
+    VITE_ANALYTICS_ENABLED: string
+    VITE_ANALYTICS_DEBUG: string
   }
 
   /**
@@ -101,6 +103,9 @@ declare global {
     TooltipEffect?: Effect
     ResponsiveStorageNameSpace?: string
     MenuSearchHistory?: number
+    Analytics?: {
+      Debug?: boolean
+    }
   }
 
   /**

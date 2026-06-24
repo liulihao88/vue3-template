@@ -2,6 +2,7 @@ import App from './App.vue'
 import router from './router'
 import { setupStore } from '@/store'
 import { getPlatformConfig } from './config'
+import { setupAnalytics } from '@/utils/analytics'
 import { MotionPlugin } from '@vueuse/motion'
 import { useEcharts } from '@/plugins/echarts'
 import { createApp, type Directive } from 'vue'
@@ -86,6 +87,7 @@ import '@wocwin/t-ui-plus/lib/style.css'
 app.use(TuiPlus)
 
 getPlatformConfig(app).then(async (config) => {
+  setupAnalytics()
   setupStore(app)
   app.use(router)
   await router.isReady()

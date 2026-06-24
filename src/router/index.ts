@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie'
 import { getConfig } from '@/config'
 import NProgress from '@/utils/progress'
+import { trackPageView } from '@/utils/analytics'
 import { buildHierarchyTree } from '@/utils/tree'
 import remainingRouter from './modules/remaining'
 import { useMultiTagsStoreHook } from '@/store/modules/multiTags'
@@ -185,7 +186,13 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   }
 })
 
-router.afterEach(() => {
+router.afterEach((to, from) => {
+  trackPageView({
+    path: to.path,
+    fullPath: to.fullPath,
+    title: typeof to.meta?.title === 'string' ? to.meta.title : undefined,
+    referrer: from.fullPath || undefined,
+  })
   NProgress.done()
 })
 
