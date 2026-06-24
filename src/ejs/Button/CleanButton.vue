@@ -1,9 +1,9 @@
 <template>
-  <button>CusButton</button>
+  <button>CleanButton</button>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'CusButton',
+  name: 'CleanButton',
 }
 </script>

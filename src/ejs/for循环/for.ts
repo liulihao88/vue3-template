@@ -1,13 +1,5 @@
-import ejs from 'ejs'
-import fs from 'node:fs'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { renderTemplate } from '../shared.ts'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const template = fs.readFileSync(path.resolve(__dirname, './for.ejs'), 'utf-8')
-
-const html = ejs.render(template)
+const html = renderTemplate(import.meta.url, './for.ejs')
 
 console.log(html)
