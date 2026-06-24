@@ -129,8 +129,10 @@ function addPathMatch() {
 
 /** 处理动态路由（后端返回的路由） */
 function handleAsyncRoutes(routeList) {
+  const multiTagsStore = useMultiTagsStoreHook()
+  const permissionStore = usePermissionStoreHook()
   if (routeList.length === 0) {
-    usePermissionStoreHook().handleWholeMenus(routeList)
+    permissionStore.handleWholeMenus(routeList)
   } else {
     formatFlatteningRoutes(addAsyncRoutes(routeList)).map((v: RouteRecordRaw) => {
       // 防止重复添加路由
@@ -146,13 +148,10 @@ function handleAsyncRoutes(routeList) {
         router.addRoute(flattenRouters)
       }
     })
-    usePermissionStoreHook().handleWholeMenus(routeList)
+    permissionStore.handleWholeMenus(routeList)
   }
-  if (!useMultiTagsStoreHook().getMultiTagsCache) {
-    useMultiTagsStoreHook().handleTags('equal', [
-      ...routerArrays,
-      ...usePermissionStoreHook().flatteningRoutes.filter((v) => v?.meta?.fixedTag),
-    ])
+  if (!multiTagsStore.getMultiTagsCache) {
+    multiTagsStore.setTags([...routerArrays, ...permissionStore.flatteningRoutes.filter((v) => v?.meta?.fixedTag)])
   }
   addPathMatch()
 }

@@ -5,6 +5,7 @@ import { removeToken } from '@/utils/auth'
 import { routerArrays } from '@/layout/types'
 import { router, resetRouter } from '@/router'
 import type { themeColorsType } from '../types'
+import type { multiType } from '@/store/types'
 import { useAppStoreHook } from '@/store/modules/app'
 import { useGlobal, storageLocal } from '@pureadmin/utils'
 import { useEpThemeStoreHook } from '@/store/modules/epTheme'
@@ -110,16 +111,17 @@ export function useDataThemeChange() {
 
   /** 清空缓存并返回登录页 */
   function onReset() {
+    const multiTagsStore = useMultiTagsStoreHook()
     removeToken()
     storageLocal().clear()
     const { Grey, Weak, MultiTagsCache, EpThemeColor, Layout } = getConfig()
     useAppStoreHook().setLayout(Layout)
     setEpThemeColor(EpThemeColor)
-    useMultiTagsStoreHook().multiTagsCacheChange(MultiTagsCache)
+    multiTagsStore.multiTagsCacheChange(MultiTagsCache)
     toggleClass(Grey, 'html-grey', document.querySelector('html'))
     toggleClass(Weak, 'html-weakness', document.querySelector('html'))
     router.push('/login')
-    useMultiTagsStoreHook().handleTags('equal', [...routerArrays])
+    multiTagsStore.setTags([...routerArrays] as multiType[])
     resetRouter()
   }
 

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { type userType, store, router, resetRouter, routerArrays, storageLocal } from '../utils'
+import type { multiType } from '../types'
 import { type UserResult, type RefreshTokenResult, getLogin, refreshTokenApi } from '@/api/user'
 import { useMultiTagsStoreHook } from './multiTags'
 import { type DataInfo, setToken, removeToken, userKey } from '@/utils/auth'
@@ -63,7 +64,7 @@ export const useUserStore = defineStore({
       this.username = ''
       this.roles = []
       removeToken()
-      useMultiTagsStoreHook().handleTags('equal', [...routerArrays])
+      useMultiTagsStoreHook().setTags([...routerArrays] as multiType[])
       resetRouter()
       router.push('/login')
     },

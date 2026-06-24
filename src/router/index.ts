@@ -99,6 +99,7 @@ const whiteList = ['/login']
 const { VITE_HIDE_HOME } = import.meta.env
 
 router.beforeEach((to: ToRouteType, _from, next) => {
+  const multiTagsStore = useMultiTagsStoreHook()
   if (to.meta?.keepAlive) {
     handleAliveRoute(to, 'add')
     // 页面整体刷新和点击标签页刷新
@@ -142,7 +143,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       // 刷新
       if (usePermissionStoreHook().wholeMenus.length === 0 && to.path !== '/login') {
         initRouter().then((router: Router) => {
-          if (!useMultiTagsStoreHook().getMultiTagsCache) {
+          if (!multiTagsStore.getMultiTagsCache) {
             const { path } = to
             const route = findRouteByPath(path, router.options.routes[0].children)
             getTopMenu(true)
@@ -151,14 +152,14 @@ router.beforeEach((to: ToRouteType, _from, next) => {
               if (isAllEmpty(route.parentId) && route.meta?.backstage) {
                 // 此处为动态顶级路由（目录）
                 const { path, name, meta } = route.children[0]
-                useMultiTagsStoreHook().handleTags('push', {
+                multiTagsStore.addTag({
                   path,
                   name,
                   meta,
                 })
               } else {
                 const { path, name, meta } = route
-                useMultiTagsStoreHook().handleTags('push', {
+                multiTagsStore.addTag({
                   path,
                   name,
                   meta,

@@ -29,6 +29,10 @@ export const useMultiTagsStore = defineStore({
     },
   },
   actions: {
+    setTags(tags: multiType[]) {
+      this.multiTags = tags
+      this.tagsCache(this.multiTags)
+    },
     multiTagsCacheChange(multiTagsCache: boolean) {
       this.multiTagsCache = multiTagsCache
       if (multiTagsCache) {
@@ -40,71 +44,73 @@ export const useMultiTagsStore = defineStore({
     tagsCache(multiTags) {
       this.getMultiTagsCache && storageLocal().setItem(`${responsiveStorageNameSpace()}tags`, multiTags)
     },
+    addTag(tag: multiType) {
+      // 不添加到标签页
+      if (tag?.meta?.hiddenTag) return
+      // 如果是外链无需添加信息到标签页
+      if (isUrl(tag?.name)) return
+      // 如果title为空拒绝添加空信息到标签页
+      if (tag?.meta?.title.length === 0) return
+      // showLink:false 不添加到标签页
+      if (isBoolean(tag?.meta?.showLink) && !tag?.meta?.showLink) return
+
+      const tagPath = tag.path
+      const tagHasExits = this.multiTags.some((item) => item.path === tagPath)
+      const tagQueryHasExits = this.multiTags.some((item) => isEqual(item?.query, tag?.query))
+      const tagParamsHasExits = this.multiTags.some((item) => isEqual(item?.params, tag?.params))
+
+      if (tagHasExits && tagQueryHasExits && tagParamsHasExits) return
+
+      const dynamicLevel = tag?.meta?.dynamicLevel ?? -1
+      if (dynamicLevel > 0) {
+        if (this.multiTags.filter((item) => item?.path === tagPath).length >= dynamicLevel) {
+          const index = this.multiTags.findIndex((item) => item?.path === tagPath)
+          if (index !== -1) {
+            this.multiTags.splice(index, 1)
+          }
+        }
+      }
+
+      this.multiTags.push(tag)
+      this.tagsCache(this.multiTags)
+
+      if (getConfig()?.MaxTagsLevel && isNumber(getConfig().MaxTagsLevel)) {
+        if (this.multiTags.length > getConfig().MaxTagsLevel) {
+          this.multiTags.splice(1, 1)
+        }
+      }
+    },
+    removeTagByPath(path: string) {
+      const index = this.multiTags.findIndex((tag) => tag.path === path)
+      if (index === -1) return
+      this.multiTags.splice(index, 1)
+      this.tagsCache(this.multiTags)
+      return this.multiTags
+    },
+    removeTagsByRange(position: positionType) {
+      this.multiTags.splice(position?.startIndex, position?.length)
+      this.tagsCache(this.multiTags)
+      return this.multiTags
+    },
+    getLatestTag() {
+      return this.multiTags.slice(-1)
+    },
     handleTags<T>(mode: string, value?: T | multiType, position?: positionType): T {
       switch (mode) {
         case 'equal':
-          this.multiTags = value
-          this.tagsCache(this.multiTags)
+          this.setTags(value as multiType[])
           break
         case 'push':
-          {
-            const tagVal = value as multiType
-            // 不添加到标签页
-            if (tagVal?.meta?.hiddenTag) return
-            // 如果是外链无需添加信息到标签页
-            if (isUrl(tagVal?.name)) return
-            // 如果title为空拒绝添加空信息到标签页
-            if (tagVal?.meta?.title.length === 0) return
-            // showLink:false 不添加到标签页
-            if (isBoolean(tagVal?.meta?.showLink) && !tagVal?.meta?.showLink) return
-            const tagPath = tagVal.path
-            // 判断tag是否已存在
-            const tagHasExits = this.multiTags.some((tag) => {
-              return tag.path === tagPath
-            })
-
-            // 判断tag中的query键值是否相等
-            const tagQueryHasExits = this.multiTags.some((tag) => {
-              return isEqual(tag?.query, tagVal?.query)
-            })
-
-            // 判断tag中的params键值是否相等
-            const tagParamsHasExits = this.multiTags.some((tag) => {
-              return isEqual(tag?.params, tagVal?.params)
-            })
-
-            if (tagHasExits && tagQueryHasExits && tagParamsHasExits) return
-
-            // 动态路由可打开的最大数量
-            const dynamicLevel = tagVal?.meta?.dynamicLevel ?? -1
-            if (dynamicLevel > 0) {
-              if (this.multiTags.filter((e) => e?.path === tagPath).length >= dynamicLevel) {
-                // 如果当前已打开的动态路由数大于dynamicLevel，替换第一个动态路由标签
-                const index = this.multiTags.findIndex((item) => item?.path === tagPath)
-                index !== -1 && this.multiTags.splice(index, 1)
-              }
-            }
-            this.multiTags.push(value)
-            this.tagsCache(this.multiTags)
-            if (getConfig()?.MaxTagsLevel && isNumber(getConfig().MaxTagsLevel)) {
-              if (this.multiTags.length > getConfig().MaxTagsLevel) {
-                this.multiTags.splice(1, 1)
-              }
-            }
-          }
+          this.addTag(value as multiType)
           break
         case 'splice':
           if (!position) {
-            const index = this.multiTags.findIndex((v) => v.path === value)
-            if (index === -1) return
-            this.multiTags.splice(index, 1)
+            return this.removeTagByPath(value as string) as T
           } else {
-            this.multiTags.splice(position?.startIndex, position?.length)
+            return this.removeTagsByRange(position) as T
           }
-          this.tagsCache(this.multiTags)
-          return this.multiTags
         case 'slice':
-          return this.multiTags.slice(-1)
+          return this.getLatestTag() as T
       }
     },
   },
