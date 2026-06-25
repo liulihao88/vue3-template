@@ -33,7 +33,7 @@ const openDialog = () => {
       <div>test/t1.vue</div>
     </el-dialog>
 
-    <el-button type="primary" @click="openDialog">默认</el-button>
+    <el-button type="primary" @click="openDialog">默认 </el-button>
     <el-button v-ripple type="primary" @click="openDialog">测试07</el-button>
     <el-button v-ripple @click="openDialog">测试07</el-button>
     <el-button v-ripple type="danger" @click="openDialog">测试07</el-button>
