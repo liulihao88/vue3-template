@@ -1,5 +1,6 @@
 src/views/test/*.js
-node_modules
+src/asstes/
+node_modules/
 public
 dist
 test-results
@@ -7,3 +8,11 @@ pnpm-lock.yaml
 frontend-skills-collection
 .vscode
 .lintstagedrc
+
+# environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
