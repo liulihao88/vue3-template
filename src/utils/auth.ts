@@ -44,7 +44,7 @@ export function getToken(): DataInfo<number> {
 export function setToken(data: DataInfo<Date>) {
   let expires = 0
   const { accessToken, refreshToken } = data
-  const { isRemembered, loginDay } = useUserStoreHook()
+  const userStore = useUserStoreHook()
   expires = new Date(data.expires).getTime() // 如果后端直接设置时间戳，将此处代码改为expires = data.expires，然后把上面的DataInfo<Date>改成DataInfo<number>即可
   const cookieString = JSON.stringify({ accessToken, expires, refreshToken })
 
@@ -57,18 +57,18 @@ export function setToken(data: DataInfo<Date>) {
   Cookies.set(
     multipleTabsKey,
     'true',
-    isRemembered
+    userStore.isRemembered
       ? {
-          expires: loginDay,
+          expires: userStore.loginDay,
         }
       : {},
   )
 
   function setUserKey({ avatar, username, nickname, roles }) {
-    useUserStoreHook().SET_AVATAR(avatar)
-    useUserStoreHook().SET_USERNAME(username)
-    useUserStoreHook().SET_NICKNAME(nickname)
-    useUserStoreHook().SET_ROLES(roles)
+    userStore.SET_AVATAR(avatar)
+    userStore.SET_USERNAME(username)
+    userStore.SET_NICKNAME(nickname)
+    userStore.SET_ROLES(roles)
     storageLocal().setItem(userKey, {
       refreshToken,
       expires,

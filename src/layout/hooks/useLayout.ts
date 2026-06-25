@@ -1,14 +1,14 @@
 import { computed } from 'vue'
 import { routerArrays } from '../types'
 import { useGlobal } from '@pureadmin/utils'
-import { useMultiTagsStore } from '@/store/modules/multiTags'
+import { useMultiTagsStoreHook } from '@/store/modules/multiTags'
 
 export function useLayout() {
   const { $storage, $config } = useGlobal<GlobalPropertiesApi>()
 
   const initStorage = () => {
     /** 路由 */
-    if (useMultiTagsStore().multiTagsCache && (!$storage.tags || $storage.tags.length === 0)) {
+    if (useMultiTagsStoreHook().multiTagsCache && (!$storage.tags || $storage.tags.length === 0)) {
       $storage.tags = routerArrays
     }
     /** 导航 */
