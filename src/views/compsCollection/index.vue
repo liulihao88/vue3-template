@@ -816,9 +816,32 @@ const openRoute = (path: string) => {
   }
 }
 
+@media screen and (width <= 900px) {
+  .hero-section,
+  .content-grid {
+    gap: 20px;
+  }
+
+  .hero-copy {
+    padding: 8px 0 0;
+  }
+
+  .hero-panel {
+    padding: 18px;
+  }
+
+  .showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bottom-banner {
+    align-items: flex-start;
+  }
+}
+
 @media screen and (width <= 768px) {
   .design-dashboard {
-    gap: 16px;
+    gap: 18px;
   }
 
   .hero-section,
@@ -826,7 +849,51 @@ const openRoute = (path: string) => {
   .side-panel,
   .showcase-card,
   .bottom-banner {
-    padding: 18px;
+    padding: 16px;
+  }
+
+  .hero-section {
+    padding: 0;
+  }
+
+  .hero-actions,
+  .bottom-banner {
+    flex-direction: column;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions :deep(.el-button),
+  .bottom-banner :deep(.el-button) {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .hero-stat-card,
+  .principle-item,
+  .quick-link-item {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .quick-link-item {
+    grid-template-columns: 38px minmax(0, 1fr) 18px;
+  }
+
+  .hero-stat-icon,
+  .panel-icon,
+  .principle-icon,
+  .quick-link-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-copy h1,
@@ -837,6 +904,74 @@ const openRoute = (path: string) => {
 
   .bottom-banner {
     align-items: flex-start;
+  }
+
+  .showcase-card-body {
+    min-height: 0;
+  }
+
+  .showcase-card-body :deep(.el-col) {
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (width <= 420px) {
+  .design-dashboard {
+    gap: 14px;
+  }
+
+  .hero-copy {
+    padding-top: 4px;
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: var(--ui-leading-copy);
+    }
+  }
+
+  .hero-panel-head,
+  .panel-title-wrap {
+    align-items: flex-start;
+  }
+
+  .hero-panel-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .panel-title-wrap {
+    gap: 12px;
+  }
+
+  .panel-title-wrap h2 {
+    font-size: 18px;
+  }
+
+  .feature-card {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .feature-card strong {
+    font-size: 16px;
+  }
+
+  .bottom-banner-copy h2,
+  .showcase-head h2 {
+    font-size: 22px;
+  }
+
+  .showcase-card-body :deep(.el-col) {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
   }
 }
 </style>

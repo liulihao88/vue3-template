@@ -44,17 +44,20 @@ onMounted(() => {
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
-      <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover" @click="refreshPage">
+      <div
+        class="search-container refresh-entry w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover"
+        @click="refreshPage"
+      >
         <s-icon name="refresh" content="刷新" />
       </div>
 
       <LaySearch id="header-search" />
       <!-- 全屏 -->
-      <LaySidebarFullScreen id="full-screen" />
+      <LaySidebarFullScreen id="full-screen" class="desktop-entry" />
       <!-- 消息通知 -->
       <LayNotice id="header-notice" />
       <!-- 退出登录 -->
-      <div @click="logout">
+      <div class="logout-entry" @click="logout">
         <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
       </div>
       <!-- <el-dropdown trigger="click">
@@ -123,6 +126,32 @@ onMounted(() => {
   .breadcrumb-container {
     float: left;
     margin-left: 16px;
+  }
+}
+
+@media screen and (width <= 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+
+    .hamburger-container {
+      flex: 0 0 48px;
+      float: none;
+    }
+
+    .vertical-header-right {
+      flex: 1;
+      justify-content: flex-end;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .refresh-entry,
+    .desktop-entry,
+    .logout-entry {
+      display: none;
+    }
   }
 }
 

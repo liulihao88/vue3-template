@@ -153,4 +153,21 @@ const transitionMain = defineComponent({
 .main-content {
   margin: 24px;
 }
+
+@media screen and (width <= 768px) {
+  .app-main,
+  .app-main-nofixed-header {
+    background: var(--ui-page-bg);
+  }
+
+  .main-content {
+    margin: 16px;
+  }
+}
+
+@media screen and (width <= 420px) {
+  .main-content {
+    margin: 12px;
+  }
+}
 </style>

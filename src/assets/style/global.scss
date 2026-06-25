@@ -3,7 +3,7 @@
 }
 
 body {
-  min-width: 1200px;
+  min-width: 0;
   overflow-x: auto;
   scrollbar-color: rgb(0 0 0 / 20%) rgb(0 0 0 / 10%);
   scrollbar-width: thin;
@@ -76,4 +76,26 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+@media screen and (width >= 1024px) {
+  body {
+    min-width: 1024px;
+  }
+}
+
+@media screen and (width <= 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .c-container,
+  .c-box {
+    padding: 16px;
+  }
+
+  .c-list-item {
+    width: 100%;
+    margin-right: 0 !important;
+  }
 }
