@@ -29,6 +29,7 @@ const openDialog = () => {
     <T3 />
     <div>test/t1.vue</div>
     <el-button @click="openDialog">打开</el-button>
+
     <el-dialog v-model="open" title="提示" width="30%" destroy-on-close center>
       <div>test/t1.vue</div>
     </el-dialog>
