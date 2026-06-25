@@ -43,8 +43,11 @@ const randomColor = () => {
   }
 }
 
-const handleClick = (ev) => {
-  const { left, top } = canvasRef.value.getBoundingClientRect()
+const handleClick = (ev: MouseEvent) => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+
+  const { left, top } = canvas.getBoundingClientRect()
 
   const x = ev.clientX - left
   console.log(`97 x`, x)
@@ -56,7 +59,7 @@ const handleClick = (ev) => {
   const rowIndex = Math.floor(y / cellHeight)
   console.log(`52 rowIndex`, rowIndex)
 
-  if (rowIndex >= 0 && rowIndex < data.dataSource.length && colIndex >= 0 && colIndex <= data.columns.length) {
+  if (rowIndex >= 0 && rowIndex < data.dataSource.length && colIndex >= 0 && colIndex < data.columns.length) {
     selectedCell.row = rowIndex
     selectedCell.column = colIndex
   } else {
@@ -71,18 +74,20 @@ const canvasWidth = 800
 const canvasHeight = 600
 
 const drawTable = () => {
-  canvasRef.value.addEventListener('click', handleClick)
+  const canvas = canvasRef.value
+  if (!canvas) return
 
   const { columns, dataSource } = data
   const pixelRatio = window.devicePixelRatio
   console.log(`44 pixelRatio`, pixelRatio)
 
   // 设置canvas实际渲染尺寸
-  canvasRef.value.width = canvasWidth * pixelRatio
-  canvasRef.value.height = canvasHeight * pixelRatio
+  canvas.width = canvasWidth * pixelRatio
+  canvas.height = canvasHeight * pixelRatio
 
   // 缩放context以适应高分辨率
-  const ctx = canvasRef.value.getContext('2d')
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
   ctx.scale(pixelRatio, pixelRatio)
 
   ctx.beginPath()
@@ -120,6 +125,7 @@ const drawTable = () => {
 }
 
 onMounted(() => {
+  canvasRef.value?.addEventListener('click', handleClick)
   drawTable()
 })
 

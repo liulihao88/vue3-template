@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, getCurrentInstance, onMounted } from 'vue'
-const { proxy } = getCurrentInstance()
+import { ref, onMounted } from 'vue'
 
 // 获取canvas dom 引用
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 onMounted(() => {
-  const ctx = canvasRef.value.getContext('2d')
+  const ctx = canvasRef.value?.getContext('2d')
+  if (!ctx) return
+
   ctx.beginPath()
 
   ctx.moveTo(0, 0)
@@ -27,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvasRef" widh="1600" height="1200">对不起, 您的浏览器不支持</canvas>
+  <canvas ref="canvasRef" width="1600" height="1200">对不起, 您的浏览器不支持</canvas>
 </template>
 
 <style lang="scss" scoped>

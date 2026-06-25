@@ -9,7 +9,7 @@
         下一页
       </button>
       <input
-        v-model="jumpToPage"
+        v-model.number="jumpToPage"
         type="number"
         min="1"
         :max="pdfDoc ? pdfDoc.numPages : 1"
@@ -159,12 +159,11 @@ const handleScroll = () => {
   containerHeight.value = containerRef.value.clientHeight
   // currentPage.value = pagesInfo.value.find((pageInfo) => pageInfo.offsetTop >= scrollTop.value)?.pageNum ?? 1;
   // 18473
-  currentPage.value =
-    // console.log(`95 pagesInfo.value`, pagesInfo.value);
-    pagesInfo.value.find((pageInfo) => {
-      console.log(`51 pageInfo.offsetTop`, pageInfo.offsetTop)
-      return pageInfo.offsetTop + pageInfo.height >= scrollTop.value
-    }).pageNum ?? 1
+  const visiblePage = pagesInfo.value.find((pageInfo) => {
+    console.log(`51 pageInfo.offsetTop`, pageInfo.offsetTop)
+    return pageInfo.offsetTop + pageInfo.height >= scrollTop.value
+  })
+  currentPage.value = visiblePage?.pageNum ?? pagesInfo.value.at(-1)?.pageNum ?? 1
   console.log(`17 currentPage.value`, currentPage.value)
   jumpToPage.value = currentPage.value
   // 防抖处理
@@ -436,8 +435,8 @@ const recalculateAllPages = async () => {
 
 // 跳转到指定页面
 const goToPage = () => {
-  const page = parseInt(jumpToPage.value)
-  currentPage.value = jumpToPage.value
+  const page = Number(jumpToPage.value)
+  currentPage.value = page
   if (page >= 1 && page <= (pdfDoc.value ? pdfDoc.value.numPages : 0)) {
     scrollToPage(page)
   }
@@ -464,6 +463,7 @@ onMounted(async () => {
 
 // 组件卸载前执行
 onUnmounted(() => {
+  currentRenderAbortController.value?.abort()
   if (loadingTask.value) {
     loadingTask.value.destroy()
   }

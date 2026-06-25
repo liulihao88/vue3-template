@@ -202,7 +202,10 @@ function handleCollect(item) {
 
 /** 存储搜索记录 */
 function saveHistory() {
-  const { path, meta } = resultOptions.value.find((item) => item.path === activePath.value)
+  const activeItem = resultOptions.value.find((item) => item.path === activePath.value)
+  if (!activeItem) return
+
+  const { path, meta } = activeItem
   const searchHistoryList = getStorageItem(LOCALEHISTORYKEY)
   const searchCollectList = getStorageItem(LOCALECOLLECTKEY)
   const isCollected = searchCollectList.some((item) => item.path === path)

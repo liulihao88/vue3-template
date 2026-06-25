@@ -52,8 +52,11 @@ const randomColor = () => {
   }
 }
 
-const handleClick = (ev) => {
-  const { left, top } = canvasRef.value.getBoundingClientRect()
+const handleClick = (ev: MouseEvent) => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+
+  const { left, top } = canvas.getBoundingClientRect()
 
   const x = ev.clientX - left
   const y = ev.clientY - top - cellHeight
@@ -61,7 +64,7 @@ const handleClick = (ev) => {
   const colIndex = Math.floor(x / cellWidth)
   const rowIndex = Math.floor(y / cellHeight)
 
-  if (rowIndex >= 0 && rowIndex < data.dataSource.length && colIndex >= 0 && colIndex <= data.columns.length) {
+  if (rowIndex >= 0 && rowIndex < data.dataSource.length && colIndex >= 0 && colIndex < data.columns.length) {
     selectedCell.row = rowIndex
     selectedCell.column = colIndex
   } else {
@@ -75,19 +78,22 @@ const canvasWidth = 800
 const canvasHeight = 600
 
 const drawTable = (type = '') => {
-  canvasRef.value.addEventListener('click', handleClick)
-  const ctx = canvasRef.value.getContext('2d')
+  const canvas = canvasRef.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
 
   const { columns, dataSource } = data
   if (dataSource.length <= 0) {
     ctx.clearRect(0, 0, 800, 600)
-    return proxy.$toast('暂无数据', 'e')
+    return proxy?.$toast('暂无数据', 'e')
   }
   const pixelRatio = window.devicePixelRatio
 
   // 设置canvas实际渲染尺寸
-  canvasRef.value.width = canvasWidth * pixelRatio
-  canvasRef.value.height = canvasHeight * pixelRatio
+  canvas.width = canvasWidth * pixelRatio
+  canvas.height = canvasHeight * pixelRatio
 
   // 缩放context以适应高分辨率
   ctx.scale(pixelRatio, pixelRatio)
@@ -102,7 +108,7 @@ const drawTable = (type = '') => {
   }
 
   // 画表格
-  for (let i = startRow; i < startRow + visibleRows; i++) {
+  for (let i = startRow; i < Math.min(startRow + visibleRows, dataSource.length); i++) {
     ctx.beginPath()
     ctx.font = `${10}px serif`
     const record = dataSource[i]
@@ -124,26 +130,21 @@ const drawTable = (type = '') => {
   ctx.closePath()
 }
 
-const handleWheel = () => {
-  window.addEventListener(
-    'wheel',
-    (ev) => {
-      const { deltaY } = ev
-      console.log(`77 deltaY`, deltaY)
-      if (deltaY < 0) {
-        startRow = Math.max(0, startRow - 1)
-      } else {
-        startRow = Math.min(data.dataSource.length, startRow + 1)
-      }
+const handleWheel = (ev: WheelEvent) => {
+  const { deltaY } = ev
+  console.log(`77 deltaY`, deltaY)
+  if (deltaY < 0) {
+    startRow = Math.max(0, startRow - 1)
+  } else {
+    startRow = Math.min(Math.max(0, data.dataSource.length - visibleRows), startRow + 1)
+  }
 
-      drawTable('wheel')
-    },
-    false,
-  )
+  drawTable('wheel')
 }
 
-const handleSearch = (ev) => {
-  const { value } = ev.target
+const handleSearch = (ev: Event) => {
+  const { value } = ev.target as HTMLInputElement
+  startRow = 0
   data.dataSource = data.templateDataSource.filter((v) => {
     return v.name.includes(value)
   })
@@ -161,12 +162,14 @@ watch(
 )
 
 onMounted(() => {
+  canvasRef.value?.addEventListener('click', handleClick)
+  window.addEventListener('wheel', handleWheel, false)
   drawTable()
-  handleWheel()
 })
 
 onUnmounted(() => {
   canvasRef.value?.removeEventListener('click', handleClick)
+  window.removeEventListener('wheel', handleWheel, false)
 })
 </script>
 

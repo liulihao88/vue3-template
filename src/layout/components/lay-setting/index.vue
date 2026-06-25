@@ -283,7 +283,7 @@ onBeforeMount(() => {
   })
 })
 
-onUnmounted(() => removeMatchMedia)
+onUnmounted(removeMatchMedia)
 </script>
 
 <template>
