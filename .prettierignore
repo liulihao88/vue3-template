@@ -1,5 +1,5 @@
 src/views/test/*.js
-src/asstes/
+src/assets/
 node_modules/
 public
 dist

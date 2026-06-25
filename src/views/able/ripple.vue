@@ -317,7 +317,8 @@ const usageRows = [
   overflow: hidden;
   color: var(--el-color-primary);
   cursor: pointer;
-  background: linear-gradient(135deg, rgb(64 158 255 / 8%), transparent 38%),
+  background:
+    linear-gradient(135deg, rgb(64 158 255 / 8%), transparent 38%),
     linear-gradient(180deg, var(--ui-surface), var(--ui-surface-soft));
 }
 
