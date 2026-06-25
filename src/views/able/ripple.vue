@@ -18,12 +18,30 @@ defineOptions({
 })
 
 const buttonCases = [
-  { label: 'Default', type: '' },
-  { label: 'Primary', type: 'primary' },
-  { label: 'Success', type: 'success' },
-  { label: 'Info', type: 'info' },
-  { label: 'Warning', type: 'warning' },
-  { label: 'Danger', type: 'danger' },
+  {
+    label: 'Default',
+    type: '',
+  },
+  {
+    label: 'Primary',
+    type: 'primary',
+  },
+  {
+    label: 'Success',
+    type: 'success',
+  },
+  {
+    label: 'Info',
+    type: 'info',
+  },
+  {
+    label: 'Warning',
+    type: 'warning',
+  },
+  {
+    label: 'Danger',
+    type: 'danger',
+  },
 ] as const
 
 const metrics = [
@@ -69,7 +87,9 @@ const scenarioCards = [
     description: '通过 v-ripple="{ class: ... }" 让波纹继承指定文字色。',
     icon: MagicLine,
     className: 'surface-demo surface-demo-custom',
-    ripple: { class: 'text-red-500' },
+    ripple: {
+      class: 'text-red-500',
+    },
     center: false,
   },
 ]
@@ -82,9 +102,18 @@ const checklist = [
 ]
 
 const usageRows = [
-  { label: '基础用法', code: 'v-ripple' },
-  { label: '中心扩散', code: 'v-ripple.center' },
-  { label: '自定义颜色', code: `v-ripple="{ class: 'text-red-500' }"` },
+  {
+    label: '基础用法',
+    code: 'v-ripple',
+  },
+  {
+    label: '中心扩散',
+    code: 'v-ripple.center',
+  },
+  {
+    label: '自定义颜色',
+    code: `v-ripple="{ class: 'text-red-500' }"`,
+  },
 ]
 </script>
 
@@ -110,7 +139,12 @@ const usageRows = [
         </div>
       </div>
 
-      <div v-ripple.center="{ class: 'text-blue-500' }" class="hero-preview">
+      <div
+        v-ripple.center="{
+          class: 'text-blue-500',
+        }"
+        class="hero-preview"
+      >
         <div class="preview-ring preview-ring-large" />
         <div class="preview-ring preview-ring-medium" />
         <div class="preview-core">
@@ -131,7 +165,9 @@ const usageRows = [
         <div>
           <span>{{ item.label }}</span>
           <strong>{{ item.value }}</strong>
-          <p>{{ item.description }}</p>
+          <p>
+            {{ item.description }}
+          </p>
         </div>
       </article>
     </section>
@@ -187,7 +223,9 @@ const usageRows = [
           <IconifyIconOffline :icon="item.icon" />
         </span>
         <strong>{{ item.title }}</strong>
-        <p>{{ item.description }}</p>
+        <p>
+          {{ item.description }}
+        </p>
       </article>
     </section>
 
@@ -248,7 +286,9 @@ const usageRows = [
 
 .ripple-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.8fr);
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(320px, 0.8fr);
   gap: 24px;
   align-items: stretch;
 }
@@ -429,7 +469,9 @@ const usageRows = [
 }
 
 .content-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.9fr);
 }
 
 .panel-card {

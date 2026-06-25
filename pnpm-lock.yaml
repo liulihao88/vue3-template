@@ -298,8 +298,8 @@ importers:
         specifier: ^13.1.0
         version: 13.1.0(postcss@8.4.38)(stylelint@16.5.0(typescript@5.4.5))
       stylelint-prettier:
-        specifier: ^5.0.0
-        version: 5.0.0(prettier@3.8.4)(stylelint@16.5.0(typescript@5.4.5))
+        specifier: 4.1.0
+        version: 4.1.0(prettier@3.8.4)(stylelint@16.5.0(typescript@5.4.5))
       svgo:
         specifier: ^3.3.2
         version: 3.3.2
@@ -5478,12 +5478,12 @@ packages:
     peerDependencies:
       stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
 
-  stylelint-prettier@5.0.0:
-    resolution: {integrity: sha512-RHfSlRJIsaVg5Br94gZVdWlz/rBTyQzZflNE6dXvSxt/GthWMY3gEHsWZEBaVGg7GM+XrtVSp4RznFlB7i0oyw==}
-    engines: {node: '>=18.12.0'}
+  stylelint-prettier@4.1.0:
+    resolution: {integrity: sha512-dd653q/d1IfvsSQshz1uAMe+XDm6hfM/7XiFH0htYY8Lse/s5ERTg7SURQehZPwVvm/rs7AsFhda9EQ2E9TS0g==}
+    engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       prettier: '>=3.0.0'
-      stylelint: '>=16.0.0'
+      stylelint: '>=15.8.0'
 
   stylelint-scss@6.3.0:
     resolution: {integrity: sha512-8OSpiuf1xC7f8kllJsBOFAOYp/mR/C1FXMVeOFjtJPw+AFvEmC93FaklHt7MlOqU4poxuQ1TkYMyfI0V+1SxjA==}
@@ -11756,7 +11756,7 @@ snapshots:
       postcss-sorting: 8.0.2(postcss@8.4.38)
       stylelint: 16.5.0(typescript@5.4.5)
 
-  stylelint-prettier@5.0.0(prettier@3.8.4)(stylelint@16.5.0(typescript@5.4.5)):
+  stylelint-prettier@4.1.0(prettier@3.8.4)(stylelint@16.5.0(typescript@5.4.5)):
     dependencies:
       prettier: 3.8.4
       prettier-linter-helpers: 1.0.0
