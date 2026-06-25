@@ -32,5 +32,10 @@ const openDialog = () => {
     <el-dialog v-model="open" title="提示" width="30%" destroy-on-close center>
       <div>test/t1.vue</div>
     </el-dialog>
+
+    <el-button type="primary" @click="isTest35">默认</el-button>
+    <el-button v-ripple type="primary" @click="isTest35">测试07</el-button>
+    <el-button v-ripple @click="isTest35">测试07</el-button>
+    <el-button v-ripple type="danger" @click="isTest35">测试07</el-button>
   </div>
 </template>
