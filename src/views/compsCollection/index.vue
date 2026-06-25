@@ -1,19 +1,807 @@
 <script setup lang="ts">
-import { ref, getCurrentInstance } from 'vue'
-const { proxy } = getCurrentInstance()
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 
-const lists = [
-  { title: '取色器', comp: 'g-color-picker' },
-  { title: '自定义指令v-tippy', comp: 'g-tippy' },
-  { title: 'el-statistic', comp: 'g-statistic' },
+import Apps2Line from '@iconify-icons/ri/apps-2-line'
+import ArrowRightUpLine from '@iconify-icons/ri/arrow-right-up-line'
+import Brush3Line from '@iconify-icons/ri/brush-3-line'
+import CodeSSlashLine from '@iconify-icons/ri/code-s-slash-line'
+import Database2Line from '@iconify-icons/ri/database-2-line'
+import FileList3Line from '@iconify-icons/ri/file-list-3-line'
+import FlashlightLine from '@iconify-icons/ri/flashlight-line'
+import FolderChart2Line from '@iconify-icons/ri/folder-chart-2-line'
+import LayoutGridLine from '@iconify-icons/ri/layout-grid-line'
+import LineChartLine from '@iconify-icons/ri/line-chart-line'
+import PaletteLine from '@iconify-icons/ri/palette-line'
+import PieChart2Line from '@iconify-icons/ri/pie-chart-2-line'
+import Rocket2Line from '@iconify-icons/ri/rocket-2-line'
+import ShapesLine from '@iconify-icons/ri/shapes-line'
+import SparklingLine from '@iconify-icons/ri/sparkling-line'
+import StackLine from '@iconify-icons/ri/stack-line'
+import TimeLine from '@iconify-icons/ri/time-line'
+
+const router = useRouter()
+
+const headlineStats = [
+  {
+    label: '演示模块',
+    value: '40+',
+    detail: '图表、表单、VueUse、组件和工具页',
+    icon: LayoutGridLine,
+  },
+  {
+    label: '交互能力',
+    value: '12',
+    detail: '上传、校验、打印、预览、拖拽、全屏',
+    icon: FlashlightLine,
+  },
+  {
+    label: '设计目标',
+    value: '统一',
+    detail: '视觉层级、间距、反馈和暗色模式一起收敛',
+    icon: PaletteLine,
+  },
 ]
+
+const sections = [
+  {
+    title: '表单与录入',
+    description: '把输入、远程配置、循环表单和验证码体验收拢成统一的录入模块。',
+    icon: FileList3Line,
+    items: [
+      { title: '动态表单', description: '远程 schema、循环数据、字段联动。', path: '/form/oForm', badge: 'Forms' },
+      { title: '远程表单', description: '模拟配置驱动的表单生成流程。', path: '/form/remoteForm', badge: 'Remote' },
+      { title: '循环表单', description: '多组重复字段的批量录入展示。', path: '/form/loopForm', badge: 'Batch' },
+    ],
+  },
+  {
+    title: '组件与交互',
+    description: '把可复用的界面能力整理成稳定的工具模块，方便扩展和抽象。',
+    icon: ShapesLine,
+    items: [
+      { title: '基础组件', description: '验证码、输入封装和常用组合示例。', path: '/components/base', badge: 'Base' },
+      {
+        title: '动态按钮',
+        description: '按钮配置和状态切换交互。',
+        path: '/components/dynamic-button',
+        badge: 'Actions',
+      },
+      { title: '时间轴', description: '结构化信息的时序表达。', path: '/components/timeline', badge: 'Flow' },
+      {
+        title: '分栏拖拽',
+        description: '适合工作台和控制台布局的拆分场景。',
+        path: '/components/split-pane',
+        badge: 'Layout',
+      },
+    ],
+  },
+  {
+    title: '图表与洞察',
+    description: '图表页不只是展示库能力，也可以当作之后数据页设计的素材池。',
+    icon: LineChartLine,
+    items: [
+      { title: '基础图表', description: '折线、柱状等基础表达。', path: '/charts/base', badge: 'Charts' },
+      { title: '饼图集合', description: '适合总量、占比和结构分布。', path: '/charts/pie', badge: 'Ratio' },
+      { title: 'AntV G2', description: '更自由的数据可视化表现。', path: '/charts/antvG2', badge: 'Advanced' },
+      { title: '对象折线', description: '对象结构映射到趋势视图。', path: '/charts/objectLine', badge: 'Trend' },
+    ],
+  },
+  {
+    title: '效率与工具',
+    description: '把上传、文件、预览、打印这类高频工作流集中起来，形成更完整的工具面板。',
+    icon: Rocket2Line,
+    items: [
+      { title: '大文件上传', description: '切片上传、断点续传的页面载体。', path: '/bigFileUpload', badge: 'Upload' },
+      { title: '打印示例', description: '表格打印和样式控制。', path: '/able/print', badge: 'Print' },
+      { title: 'Excel 处理', description: '表格读取、渲染和下载能力。', path: '/able/excel', badge: 'Excel' },
+      { title: 'PDF 预览', description: '文档浏览与本地预览。', path: '/usually/pdfjs', badge: 'Preview' },
+    ],
+  },
+]
+
+const quickLinks = [
+  { title: 'VueUse', description: '常见组合式能力的可视化示例。', path: '/vueuse/home', icon: SparklingLine },
+  { title: '常用工具', description: 'dayjs、jwt、pdf、插件等常用能力。', path: '/usually/base', icon: StackLine },
+  {
+    title: 'JSON 处理',
+    description: '编辑器和 JSON 可视化页面。',
+    path: '/handleJson/vueJsonPretty',
+    icon: CodeSSlashLine,
+  },
+  { title: '权限页面', description: '按钮权限和页面权限示例。', path: '/permission/page', icon: Database2Line },
+]
+
+const principles = [
+  {
+    title: '统一的层级',
+    description: '用页面背景、表面层、边框和阴影把信息分层，而不是只靠颜色堆叠。',
+    icon: Apps2Line,
+  },
+  {
+    title: '稳定的间距',
+    description: '把卡片、区块、表格和工具栏的节奏收齐，页面会立刻更专业。',
+    icon: TimeLine,
+  },
+  {
+    title: '明确的状态',
+    description: '按钮、输入框、标签页和表格 hover/focus/active 都要有一致反馈。',
+    icon: Brush3Line,
+  },
+]
+
+const featuredComponents = [
+  {
+    title: '统计卡片',
+    description: '首页先把重要状态讲清楚，再让用户往下钻。',
+    comp: 'g-statistic',
+  },
+  {
+    title: '品牌色选择',
+    description: '颜色不只是装饰，也是设计 token 的起点。',
+    comp: 'g-color-picker',
+  },
+  {
+    title: '提示浮层',
+    description: '把隐藏信息放在恰当的位置，减少页面噪音。',
+    comp: 'g-tippy',
+  },
+]
+
+const totalDemoCount = computed(() => {
+  return sections.reduce((sum, section) => sum + section.items.length, 0) + quickLinks.length
+})
+
+const openRoute = (path: string) => {
+  router.push(path)
+}
 </script>
 
 <template>
-  <div>
-    <div v-for="(v, i) in lists" :key="i">
-      <s-title :title="v.title" />
-      <component :is="v.comp" />
-    </div>
+  <div class="design-dashboard">
+    <section class="hero-section">
+      <div class="hero-copy">
+        <span class="hero-kicker">UI Design System</span>
+        <h1>把这个 Vue3 模板整理成更清晰、更稳定、也更像产品的界面系统</h1>
+        <p>
+          这里不再只是零散 demo
+          列表，而是一个可以继续扩展的页面母板。它把常用模块、设计原则、交互入口和组件能力放到同一套视觉系统里。
+        </p>
+        <div class="hero-actions">
+          <el-button type="primary" size="large" @click="openRoute('/components/base')">
+            <IconifyIconOffline :icon="ArrowRightUpLine" />
+            开始看组件
+          </el-button>
+          <el-button size="large" @click="openRoute('/form/oForm')">查看表单页</el-button>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="hero-panel-head">
+          <span>当前工作台</span>
+          <strong>{{ totalDemoCount }} 个核心入口</strong>
+        </div>
+        <div class="hero-stat-grid">
+          <article v-for="item in headlineStats" :key="item.label" class="hero-stat-card">
+            <div class="hero-stat-icon">
+              <IconifyIconOffline :icon="item.icon" />
+            </div>
+            <div class="hero-stat-body">
+              <span>{{ item.label }}</span>
+              <strong>{{ item.value }}</strong>
+              <p>{{ item.detail }}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="content-main">
+        <article v-for="section in sections" :key="section.title" class="panel-card section-panel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <div class="panel-icon">
+                <IconifyIconOffline :icon="section.icon" />
+              </div>
+              <div>
+                <h2>{{ section.title }}</h2>
+                <p>{{ section.description }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <button
+              v-for="item in section.items"
+              :key="item.path"
+              type="button"
+              class="feature-card"
+              @click="openRoute(item.path)"
+            >
+              <span class="feature-badge">{{ item.badge }}</span>
+              <strong>{{ item.title }}</strong>
+              <p>{{ item.description }}</p>
+              <span class="feature-link">
+                进入页面
+                <IconifyIconOffline :icon="ArrowRightUpLine" />
+              </span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <aside class="content-side">
+        <article class="panel-card side-panel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <div class="panel-icon">
+                <IconifyIconOffline :icon="PaletteLine" />
+              </div>
+              <div>
+                <h2>设计原则</h2>
+                <p>这次页面整理优先保证统一、可扩展和可读性。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="principle-list">
+            <div v-for="item in principles" :key="item.title" class="principle-item">
+              <div class="principle-icon">
+                <IconifyIconOffline :icon="item.icon" />
+              </div>
+              <div>
+                <strong>{{ item.title }}</strong>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel-card side-panel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <div class="panel-icon">
+                <IconifyIconOffline :icon="FolderChart2Line" />
+              </div>
+              <div>
+                <h2>快捷入口</h2>
+                <p>把常用页面放成短路径，减少在菜单里层层寻找。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-link-list">
+            <button
+              v-for="item in quickLinks"
+              :key="item.path"
+              type="button"
+              class="quick-link-item"
+              @click="openRoute(item.path)"
+            >
+              <span class="quick-link-icon">
+                <IconifyIconOffline :icon="item.icon" />
+              </span>
+              <span class="quick-link-copy">
+                <strong>{{ item.title }}</strong>
+                <small>{{ item.description }}</small>
+              </span>
+              <IconifyIconOffline :icon="ArrowRightUpLine" class="quick-link-arrow" />
+            </button>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="component-showcase">
+      <div class="showcase-head">
+        <div>
+          <span class="hero-kicker">Featured Components</span>
+          <h2>用已有组件搭一层更完整的视觉样板</h2>
+        </div>
+      </div>
+
+      <div class="showcase-grid">
+        <article v-for="item in featuredComponents" :key="item.title" class="panel-card showcase-card">
+          <div class="showcase-card-head">
+            <div>
+              <strong>{{ item.title }}</strong>
+              <p>{{ item.description }}</p>
+            </div>
+          </div>
+          <div class="showcase-card-body">
+            <component :is="item.comp" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="bottom-banner panel-card">
+      <div class="bottom-banner-copy">
+        <span class="hero-kicker">Next Step</span>
+        <h2>接下来最适合把表单页、图表页和上传页也统一成同一套工作台语言</h2>
+        <p>现在首页已经是新的母板了，后续我们可以继续把具体业务页按这个系统一页页收过去。</p>
+      </div>
+      <el-button type="primary" size="large" @click="openRoute('/able/print')">
+        <IconifyIconOffline :icon="PieChart2Line" />
+        看工具页示例
+      </el-button>
+    </section>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.design-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.95fr);
+  gap: 24px;
+  padding: 32px;
+  overflow: hidden;
+  background: radial-gradient(circle at top right, rgb(64 158 255 / 14%), transparent 34%),
+    linear-gradient(135deg, rgb(255 255 255 / 98%), rgb(247 250 255 / 98%));
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-md);
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  min-width: 0;
+
+  h1 {
+    max-width: 14em;
+    margin: 0;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ui-text);
+  }
+
+  p {
+    max-width: 56ch;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--el-color-primary);
+  background: rgb(64 158 255 / 8%);
+  border: 1px solid rgb(64 158 255 / 14%);
+  border-radius: 999px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.hero-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: rgb(255 255 255 / 72%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255 255 255 / 78%);
+  border-radius: var(--ui-radius-md);
+  box-shadow: 0 20px 40px rgb(15 23 42 / 6%);
+}
+
+.hero-panel-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+
+  span {
+    font-size: 13px;
+    color: var(--ui-text-secondary);
+  }
+
+  strong {
+    font-size: 15px;
+    color: var(--ui-text);
+  }
+}
+
+.hero-stat-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-stat-card {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 16px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+}
+
+.hero-stat-icon,
+.panel-icon,
+.principle-icon,
+.quick-link-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--el-color-primary);
+  background: rgb(64 158 255 / 10%);
+  border-radius: 12px;
+}
+
+.hero-stat-icon {
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+}
+
+.hero-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    font-size: 13px;
+    color: var(--ui-text-secondary);
+  }
+
+  strong {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ui-text);
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ui-text-tertiary);
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.9fr);
+  gap: 24px;
+}
+
+.content-main,
+.content-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.panel-card {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.section-panel,
+.side-panel,
+.showcase-card,
+.bottom-banner {
+  padding: 24px;
+}
+
+.panel-header,
+.showcase-head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.panel-title-wrap {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--ui-text);
+  }
+
+  p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.panel-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.feature-grid,
+.showcase-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.feature-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feature-card,
+.quick-link-item {
+  text-align: left;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 172px;
+  padding: 18px;
+  background: linear-gradient(180deg, var(--ui-surface), var(--ui-surface-soft));
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+
+  &:hover {
+    border-color: rgb(64 158 255 / 20%);
+    box-shadow: 0 14px 28px rgb(15 23 42 / 8%);
+    transform: translateY(-2px);
+  }
+
+  strong {
+    font-size: 17px;
+    color: var(--ui-text);
+  }
+
+  p {
+    flex: 1;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.feature-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ui-text-secondary);
+  background: rgb(15 23 42 / 4%);
+  border-radius: 999px;
+}
+
+.feature-link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--el-color-primary);
+}
+
+.principle-list,
+.quick-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.principle-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  strong {
+    font-size: 15px;
+    color: var(--ui-text);
+  }
+
+  p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.principle-icon,
+.quick-link-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.quick-link-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 18px;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 14px;
+  background: var(--ui-surface-soft);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+
+  &:hover {
+    background: rgb(64 158 255 / 6%);
+    border-color: rgb(64 158 255 / 14%);
+    transform: translateY(-1px);
+  }
+}
+
+.quick-link-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+
+  strong {
+    font-size: 15px;
+    color: var(--ui-text);
+  }
+
+  small {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.quick-link-arrow {
+  color: var(--ui-text-tertiary);
+}
+
+.component-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.showcase-head {
+  h2 {
+    margin: 8px 0 0;
+    font-size: 24px;
+    line-height: 1.35;
+    color: var(--ui-text);
+  }
+}
+
+.showcase-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.showcase-card-head {
+  strong {
+    font-size: 16px;
+    color: var(--ui-text);
+  }
+
+  p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ui-text-secondary);
+  }
+}
+
+.showcase-card-body {
+  min-height: 200px;
+}
+
+.bottom-banner {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgb(255 255 255 / 98%), rgb(247 250 255 / 98%)), var(--ui-surface);
+}
+
+.bottom-banner-copy {
+  max-width: 760px;
+
+  h2 {
+    margin: 8px 0 0;
+    font-size: 24px;
+    line-height: 1.35;
+    color: var(--ui-text);
+  }
+
+  p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ui-text-secondary);
+  }
+}
+
+@media screen and (width <= 1280px) {
+  .content-grid,
+  .hero-section,
+  .showcase-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (width <= 768px) {
+  .design-dashboard {
+    gap: 16px;
+  }
+
+  .hero-section,
+  .section-panel,
+  .side-panel,
+  .showcase-card,
+  .bottom-banner {
+    padding: 18px;
+  }
+
+  .hero-copy h1,
+  .bottom-banner-copy h2,
+  .showcase-head h2 {
+    font-size: 26px;
+  }
+
+  .bottom-banner {
+    align-items: flex-start;
+  }
+}
+</style>
