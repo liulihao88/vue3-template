@@ -13,6 +13,16 @@ html.dark {
 
   /* switch关闭状态下的color 需要时可取用 */
   --pure-switch-off-color: #ffffff3f;
+  --ui-page-bg: #0b1220;
+  --ui-surface: #111827;
+  --ui-surface-soft: #0f172a;
+  --ui-border: rgb(148 163 184 / 16%);
+  --ui-border-strong: rgb(148 163 184 / 26%);
+  --ui-text: rgb(241 245 249 / 92%);
+  --ui-text-secondary: rgb(226 232 240 / 72%);
+  --ui-text-tertiary: rgb(226 232 240 / 52%);
+  --ui-shadow-sm: 0 1px 2px rgb(2 6 23 / 30%);
+  --ui-shadow-md: 0 12px 32px rgb(2 6 23 / 34%), 0 2px 8px rgb(2 6 23 / 22%);
 
   .navbar,
   .tags-view,
@@ -27,7 +37,18 @@ html.dark {
 
   .app-main,
   .app-main-nofixed-header {
-    background: #020409 !important;
+    background: var(--ui-page-bg) !important;
+  }
+
+  .c-container,
+  .c-box {
+    background: var(--ui-surface);
+    border-color: var(--ui-border);
+  }
+
+  .c-takecare {
+    background: rgb(59 130 246 / 12%);
+    border-color: var(--ui-border);
   }
 
   /* 标签页 */

@@ -26,7 +26,7 @@ const headlineStats = [
   {
     label: '演示模块',
     value: '40+',
-    detail: '图表、表单、VueUse、组件和工具页',
+    detail: '覆盖图表、表单、VueUse、组件和工具页',
     icon: LayoutGridLine,
   },
   {
@@ -38,7 +38,7 @@ const headlineStats = [
   {
     label: '设计目标',
     value: '统一',
-    detail: '视觉层级、间距、反馈和暗色模式一起收敛',
+    detail: '收敛层级、节奏、反馈和暗色模式',
     icon: PaletteLine,
   },
 ]
@@ -46,7 +46,7 @@ const headlineStats = [
 const sections = [
   {
     title: '表单与录入',
-    description: '把输入、远程配置、循环表单和验证码体验收拢成统一的录入模块。',
+    description: '录入页优先保证字段关系清楚、校验反馈明确、长表单也能快速扫描。',
     icon: FileList3Line,
     items: [
       { title: '动态表单', description: '远程 schema、循环数据、字段联动。', path: '/form/oForm', badge: 'Forms' },
@@ -56,7 +56,7 @@ const sections = [
   },
   {
     title: '组件与交互',
-    description: '把可复用的界面能力整理成稳定的工具模块，方便扩展和抽象。',
+    description: '组件入口按使用场景组织，标题短、说明轻，先帮助你判断是否值得进入。',
     icon: ShapesLine,
     items: [
       { title: '基础组件', description: '验证码、输入封装和常用组合示例。', path: '/components/base', badge: 'Base' },
@@ -77,7 +77,7 @@ const sections = [
   },
   {
     title: '图表与洞察',
-    description: '图表页不只是展示库能力，也可以当作之后数据页设计的素材池。',
+    description: '数据页需要先读懂结论，再进入细节；图表入口也保持同样的信息顺序。',
     icon: LineChartLine,
     items: [
       { title: '基础图表', description: '折线、柱状等基础表达。', path: '/charts/base', badge: 'Charts' },
@@ -88,10 +88,15 @@ const sections = [
   },
   {
     title: '效率与工具',
-    description: '把上传、文件、预览、打印这类高频工作流集中起来，形成更完整的工具面板。',
+    description: '工具页适合高频重复使用，入口文案保持动作明确、结果可预期。',
     icon: Rocket2Line,
     items: [
-      { title: '大文件上传', description: '切片上传、断点续传的页面载体。', path: '/bigFileUpload', badge: 'Upload' },
+      {
+        title: '音频可视化',
+        description: '查看媒体控制、波形展示和操作反馈。',
+        path: '/able/wavesurfer',
+        badge: 'Media',
+      },
       { title: '打印示例', description: '表格打印和样式控制。', path: '/able/print', badge: 'Print' },
       { title: 'Excel 处理', description: '表格读取、渲染和下载能力。', path: '/able/excel', badge: 'Excel' },
       { title: 'PDF 预览', description: '文档浏览与本地预览。', path: '/usually/pdfjs', badge: 'Preview' },
@@ -114,17 +119,17 @@ const quickLinks = [
 const principles = [
   {
     title: '统一的层级',
-    description: '用页面背景、表面层、边框和阴影把信息分层，而不是只靠颜色堆叠。',
+    description: '标题、摘要、数据、操作各自承担一种语气，页面读起来会更安静。',
     icon: Apps2Line,
   },
   {
     title: '稳定的间距',
-    description: '把卡片、区块、表格和工具栏的节奏收齐，页面会立刻更专业。',
+    description: '区块之间拉开距离，区块内部保持紧凑，用户就不会在页面里迷路。',
     icon: TimeLine,
   },
   {
     title: '明确的状态',
-    description: '按钮、输入框、标签页和表格 hover/focus/active 都要有一致反馈。',
+    description: '交互文案和状态反馈要短而直接，少解释，多给下一步。',
     icon: Brush3Line,
   },
 ]
@@ -132,17 +137,17 @@ const principles = [
 const featuredComponents = [
   {
     title: '统计卡片',
-    description: '首页先把重要状态讲清楚，再让用户往下钻。',
+    description: '数字先给结论，说明文字补充范围和上下文。',
     comp: 'g-statistic',
   },
   {
     title: '品牌色选择',
-    description: '颜色不只是装饰，也是设计 token 的起点。',
+    description: '颜色入口保持轻量，避免抢走标题和内容的注意力。',
     comp: 'g-color-picker',
   },
   {
     title: '提示浮层',
-    description: '把隐藏信息放在恰当的位置，减少页面噪音。',
+    description: '提示信息适合补充细节，不承担主路径说明。',
     comp: 'g-tippy',
   },
 ]
@@ -160,11 +165,10 @@ const openRoute = (path: string) => {
   <div class="design-dashboard">
     <section class="hero-section">
       <div class="hero-copy">
-        <span class="hero-kicker">UI Design System</span>
-        <h1>把这个 Vue3 模板整理成更清晰、更稳定、也更像产品的界面系统</h1>
+        <span class="hero-kicker">Component Workspace</span>
+        <h1>组件工作台</h1>
         <p>
-          这里不再只是零散 demo
-          列表，而是一个可以继续扩展的页面母板。它把常用模块、设计原则、交互入口和组件能力放到同一套视觉系统里。
+          常用能力按任务类型重新分组，标题负责定位，摘要负责判断，入口负责行动。中文页面最怕信息挤在一起，这里先把阅读节奏理顺。
         </p>
         <div class="hero-actions">
           <el-button type="primary" size="large" @click="openRoute('/components/base')">
@@ -239,7 +243,7 @@ const openRoute = (path: string) => {
               </div>
               <div>
                 <h2>设计原则</h2>
-                <p>这次页面整理优先保证统一、可扩展和可读性。</p>
+                <p>标题、摘要、数字和操作分开承担信息密度。</p>
               </div>
             </div>
           </div>
@@ -265,7 +269,7 @@ const openRoute = (path: string) => {
               </div>
               <div>
                 <h2>快捷入口</h2>
-                <p>把常用页面放成短路径，减少在菜单里层层寻找。</p>
+                <p>高频页面保持短路径，减少菜单层级带来的停顿。</p>
               </div>
             </div>
           </div>
@@ -296,7 +300,7 @@ const openRoute = (path: string) => {
       <div class="showcase-head">
         <div>
           <span class="hero-kicker">Featured Components</span>
-          <h2>用已有组件搭一层更完整的视觉样板</h2>
+          <h2>精选组件</h2>
         </div>
       </div>
 
@@ -318,8 +322,8 @@ const openRoute = (path: string) => {
     <section class="bottom-banner panel-card">
       <div class="bottom-banner-copy">
         <span class="hero-kicker">Next Step</span>
-        <h2>接下来最适合把表单页、图表页和上传页也统一成同一套工作台语言</h2>
-        <p>现在首页已经是新的母板了，后续我们可以继续把具体业务页按这个系统一页页收过去。</p>
+        <h2>下一步可以继续统一表单页、图表页和工具页</h2>
+        <p>首页现在提供了排版基准：标题更短，说明更稳，入口更容易扫读。后续页面可以沿用这套节奏。</p>
       </div>
       <el-button type="primary" size="large" @click="openRoute('/able/print')">
         <IconifyIconOffline :icon="PieChart2Line" />
@@ -333,7 +337,11 @@ const openRoute = (path: string) => {
 .design-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
+  font-family: var(--ui-font-sans);
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text);
+  letter-spacing: 0;
 }
 
 .hero-section {
@@ -341,37 +349,36 @@ const openRoute = (path: string) => {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.95fr);
   gap: 24px;
-  padding: 32px;
+  padding: 4px 0 0;
   overflow: hidden;
-  background: radial-gradient(circle at top right, rgb(64 158 255 / 14%), transparent 34%),
-    linear-gradient(135deg, rgb(255 255 255 / 98%), rgb(247 250 255 / 98%));
-  border: 1px solid var(--ui-border);
-  border-radius: var(--ui-radius-lg);
-  box-shadow: var(--ui-shadow-md);
+  background: transparent;
 }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
   min-width: 0;
+  padding: 20px 0;
 
   h1 {
-    max-width: 14em;
+    max-width: var(--ui-measure-sm);
     margin: 0;
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 36px;
+    font-weight: 650;
+    line-height: var(--ui-leading-tight);
     color: var(--ui-text);
+    text-wrap: balance;
   }
 
   p {
-    max-width: 56ch;
+    max-width: var(--ui-measure-md);
     margin: 0;
     font-size: 15px;
-    line-height: 1.8;
+    line-height: var(--ui-leading-reading);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -382,7 +389,9 @@ const openRoute = (path: string) => {
   padding: 6px 10px;
   font-size: 12px;
   font-weight: 600;
+  line-height: 1;
   color: var(--el-color-primary);
+  letter-spacing: 0;
   background: rgb(64 158 255 / 8%);
   border: 1px solid rgb(64 158 255 / 14%);
   border-radius: 999px;
@@ -399,12 +408,11 @@ const openRoute = (path: string) => {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 20px;
-  background: rgb(255 255 255 / 72%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgb(255 255 255 / 78%);
+  padding: 20px 22px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-md);
-  box-shadow: 0 20px 40px rgb(15 23 42 / 6%);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .hero-panel-head {
@@ -415,11 +423,13 @@ const openRoute = (path: string) => {
 
   span {
     font-size: 13px;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text-secondary);
   }
 
   strong {
     font-size: 15px;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
   }
 }
@@ -435,9 +445,9 @@ const openRoute = (path: string) => {
   gap: 14px;
   align-items: start;
   padding: 16px;
-  background: var(--ui-surface);
+  background: var(--ui-surface-soft);
   border: 1px solid var(--ui-border);
-  border-radius: 14px;
+  border-radius: var(--ui-radius-md);
 }
 
 .hero-stat-icon,
@@ -466,12 +476,13 @@ const openRoute = (path: string) => {
 
   span {
     font-size: 13px;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text-secondary);
   }
 
   strong {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 650;
     line-height: 1.1;
     color: var(--ui-text);
   }
@@ -479,7 +490,7 @@ const openRoute = (path: string) => {
   p {
     margin: 0;
     font-size: 13px;
-    line-height: 1.6;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-tertiary);
   }
 }
@@ -524,19 +535,23 @@ const openRoute = (path: string) => {
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  min-width: 0;
 
   h2 {
     margin: 0;
     font-size: 20px;
-    line-height: 1.35;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
+    text-wrap: balance;
   }
 
   p {
     margin: 6px 0 0;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -569,11 +584,11 @@ const openRoute = (path: string) => {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 172px;
+  min-height: 168px;
   padding: 18px;
   background: linear-gradient(180deg, var(--ui-surface), var(--ui-surface-soft));
   border: 1px solid var(--ui-border);
-  border-radius: 14px;
+  border-radius: var(--ui-radius-md);
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -588,15 +603,19 @@ const openRoute = (path: string) => {
 
   strong {
     font-size: 17px;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
+    text-wrap: balance;
   }
 
   p {
     flex: 1;
     margin: 0;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -606,7 +625,9 @@ const openRoute = (path: string) => {
   padding: 4px 8px;
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.25;
   color: var(--ui-text-secondary);
+  letter-spacing: 0;
   background: rgb(15 23 42 / 4%);
   border-radius: 999px;
 }
@@ -617,6 +638,7 @@ const openRoute = (path: string) => {
   align-items: center;
   font-size: 13px;
   font-weight: 600;
+  line-height: var(--ui-leading-title);
   color: var(--el-color-primary);
 }
 
@@ -641,14 +663,17 @@ const openRoute = (path: string) => {
 
   strong {
     font-size: 15px;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
   }
 
   p {
     margin: 6px 0 0;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -668,7 +693,7 @@ const openRoute = (path: string) => {
   padding: 14px;
   background: var(--ui-surface-soft);
   border: 1px solid transparent;
-  border-radius: 14px;
+  border-radius: var(--ui-radius-md);
   transition:
     transform 0.18s ease,
     border-color 0.18s ease,
@@ -689,13 +714,16 @@ const openRoute = (path: string) => {
 
   strong {
     font-size: 15px;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
   }
 
   small {
     font-size: 13px;
-    line-height: 1.6;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -713,7 +741,8 @@ const openRoute = (path: string) => {
   h2 {
     margin: 8px 0 0;
     font-size: 24px;
-    line-height: 1.35;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
   }
 }
@@ -731,14 +760,17 @@ const openRoute = (path: string) => {
 .showcase-card-head {
   strong {
     font-size: 16px;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
   }
 
   p {
     margin: 6px 0 0;
     font-size: 13px;
-    line-height: 1.7;
+    line-height: var(--ui-leading-copy);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
@@ -760,15 +792,18 @@ const openRoute = (path: string) => {
   h2 {
     margin: 8px 0 0;
     font-size: 24px;
-    line-height: 1.35;
+    font-weight: 650;
+    line-height: var(--ui-leading-title);
     color: var(--ui-text);
+    text-wrap: balance;
   }
 
   p {
     margin: 10px 0 0;
     font-size: 14px;
-    line-height: 1.8;
+    line-height: var(--ui-leading-reading);
     color: var(--ui-text-secondary);
+    text-wrap: pretty;
   }
 }
 
