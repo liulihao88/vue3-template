@@ -6,7 +6,7 @@ const { proxy } = getCurrentInstance()
 
 <template>
   <div class="container">
-    <div>c11c</div>
+    <div>c11c321321</div>
   </div>
 </template>
 
