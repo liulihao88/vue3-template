@@ -10,8 +10,8 @@ frontend-skills-collection
 .lintstagedrc
 
 # environment
-.env
-.env.*
+env/.env
+env/.env.*
 
 # IDE
 .vscode/
