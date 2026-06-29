@@ -1,43 +1,29 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-interface HasLength {
-  length: number
-}
-
-function logLength<T extends HasLength>(item: T): T {
-  console.log(item.length)
-  return item
-}
-
-logLength('hello') // OK: string has length
-logLength([1, 2, 3]) // OK: array has length
-logLength({ length: 10 }) // OK: object has length
-// @ts-expect-error number has no length
-logLength(42) // Error: number has no length
-
-const open = ref(false)
-
-const openDialog = () => {
-  open.value = true
-}
 </script>
 
 <template>
   <div>
-    <T2 />
+    <s-title title="你好"></s-title>
+    <s-title title="显示左侧树杠" height="40"></s-title>
+    <s-title title="无左侧树杠" type="simple"></s-title>
+    <s-title title="form表单的类型" type="form">
+      <template #extra>
+        <el-button type="primary">我是基本的button</el-button>
+      </template>
+    </s-title>
+    <s-title title="form表单的类型" type="form"></s-title>
+    <s-title title="我是插是插槽title我是插槽title我是插槽title" sub-title="我不服啊" type="simple">
+      我是默认的s
+      <template #icon>
+        <s-icon name="delete"></s-icon>
+      </template>
+      <template #extra>
+        <el-button type="primary">按钮1</el-button>
+        <el-button type="primary">按钮2</el-button>
+      </template>
+    </s-title>
 
-    <T3 />
-    <div>test/t1.vue</div>
-
-    <el-button @click="openDialog">打开</el-button>
-
-    <el-dialog v-model="open" title="提示" width="30%" destroy-on-close center>
-      <div>test/t1.vue</div>
-    </el-dialog>
-
-    <el-button type="primary" @click="openDialog">默认 </el-button>
-    <el-button v-ripple type="primary" @click="openDialog">测试07</el-button>
-    <el-button v-ripple @click="openDialog">测试07</el-button>
-    <el-button v-ripple type="danger" @click="openDialog">测试07</el-button>
+    <s-title title="修改竖条颜色" type="" :style="{ '--lc': 'red' }"></s-title>
   </div>
 </template>

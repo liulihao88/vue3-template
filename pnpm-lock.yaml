@@ -30,8 +30,8 @@ importers:
         specifier: ^2.4.7
         version: 2.4.7(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5))
       '@sybz-components/utils':
-        specifier: ^0.0.8
-        version: 0.0.8(typescript@5.4.5)
+        specifier: ^0.0.9
+        version: 0.0.9(typescript@5.4.5)
       '@vue-office/excel':
         specifier: ^1.7.14
         version: 1.7.14(vue-demi@0.14.6(vue@3.5.26(typescript@5.4.5)))(vue@3.5.26(typescript@5.4.5))
@@ -123,8 +123,8 @@ importers:
         specifier: ^1.15.2
         version: 1.15.2
       sybz-components:
-        specifier: ^0.0.22
-        version: 0.0.22(@element-plus/icons-vue@2.3.2(vue@3.5.26(typescript@5.4.5)))(@vueuse/core@10.9.0(vue@3.5.26(typescript@5.4.5)))(echarts@5.5.0)(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(tippy.js@6.3.7)(typescript@5.4.5)(vue-echarts@7.0.3(@vue/runtime-core@3.5.26)(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5)))(vue-tippy@6.4.1(vue@3.5.26(typescript@5.4.5)))(vue@3.5.26(typescript@5.4.5))
+        specifier: ^0.0.27
+        version: 0.0.27(@element-plus/icons-vue@2.3.2(vue@3.5.26(typescript@5.4.5)))(@vueuse/core@10.9.0(vue@3.5.26(typescript@5.4.5)))(echarts@5.5.0)(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(eslint@9.39.4(jiti@1.21.0))(tippy.js@6.3.7)(typescript@5.4.5)(vue-echarts@7.0.3(@vue/runtime-core@3.5.26)(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5)))(vue-tippy@6.4.1(vue@3.5.26(typescript@5.4.5)))(vue@3.5.26(typescript@5.4.5))
       unplugin-icons:
         specifier: ^22.3.0
         version: 22.5.0(@vue/compiler-sfc@3.5.26)(vue-template-compiler@2.7.16)
@@ -1620,6 +1620,9 @@ packages:
 
   '@sybz-components/utils@0.0.8':
     resolution: {integrity: sha512-0TWj265+zlCA4QzvXwBr1yub9PCHYcrAZWXsZpIH0Q9WbzZjvU7O58fw3w7vlcabZcbVpuaGzjruSGn9QEIjAg==}
+
+  '@sybz-components/utils@0.0.9':
+    resolution: {integrity: sha512-TskOwsBJkjmKHHX3/aKjj6HVzXRusbDv2UyG49HWFPY5l08EoknSTuxEkF20n0xAnZLl5kBOrqGtgNUbEj5vew==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -5589,8 +5592,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sybz-components@0.0.22:
-    resolution: {integrity: sha512-YZ3HmxY/skIHnMSTNjpNe6h6Gd3rmSNZ6qsIYDUIWyIp0sC4Q82rcnB9Z52YSc8gsGTWlGmFij3PboBY6ZyV0A==}
+  sybz-components@0.0.27:
+    resolution: {integrity: sha512-UvgnEpAjJGibEALkozUd/rjvHnMyXPRaY4SFNrYZWgpogKoDwOKV44BLx7NMYD1GYmyXrR7F2ZwMWUE6PTJ4kg==}
     peerDependencies:
       '@element-plus/icons-vue': '>=2.3.0 <3'
       '@vueuse/core': '>=10.0.0 <14'
@@ -7531,6 +7534,21 @@ snapshots:
   '@sxzz/popperjs-es@2.11.7': {}
 
   '@sybz-components/utils@0.0.8(typescript@5.4.5)':
+    dependencies:
+      '@vue/reactivity': 3.5.26
+      '@vue/shared': 3.5.26
+      consola: 3.4.2
+      dayjs: 1.11.19
+      element-plus: 2.13.0(vue@3.4.15(typescript@5.4.5))
+      es-toolkit: 1.47.0
+      lodash-es: 4.17.21
+      qs: 6.15.2
+      vue: 3.4.15(typescript@5.4.5)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+
+  '@sybz-components/utils@0.0.9(typescript@5.4.5)':
     dependencies:
       '@vue/reactivity': 3.5.26
       '@vue/shared': 3.5.26
@@ -11979,13 +11997,14 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.0.0
 
-  sybz-components@0.0.22(@element-plus/icons-vue@2.3.2(vue@3.5.26(typescript@5.4.5)))(@vueuse/core@10.9.0(vue@3.5.26(typescript@5.4.5)))(echarts@5.5.0)(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(tippy.js@6.3.7)(typescript@5.4.5)(vue-echarts@7.0.3(@vue/runtime-core@3.5.26)(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5)))(vue-tippy@6.4.1(vue@3.5.26(typescript@5.4.5)))(vue@3.5.26(typescript@5.4.5)):
+  sybz-components@0.0.27(@element-plus/icons-vue@2.3.2(vue@3.5.26(typescript@5.4.5)))(@vueuse/core@10.9.0(vue@3.5.26(typescript@5.4.5)))(echarts@5.5.0)(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(eslint@9.39.4(jiti@1.21.0))(tippy.js@6.3.7)(typescript@5.4.5)(vue-echarts@7.0.3(@vue/runtime-core@3.5.26)(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5)))(vue-tippy@6.4.1(vue@3.5.26(typescript@5.4.5)))(vue@3.5.26(typescript@5.4.5)):
     dependencies:
       '@element-plus/icons-vue': 2.3.2(vue@3.5.26(typescript@5.4.5))
       '@sybz-components/utils': 0.0.8(typescript@5.4.5)
       '@vueuse/core': 10.9.0(vue@3.5.26(typescript@5.4.5))
       echarts: 5.5.0
       element-plus: 2.13.0(vue@3.5.26(typescript@5.4.5))
+      eslint-config-prettier: 9.1.2(eslint@9.39.4(jiti@1.21.0))
       tippy.js: 6.3.7
       vue: 3.5.26(typescript@5.4.5)
       vue-tippy: 6.4.1(vue@3.5.26(typescript@5.4.5))
@@ -11993,6 +12012,7 @@ snapshots:
       vue-echarts: 7.0.3(@vue/runtime-core@3.5.26)(echarts@5.5.0)(vue@3.5.26(typescript@5.4.5))
     transitivePeerDependencies:
       - '@vue/composition-api'
+      - eslint
       - typescript
 
   synckit@0.8.8:
