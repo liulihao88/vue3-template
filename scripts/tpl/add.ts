@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-interface GetHdsFilesFn {
+interface GetTplFilesFn {
   (dir: string, baseDir?: string): string[]
 }
 
@@ -18,22 +18,22 @@ const componentName: string | undefined = process.argv[2]
 const outputDirArg: string = process.argv[3] ?? '.'
 
 if (!componentName) {
-  console.error('Usage: node scripts/hds/add.ts <componentName> [outputDir]')
+  console.error('Usage: node scripts/tpl/add.ts <componentName> [outputDir]')
   process.exit(1)
 }
 
 const templateDir: string = path.dirname(fileURLToPath(import.meta.url))
 const outputDir: string = path.resolve(process.cwd(), outputDirArg)
 
-const getHdsFiles: GetHdsFilesFn = (dir, baseDir = dir) => {
+const getTplFiles: GetTplFilesFn = (dir, baseDir = dir) => {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const entryPath: string = path.join(dir, entry.name)
 
     if (entry.isDirectory()) {
-      return getHdsFiles(entryPath, baseDir)
+      return getTplFiles(entryPath, baseDir)
     }
 
-    if (!entry.isFile() || !entry.name.endsWith('.hds')) {
+    if (!entry.isFile() || !entry.name.endsWith('.tpl')) {
       return []
     }
 
@@ -41,10 +41,10 @@ const getHdsFiles: GetHdsFilesFn = (dir, baseDir = dir) => {
   })
 }
 
-const hdsFiles: string[] = getHdsFiles(templateDir)
+const tplFiles: string[] = getTplFiles(templateDir)
 
-if (hdsFiles.length === 0) {
-  console.error(`No .hds files found in ${templateDir}`)
+if (tplFiles.length === 0) {
+  console.error(`No .tpl files found in ${templateDir}`)
   process.exit(1)
 }
 
@@ -57,14 +57,14 @@ const replaceComponentName: ReplaceComponentNameFn = (value: string): string =>
     .replaceAll('componentName', componentName)
 
 const getTargetRelativePath: GetTargetRelativePathFn = (fileName: string): string => {
-  const withoutHds: string = fileName.replace(/\.hds$/, '')
-  const parsedPath = path.parse(withoutHds)
+  const withoutTpl: string = fileName.replace(/\.tpl$/, '')
+  const parsedPath = path.parse(withoutTpl)
   const targetBaseName: string = parsedPath.name === 'index' ? componentName : replaceComponentName(parsedPath.name)
 
   return path.join(parsedPath.dir, `${targetBaseName}${parsedPath.ext}`)
 }
 
-const writtenFiles: string[] = hdsFiles.map((fileName: string) => {
+const writtenFiles: string[] = tplFiles.map((fileName: string) => {
   const sourcePath: string = path.join(templateDir, fileName)
   const targetPath: string = path.join(outputDir, 'src/views', componentName, getTargetRelativePath(fileName))
   const content: string = replaceComponentName(fs.readFileSync(sourcePath, 'utf-8'))
