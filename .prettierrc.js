@@ -7,4 +7,5 @@ export default {
   trailingComma: 'all',
   printWidth: 120,
   endOfLine: 'lf',
+  htmlWhitespaceSensitivity: 'ignore',
 }

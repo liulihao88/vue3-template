@@ -347,7 +347,7 @@ export default [
         name: 'form',
         component: () => import('@/views/form/oForm.vue'),
         meta: {
-          title: 'oForm表单',
+          title: 's-form表单',
           showLink: VITE_HIDE_HOME === 'true' ? false : true,
         },
       },
