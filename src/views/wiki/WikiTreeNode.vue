@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Document, Folder, MoreFilled, Picture } from '@element-plus/icons-vue'
+import { CopyDocument, Document, Download, Folder, MoreFilled, Picture } from '@element-plus/icons-vue'
 import type { WikiNode } from './types'
 
 defineOptions({ name: 'WikiTreeNode' })
@@ -90,9 +90,17 @@ function matches(node: WikiNode): boolean {
               新增目录
             </el-dropdown-item>
             <el-dropdown-item v-if="node.kind !== 'folder'" command="edit">编辑</el-dropdown-item>
+            <el-dropdown-item v-if="node.kind !== 'folder'" command="copy-text">
+              <el-icon><CopyDocument /></el-icon>
+              复制文本
+            </el-dropdown-item>
+            <el-dropdown-item v-if="node.kind !== 'folder'" command="download">
+              <el-icon><Download /></el-icon>
+              下载
+            </el-dropdown-item>
             <el-dropdown-item command="rename">重命名</el-dropdown-item>
             <el-dropdown-item command="move">移动到...</el-dropdown-item>
-            <el-dropdown-item command="copy">创建副本</el-dropdown-item>
+            <el-dropdown-item command="copy">复制到...</el-dropdown-item>
             <el-dropdown-item command="delete">删除</el-dropdown-item>
           </el-dropdown-menu>
         </template>

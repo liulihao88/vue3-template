@@ -5,6 +5,7 @@ import WikiTreeNode from './WikiTreeNode.vue'
 import type { FileKind, WikiNode } from './types'
 import {
   ArrowDown,
+  CopyDocument,
   Document,
   EditPen,
   Files,
@@ -62,7 +63,7 @@ const tree = ref<WikiNode[]>([
         children: [
           {
             id: 'brand',
-            title: '品牌素材规范',
+            title: '品牌素材规范.md',
             kind: 'doc',
             content: '统一使用团队品牌色、字体与插图规范，保证各端体验一致。',
             updated: '6月12日',
@@ -308,9 +309,33 @@ function copyNodes() {
   ElMessage.success(`已复制 ${copyIds.value.length} 项`)
 }
 
-function downloadSelected() {
-  const node = selected.value
-  const blob = new Blob([node.content || `${node.title}\n演示文件内容`], { type: 'text/plain;charset=utf-8' })
+function getNodeText(node: WikiNode) {
+  if (node.content) return node.content
+  if (node.kind === 'sheet') {
+    return '季度,目标,完成率,负责人,状态\nQ1,120,86%,产品团队,进行中'
+  }
+  return `${node.title}\n暂无文本内容`
+}
+
+async function copyNodeText(node: WikiNode) {
+  const text = getNodeText(node)
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch {
+    const textarea = document.createElement('textarea')
+    textarea.value = text
+    textarea.style.position = 'fixed'
+    textarea.style.opacity = '0'
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    textarea.remove()
+  }
+  ElMessage.success('文件文本已复制')
+}
+
+function downloadNode(node: WikiNode) {
+  const blob = new Blob([getNodeText(node)], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
@@ -333,6 +358,8 @@ function handleNodeCommand(command: string, node: WikiNode) {
     selectNode(node)
     startEdit()
   } else if (command === 'copy') openCopy(node.id)
+  else if (command === 'copy-text') copyNodeText(node)
+  else if (command === 'download') downloadNode(node)
   else if (command === 'delete') removeNode(node.id)
   else openMove(node)
 }
@@ -566,6 +593,14 @@ function kindLabel(kind: FileKind) {
           </template>
         </div>
         <div class="top-actions">
+          <s-button v-if="selected.kind !== 'folder'" text @click="copyNodeText(selected)">
+            <el-icon><CopyDocument /></el-icon>
+            复制文本
+          </s-button>
+          <s-button v-if="selected.kind !== 'folder'" text @click="downloadNode(selected)">
+            <el-icon><Download /></el-icon>
+            下载
+          </s-button>
           <s-button text @click="shareDocument">
             <el-icon><Share /></el-icon>
             分享
@@ -639,7 +674,7 @@ function kindLabel(kind: FileKind) {
         </div>
         <h1>{{ selected.title }}</h1>
         <p>图片文件 · {{ selected.updated }}</p>
-        <s-button @click="downloadSelected">
+        <s-button @click="downloadNode(selected)">
           <el-icon><Download /></el-icon>
           下载原图
         </s-button>
