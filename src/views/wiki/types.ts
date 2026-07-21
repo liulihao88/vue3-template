@@ -6,5 +6,6 @@ export type WikiNode = {
   kind: FileKind | 'folder'
   children?: WikiNode[]
   content?: string
+  sheetData?: string[][]
   updated?: string
 }

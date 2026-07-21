@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
+import * as XLSX from 'xlsx'
 import WikiTreeNode from './WikiTreeNode.vue'
 import type { FileKind, WikiNode } from './types'
 import {
@@ -53,7 +54,19 @@ const tree = ref<WikiNode[]>([
             content: '# 版本发布流程\n\n1. 合并发布分支\n2. 完成预发验证\n3. 发布后观察核心指标',
             updated: '昨天 16:08',
           },
-          { id: 'roadmap', title: '产品路线图.xlsx', kind: 'sheet', updated: '6月18日' },
+          {
+            id: 'roadmap',
+            title: '产品路线图.xlsx',
+            kind: 'sheet',
+            sheetData: [
+              ['季度', '目标', '完成率', '负责人', '状态'],
+              ['Q1', '120', '86%', '产品团队', '进行中'],
+              ['Q2', '150', '92%', '研发团队', '进行中'],
+              ['Q3', '180', '75%', '市场团队', '规划中'],
+              ['Q4', '200', '60%', '运营团队', '未开始'],
+            ],
+            updated: '6月18日',
+          },
         ],
       },
       {
@@ -199,6 +212,7 @@ const selectedPath = computed(() => {
   }
   return findPath(tree.value, selected.value.id) || [tree.value[0]]
 })
+const sheetColumnCount = computed(() => Math.max(1, ...(selected.value.sheetData?.map((row) => row.length) || [1])))
 const flattenedFolders = computed(() => {
   const result: { id: string; label: string }[] = []
   const walk = (nodes: WikiNode[], prefix = '') =>
@@ -284,6 +298,7 @@ function cloneNode(source: WikiNode): WikiNode {
     ...source,
     id: `${source.id}-copy-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
     children: source.children?.map(cloneNode),
+    sheetData: source.sheetData?.map((row) => row.slice()),
   }
 }
 
@@ -310,10 +325,10 @@ function copyNodes() {
 }
 
 function getNodeText(node: WikiNode) {
-  if (node.content) return node.content
   if (node.kind === 'sheet') {
-    return '季度,目标,完成率,负责人,状态\nQ1,120,86%,产品团队,进行中'
+    return (node.sheetData || []).map((row) => row.join('\t')).join('\n')
   }
+  if (node.content) return node.content
   return `${node.title}\n暂无文本内容`
 }
 
@@ -335,6 +350,14 @@ async function copyNodeText(node: WikiNode) {
 }
 
 function downloadNode(node: WikiNode) {
+  if (node.kind === 'sheet') {
+    const worksheet = XLSX.utils.aoa_to_sheet(node.sheetData || [])
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, '工作表1')
+    const filename = /\.xlsx$/i.test(node.title) ? node.title : `${node.title}.xlsx`
+    XLSX.writeFile(workbook, filename)
+    return
+  }
   const blob = new Blob([getNodeText(node)], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
@@ -365,7 +388,10 @@ function handleNodeCommand(command: string, node: WikiNode) {
 }
 
 function startEdit() {
-  draft.value = selected.value.content || ''
+  draft.value =
+    selected.value.kind === 'sheet'
+      ? XLSX.utils.sheet_to_csv(XLSX.utils.aoa_to_sheet(selected.value.sheetData || []))
+      : selected.value.content || ''
   editing.value = true
   nextTick(() => document.querySelector<HTMLTextAreaElement>('.editor-area')?.focus())
 }
@@ -373,7 +399,18 @@ function startEdit() {
 function saveEdit() {
   const node = findNode(tree.value, selectedId.value)
   if (node) {
-    node.content = draft.value
+    if (node.kind === 'sheet') {
+      try {
+        const workbook = XLSX.read(draft.value, { type: 'string' })
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+        node.sheetData = (XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false }) as unknown[][]).map((row) =>
+          row.map((cell) => String(cell ?? '')),
+        )
+      } catch {
+        ElMessage.error('表格内容格式不正确，请使用 CSV 格式')
+        return
+      }
+    } else node.content = draft.value
     node.updated = '刚刚更新'
   }
   editing.value = false
@@ -655,15 +692,21 @@ function kindLabel(kind: FileKind) {
         <div class="file-icon sheet">XLSX</div>
         <h1>{{ selected.title }}</h1>
         <p>Excel 表格</p>
-        <div class="sheet-preview">
-          <div v-for="row in 6" :key="row" class="sheet-row">
-            <span v-for="col in 5" :key="col">
-              {{
-                row === 1
-                  ? ['季度', '目标', '完成率', '负责人', '状态'][col - 1]
-                  : ['Q' + (row - 1), '120', '86%', '产品团队', '进行中'][col - 1]
-              }}
-            </span>
+        <template v-if="editing">
+          <textarea v-model="draft" class="editor-area sheet-editor" />
+          <div class="editor-actions">
+            <s-button @click="editing = false">取消</s-button>
+            <s-button type="primary" @click="saveEdit">保存</s-button>
+          </div>
+        </template>
+        <div v-else class="sheet-preview">
+          <div
+            v-for="(row, rowIndex) in selected.sheetData"
+            :key="rowIndex"
+            class="sheet-row"
+            :style="{ gridTemplateColumns: `repeat(${sheetColumnCount}, minmax(120px, 1fr))` }"
+          >
+            <span v-for="(cell, colIndex) in row" :key="colIndex">{{ cell }}</span>
           </div>
         </div>
       </article>
@@ -1097,16 +1140,18 @@ function kindLabel(kind: FileKind) {
 }
 .sheet-preview {
   margin-top: 38px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #dfe3e8;
   border-radius: 6px;
   text-align: left;
 }
 .sheet-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   min-height: 44px;
   border-bottom: 1px solid #e8eaed;
+}
+.sheet-editor {
+  text-align: left;
 }
 .sheet-row:first-child {
   background: #f4f7fb;
