@@ -21,7 +21,7 @@
     "add": "node ./scripts/tpl/add.ts",
     "prepare": "husky",
     "preinstall": "npx only-allow pnpm",
-    "update": "pnpm add sybz-components@latest && pnpm add @sybz-components/utils@latest"
+    "update": "pnpm add sybz-components@latest && pnpm add @sybz-components/utils@latest && pnpm add -g @sybz-components/portal-dev"
   },
   "keywords": [
     "pure-admin-thin",
