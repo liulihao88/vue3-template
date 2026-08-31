@@ -126,8 +126,8 @@ importers:
         specifier: ^1.15.2
         version: 1.15.2
       sybz-components:
-        specifier: ^1.0.33
-        version: 1.0.33(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.97.3)(terser@5.31.1))(vue@3.5.26(typescript@5.4.5))
+        specifier: ^1.0.34
+        version: 1.0.34(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.97.3)(terser@5.31.1))(vue@3.5.26(typescript@5.4.5))
       tesseract.js:
         specifier: ^7.0.0
         version: 7.0.0
@@ -5708,8 +5708,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sybz-components@1.0.33:
-    resolution: {integrity: sha512-C3U+ENDbIFsKAQk9L3OPOVpSSW6VM5YFjhwv+XLryhVUu6taJj1RQcsVfmrY2feg58c/vwJ9YQTHCa9l8w3Mww==}
+  sybz-components@1.0.34:
+    resolution: {integrity: sha512-e7OhI6LiSPvBN4IZHbRRDiiuUDpKgvmBni4NkoV+/28Ms4zDtZIRP0Fyi+nY8IO2Lct0786v5K+28pggUbMLDQ==}
     peerDependencies:
       element-plus: '>=2.3.0 <3'
       vue: '>=3.4.0 <4'
@@ -12200,7 +12200,7 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.0.0
 
-  sybz-components@1.0.33(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.97.3)(terser@5.31.1))(vue@3.5.26(typescript@5.4.5)):
+  sybz-components@1.0.34(element-plus@2.13.0(vue@3.5.26(typescript@5.4.5)))(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.11)(sass@1.97.3)(terser@5.31.1))(vue@3.5.26(typescript@5.4.5)):
     dependencies:
       '@element-plus/icons-vue': 2.3.2(vue@3.5.26(typescript@5.4.5))
       '@iconify/vue': 5.0.1(vue@3.5.26(typescript@5.4.5))
