@@ -12,7 +12,7 @@ import removeConsole from 'vite-plugin-remove-console'
 import { themePreprocessorPlugin } from '@pureadmin/theme'
 import { genScssMultipleScopeVars } from '../src/layout/theme'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
-import { codeInspectorPlugin } from 'code-inspector-plugin'
+import { sybzVitePlugins } from '@sybz-components/utils/vite'
 
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
@@ -24,6 +24,8 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
     // jsx、tsx语法支持
     vueJsx(),
     viteBuildInfo(),
+    // 项目仍使用 Tailwind CSS v3；避免插件预设同时启用 Tailwind CSS v4 重复处理样式
+    sybzVitePlugins({ tailwind: false }),
     /**
      * 开发环境下移除非必要的vue-router动态路由警告No match found for location with path
      * 非必要具体看 https://github.com/vuejs/router/issues/521 和 https://github.com/vuejs/router/issues/359
@@ -56,9 +58,6 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
     removeConsole({ external: ['src/assets/iconfont/iconfont.js'] }),
     // 打包分析
     lifecycle === 'report' ? visualizer({ open: true, brotliSize: true, filename: 'report.html' }) : (null as any),
-    codeInspectorPlugin({
-      bundler: 'vite',
-    }),
     createSvgIconsPlugin({
       // Specify the icon folder to be cached
       iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
