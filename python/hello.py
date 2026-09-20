@@ -110,12 +110,29 @@
 #     n = n + 1
 # print('END')
 
-d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
-print(d['Michael'])
+# d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+# print(d['Michael'])
 
-s1 = {1, 2, 3}
-s2 = {2, 3, 4}
-print(s1 & s2)
-# {2, 3}
-print(s1 | s2)
-# {1, 2, 3, 4}
+# s1 = {1, 2, 3}
+# s2 = {2, 3, 4}
+# print(s1 & s2)
+# # {2, 3}
+# print(s1 | s2)
+# # {1, 2, 3, 4}
+
+# print(abs(-200))
+# print(bool(1))
+
+# n1 = 255
+# n2 = 1000
+
+# print(hex(n1))
+# print(hex(n2))
+
+def fact(n):
+    if n==1:
+        return 1
+    return n * fact(n - 1)
+
+print(fact(5))
+print(fact(1000))
