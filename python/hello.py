@@ -129,10 +129,23 @@
 # print(hex(n1))
 # print(hex(n2))
 
-def fact(n):
-    if n==1:
-        return 1
-    return n * fact(n - 1)
+# def fact(n):
+#     if n==1:
+#         return 1
+#     return n * fact(n - 1)
 
-print(fact(5))
-print(fact(1000))
+# print(fact(5))
+# print(fact(1000))
+
+# f = lambda x: x * x
+# print(f(4))
+
+# def is_odd(n):
+#     return n % 2 == 1
+
+# L = list(filter(is_odd, range(1, 20)))
+
+# print(L)
+
+print(list(filter(lambda x: x % 2 == 0, range(1, 20))))
+
